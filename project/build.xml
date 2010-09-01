@@ -1,0 +1,122 @@
+<xml>
+	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
+	
+	<set name="OF_DIR" value="D:/of_preRelease_v0061_all" />
+	
+	<files id="oF_Files">
+		<file name="api.cpp"/>
+		
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/graphics"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/app"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/sound"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/utils"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/communication"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/video"/>
+		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
+		<compilerflag value = "-I${OF_DIR}/libs/glut/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
+		<compilerflag value = "-I${OF_DIR}/libs/freeImage/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/fmodex/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/videoInput/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/glee/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/glu/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/poco/include"/>
+		<compilerflag value = "-I${OF_DIR}/addons"/>
+		
+		<compilerflag value = "-DWIN32" if="windows"/>
+		<compilerflag value = "-DNDEBUG" if="windows"/>
+		<compilerflag value = "-D_CONSOLE" if="windows"/>
+		<compilerflag value = "-DPOCO_STATIC" if="windows"/>
+		<!--
+		<compilerflag value = "-D_UNICODE" if="windows"/>
+		<compilerflag value = "-DUNICODE" if="windows"/>-->
+		<compilerflag value = "-FD" if="windows"/>
+		<compilerflag value = "-EHsc" if="windows"/>
+		<compilerflag value = "-MD" if="windows"/>
+		<compilerflag value = "-W3" if="windows"/>
+		<compilerflag value = "-c" if="windows"/>
+		<compilerflag value = "-TP" if="windows"/>
+	</files>
+	
+	<target id="hxOpenFrameworks.ndll" tool="linker" toolid="dll" output="hxOpenFrameworks">
+		<files id="oF_Files"/>
+		<ext value=".ndll"/>
+		<outdir name="../ndll/${BINDIR}"/>
+		
+		<lib name="${LIB_LINK}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glut/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/rtAudio/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/FreeImage/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/freetype/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/quicktime/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/fmodex/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/videoInput/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glee/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glu/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/Poco/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/vs2008"/>
+		
+		<lib name = '-MANIFEST' if="windows"/>
+		<lib name = '-MANIFESTFILE:obj/Release/hxOpenFrameworks.ndll.intermediate.manifest' if="windows"/>
+		
+		<lib name = '-NODEFAULTLIB:atlthunk.lib' if="windows"/>
+		<lib name = '-NODEFAULTLIB:libc.lib' if="windows"/>
+		<lib name = '-NODEFAULTLIB:LIBCMT' if="windows"/>
+		
+		<lib name = '-SUBSYSTEM:CONSOLE' if="windows"/>
+		<lib name = '-OPT:REF' if="windows"/>
+		<lib name = '-OPT:ICF' if="windows"/>
+		<lib name = '-LTCG' if="windows"/>
+		<lib name = '-DYNAMICBASE:NO' if="windows"/>
+		<!--<lib name = '-MACHINE:X86' if="windows"/>-->
+		
+		<lib name = 'openframeworksLib.lib' if="windows"/>
+		<lib name = 'OpenGL32.lib' />
+		<lib name = 'GLu32.lib' />
+		<lib name = 'kernel32.lib' />
+		<lib name = 'setupapi.lib' />
+		<lib name = 'glut32.lib' />
+		<lib name = 'rtAudio.lib' />
+		<lib name = 'videoInput.lib' />
+		<lib name = 'libfreetype.lib' />
+		<lib name = 'FreeImage.lib' />
+		<lib name = 'qtmlClient.lib' />
+		<lib name = 'dsound.lib' />
+		<lib name = 'user32.lib' />
+		<lib name = 'gdi32.lib' />
+		<lib name = 'winspool.lib' />
+		<lib name = 'comdlg32.lib' />
+		<lib name = 'advapi32.lib' />
+		<lib name = 'shell32.lib' />
+		<lib name = 'ole32.lib' />
+		<lib name = 'oleaut32.lib' />
+		<lib name = 'uuid.lib' />
+		<lib name = 'GLee.lib' />
+		<lib name = 'fmodex_vc.lib' />
+		<lib name = 'glu32.lib' />
+		<lib name = 'PocoFoundationmt.lib' />
+		<lib name = 'PocoNetmt.lib' />
+		<lib name = 'PocoUtilmt.lib' />
+		<lib name = 'PocoXMLmt.lib' />
+		<lib name = 'kernel32.lib' />
+		<lib name = 'user32.lib' />
+		<lib name = 'gdi32.lib' />
+		<lib name = 'winspool.lib' />
+		<lib name = 'comdlg32.lib' />
+		<lib name = 'advapi32.lib' />
+		<lib name = 'shell32.lib' />
+		<lib name = 'ole32.lib' />
+		<lib name = 'oleaut32.lib' />
+		<lib name = 'uuid.lib' />
+		<lib name = 'odbc32.lib' />
+		<lib name = 'odbccp32.lib' />		
+	</target>
+
+	<target id="default">
+		<target id="hxOpenFrameworks.ndll"/>
+	</target>
+</xml>
