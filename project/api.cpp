@@ -859,3 +859,64 @@ value _ofNextContour(value a) {
 	return alloc_null();
 }
 DEFINE_PRIM(_ofNextContour,1);
+
+/*
+	ofTypes
+*/
+
+DEFINE_KIND(_ofPoint);
+
+void delete_ofPoint(value a) {
+	ofPoint* app = (ofPoint*) val_data(a);
+	delete app;
+}
+
+value _ofPoint_new(value a,value b,value c) {
+	value ret = alloc_abstract(_ofPoint, new ofPoint(val_float(a),val_float(b),val_float(c)));
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofPoint_new,3);
+
+value _ofPoint_getX(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->x);
+}
+DEFINE_PRIM(_ofPoint_getX,1);
+
+value _ofPoint_getY(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->y);
+}
+DEFINE_PRIM(_ofPoint_getY,1);
+
+value _ofPoint_getZ(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->z);
+}
+DEFINE_PRIM(_ofPoint_getZ,1);
+
+value _ofPoint_setX(value a,value b) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->x = val_float(b));
+}
+DEFINE_PRIM(_ofPoint_setX,2);
+
+value _ofPoint_setY(value a,value b) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->y = val_float(b));
+}
+DEFINE_PRIM(_ofPoint_setY,2);
+
+value _ofPoint_setZ(value a,value b) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->z = val_float(b));
+}
+DEFINE_PRIM(_ofPoint_setZ,2);
+
+value _ofPoint_set(value a,value b,value c,value d) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	pt->set(val_float(b),val_float(c),val_float(d));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofPoint_set,4);

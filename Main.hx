@@ -6,6 +6,7 @@ package ;
 
 import cpp.Lib;
 import of.Graphics;
+import of.Types;
 
 class Main extends of.BaseApp
 {
