@@ -436,10 +436,15 @@ value _ofNormalize(value a, value b, value c) {
 }
 DEFINE_PRIM(_ofNormalize,3);
 
-value _ofMap(value a, value b, value c, value d, value e, value f) {
-	return alloc_float(ofMap(val_float(a), val_float(b), val_float(c), val_float(d), val_float(e), val_bool(f)));
+value _ofMap(value a) {
+	return alloc_float(ofMap(	val_field_numeric(a, val_id("value")), 
+								val_field_numeric(a, val_id("inputMin")), 
+								val_field_numeric(a, val_id("inputMax")), 
+								val_field_numeric(a, val_id("outputMin")), 
+								val_field_numeric(a, val_id("outputMax")), 
+								val_bool(val_field(a, val_id("clamp")))));
 }
-DEFINE_PRIM_MULT(_ofMap);
+DEFINE_PRIM(_ofMap,1);
 
 value _ofClamp(value a, value b, value c) {
 	return alloc_float(ofClamp(val_float(a), val_float(b), val_float(c)));
@@ -592,11 +597,16 @@ value _ofSetCurveResolution(value a) {
 }
 DEFINE_PRIM(_ofSetCurveResolution,1);
 
-value _ofTriangle(value a, value b, value c, value d, value e, value f) {
-	ofTriangle(val_float(a), val_float(b), val_float(c), val_float(d), val_float(e), val_bool(f));
+value _ofTriangle(value a) {
+	ofTriangle(	val_field_numeric(a, val_id("x1")), 
+				val_field_numeric(a, val_id("y1")), 
+				val_field_numeric(a, val_id("x2")), 
+				val_field_numeric(a, val_id("y2")), 
+				val_field_numeric(a, val_id("x3")), 
+				val_field_numeric(a, val_id("y3")));
 	return alloc_null();
 }
-DEFINE_PRIM_MULT(_ofTriangle);
+DEFINE_PRIM(_ofTriangle,1);
 
 value _ofCircle(value a, value b, value c) {
 	ofCircle(val_float(a), val_float(b), val_float(c));
@@ -628,17 +638,31 @@ value _ofSetCircleResolution(value a) {
 }
 DEFINE_PRIM(_ofSetCircleResolution,1);
 
-value _ofCurve(value a, value b, value c, value d, value e, value f, value g, value h) {
-	ofCurve(val_float(a), val_float(b), val_float(c), val_float(d), val_float(e), val_bool(f), val_float(g), val_bool(h));
+value _ofCurve(value a) {
+	ofCurve(	val_field_numeric(a, val_id("x0")), 
+				val_field_numeric(a, val_id("y0")),	
+				val_field_numeric(a, val_id("x1")), 
+				val_field_numeric(a, val_id("y1")), 
+				val_field_numeric(a, val_id("x2")), 
+				val_field_numeric(a, val_id("y2")), 
+				val_field_numeric(a, val_id("x3")), 
+				val_field_numeric(a, val_id("y3")));
 	return alloc_null();
 }
-DEFINE_PRIM_MULT(_ofCurve);
+DEFINE_PRIM(_ofCurve,1);
 
-value _ofBezier(value a, value b, value c, value d, value e, value f, value g, value h) {
-	ofBezier(val_float(a), val_float(b), val_float(c), val_float(d), val_float(e), val_bool(f), val_float(g), val_bool(h));
+value _ofBezier(value a) {
+	ofBezier(	val_field_numeric(a, val_id("x0")), 
+				val_field_numeric(a, val_id("y0")),	
+				val_field_numeric(a, val_id("x1")), 
+				val_field_numeric(a, val_id("y1")), 
+				val_field_numeric(a, val_id("x2")), 
+				val_field_numeric(a, val_id("y2")), 
+				val_field_numeric(a, val_id("x3")), 
+				val_field_numeric(a, val_id("y3")));
 	return alloc_null();
 }
-DEFINE_PRIM_MULT(_ofBezier);
+DEFINE_PRIM(_ofBezier,1);
 
 value _ofNoFill() {
 	ofNoFill();
@@ -795,11 +819,16 @@ value _ofCurveVertex(value a,value b) {
 }
 DEFINE_PRIM(_ofCurveVertex,2);
 
-value _ofBezierVertex(value a, value b, value c, value d, value e, value f) {
-	ofBezierVertex(val_float(a), val_float(b), val_float(c), val_float(d), val_float(e), val_bool(f));
+value _ofBezierVertex(value a) {
+	ofBezierVertex(	val_field_numeric(a, val_id("x1")), 
+					val_field_numeric(a, val_id("y1")), 
+					val_field_numeric(a, val_id("x2")), 
+					val_field_numeric(a, val_id("y2")), 
+					val_field_numeric(a, val_id("x3")), 
+					val_field_numeric(a, val_id("y3")));
 	return alloc_null();
 }
-DEFINE_PRIM_MULT(_ofBezierVertex);
+DEFINE_PRIM(_ofBezierVertex,1);
 
 value _ofSetPolyMode(value a) {
 	ofSetPolyMode(val_int(a));

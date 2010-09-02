@@ -49,7 +49,7 @@ class Graphics
 
 	// geometry 
 	static public function triangle(x1:Float,y1:Float,x2:Float,y2:Float,x3:Float, y3:Float):Void{	
-		_ofTriangle(x1, y1, x2, y2, x3, y3);
+		_ofTriangle({x1:x1, y1:y1, x2:x2, y2:y2, x3:x3, y3:y3});
 	}
 	static public function circle(x:Float,y:Float, radius:Float):Void{	
 		_ofCircle(x, y, radius);
@@ -70,10 +70,10 @@ class Graphics
 	}  		
 
 	static public function curve(x0:Float, y0:Float, x1:Float, y1:Float, x2:Float, y2:Float, x3:Float, y3:Float):Void{	
-		_ofCurve(x0, y0, x1, y1, x2, y2, x3, y3);
+		_ofCurve({x0:x0, y0:y0, x1:x1, y1:y1, x2:x2, y2:y2, x3:x3, y3:y3});
 	}
 	static public function bezier(x0:Float, y0:Float, x1:Float, y1:Float, x2:Float, y2:Float, x3:Float, y3:Float):Void{	
-		_ofBezier(x0, y0, x1, y1, x2, y2, x3, y3);
+		_ofBezier({x0:x0, y0:y0, x1:x1, y1:y1, x2:x2, y2:y2, x3:x3, y3:y3});
 	}
 
 
@@ -174,7 +174,7 @@ class Graphics
 		_ofCurveVertex(x, y);
 	}
 	static public function bezierVertex(x1:Float, y1:Float, x2:Float, y2:Float, x3:Float, y3:Float):Void{	
-		_ofBezierVertex(x1, y1, x2, y2, x3, y3);
+		_ofBezierVertex({x1:x1, y1:y1, x2:x2, y2:y2, x3:x3, y3:y3});
 	}
 
 	// for polygons
@@ -208,15 +208,15 @@ class Graphics
 
 	static var _ofSetCurveResolution = Lib.load("hxOpenFrameworks", "_ofSetCurveResolution", 1);
 
-	static var _ofTriangle = Lib.load("hxOpenFrameworks", "_ofTriangle", 6);
+	static var _ofTriangle = Lib.load("hxOpenFrameworks", "_ofTriangle", 1);
 	static var _ofCircle = Lib.load("hxOpenFrameworks", "_ofCircle", 3);
 	static var _ofEllipse = Lib.load("hxOpenFrameworks", "_ofEllipse", 4);
 	static var _ofLine = Lib.load("hxOpenFrameworks", "_ofLine", 4);
 	static var _ofRect = Lib.load("hxOpenFrameworks", "_ofRect", 4);
 	static var _ofSetCircleResolution = Lib.load("hxOpenFrameworks", "_ofSetCircleResolution", 1);
 
-	static var _ofCurve = Lib.load("hxOpenFrameworks", "_ofCurve", 8);
-	static var _ofBezier = Lib.load("hxOpenFrameworks", "_ofBezier", 8);
+	static var _ofCurve = Lib.load("hxOpenFrameworks", "_ofCurve", 1);
+	static var _ofBezier = Lib.load("hxOpenFrameworks", "_ofBezier", 1);
 
 	static var _ofNoFill = Lib.load("hxOpenFrameworks", "_ofNoFill", 0);
 	static var _ofFill = Lib.load("hxOpenFrameworks", "_ofFill", 0);
@@ -252,7 +252,7 @@ class Graphics
 	static var _ofSetupScreen = Lib.load("hxOpenFrameworks", "_ofSetupScreen", 0);
 
 	static var _ofCurveVertex = Lib.load("hxOpenFrameworks", "_ofCurveVertex", 2);
-	static var _ofBezierVertex = Lib.load("hxOpenFrameworks", "_ofBezierVertex", 6);
+	static var _ofBezierVertex = Lib.load("hxOpenFrameworks", "_ofBezierVertex", 1);
 
 	static var _ofSetPolyMode = Lib.load("hxOpenFrameworks", "_ofSetPolyMode", 1);
 	static var _ofBeginShape = Lib.load("hxOpenFrameworks", "_ofBeginShape", 0);

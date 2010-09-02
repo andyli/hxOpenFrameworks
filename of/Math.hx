@@ -31,7 +31,7 @@ class Math {
 	}
 	
 	static public function map(value:Float, inputMin:Float, inputMax:Float, outputMin:Float, outputMax:Float, clamp:Bool = false):Float {
-		return _ofMap(value, inputMin, inputMax, outputMin, outputMax, clamp);
+		return _ofMap({value:value, inputMin:inputMin, inputMax:inputMax, outputMin:outputMin, outputMax:outputMax, clamp:clamp});
 	}
 	
 	static public function clamp(value:Float, min:Float, max:Float):Float {
@@ -99,7 +99,7 @@ class Math {
 	static var _ofRandomuf = Lib.load("hxOpenFrameworks", "_ofRandomuf", 0);
 
 	static var _ofNormalize = Lib.load("hxOpenFrameworks", "_ofNormalize", 3);
-	static var _ofMap = Lib.load("hxOpenFrameworks", "_ofMap", 6);
+	static var _ofMap = Lib.load("hxOpenFrameworks", "_ofMap", 1);
 	static var _ofClamp = Lib.load("hxOpenFrameworks", "_ofClamp", 3);
 	static var _ofLerp = Lib.load("hxOpenFrameworks", "_ofLerp", 3);
 	static var _ofDist = Lib.load("hxOpenFrameworks", "_ofDist", 4);
