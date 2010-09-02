@@ -11,6 +11,131 @@
 
 
 /*
+	ofTypes
+*/
+
+//ofPoint
+DEFINE_KIND(_ofPoint);
+
+void delete_ofPoint(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	delete pt;
+}
+
+value _ofPoint_new(value a,value b,value c) {
+	value ret = alloc_abstract(_ofPoint, new ofPoint(val_float(a),val_float(b),val_float(c)));
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofPoint_new,3);
+
+value _ofPoint_getX(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->x);
+}
+DEFINE_PRIM(_ofPoint_getX,1);
+
+value _ofPoint_getY(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->y);
+}
+DEFINE_PRIM(_ofPoint_getY,1);
+
+value _ofPoint_getZ(value a) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->z);
+}
+DEFINE_PRIM(_ofPoint_getZ,1);
+
+value _ofPoint_setX(value a,value b) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->x = val_float(b));
+}
+DEFINE_PRIM(_ofPoint_setX,2);
+
+value _ofPoint_setY(value a,value b) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->y = val_float(b));
+}
+DEFINE_PRIM(_ofPoint_setY,2);
+
+value _ofPoint_setZ(value a,value b) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	return alloc_float(pt->z = val_float(b));
+}
+DEFINE_PRIM(_ofPoint_setZ,2);
+
+value _ofPoint_set(value a,value b,value c,value d) {
+	ofPoint* pt = (ofPoint*) val_data(a);
+	pt->set(val_float(b),val_float(c),val_float(d));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofPoint_set,4);
+
+//ofRectangle
+DEFINE_KIND(_ofRectangle);
+
+void delete_ofRectangle(value a) {
+	ofRectangle* rect = (ofRectangle*) val_data(a);
+	delete rect;
+}
+
+value _ofRectangle_new() {
+	value ret = alloc_abstract(_ofRectangle, new ofRectangle());
+	val_gc(ret, delete_ofRectangle);
+	return ret;
+}
+DEFINE_PRIM(_ofRectangle_new,0);
+
+value _ofRectangle_getX(value a) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->x);
+}
+DEFINE_PRIM(_ofRectangle_getX,1);
+
+value _ofRectangle_getY(value a) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->y);
+}
+DEFINE_PRIM(_ofRectangle_getY,1);
+
+value _ofRectangle_getWidth(value a) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->width);
+}
+DEFINE_PRIM(_ofRectangle_getWidth,1);
+
+value _ofRectangle_getHeight(value a) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->height);
+}
+DEFINE_PRIM(_ofRectangle_getHeight,1);
+
+value _ofRectangle_setX(value a,value b) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->x = val_float(b));
+}
+DEFINE_PRIM(_ofRectangle_setX,2);
+
+value _ofRectangle_setY(value a,value b) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->y = val_float(b));
+}
+DEFINE_PRIM(_ofRectangle_setY,2);
+
+value _ofRectangle_setWidth(value a,value b) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->width = val_float(b));
+}
+DEFINE_PRIM(_ofRectangle_setWidth,2);
+
+value _ofRectangle_setHeight(value a,value b) {
+	ofRectangle* pt = (ofRectangle*) val_data(a);
+	return alloc_float(pt->height = val_float(b));
+}
+DEFINE_PRIM(_ofRectangle_setHeight,2);
+
+/*
 	ofAppRunner
 */
 
@@ -253,34 +378,158 @@ value _ofAppGlutWindow_setWindowShape(value a, value b, value c) {
 }
 DEFINE_PRIM(_ofAppGlutWindow_setWindowShape,3);
 
-/* TODO
-	ofPoint		getWindowPosition();
-	ofPoint		getWindowSize();
-	ofPoint		getScreenSize();
+value _ofAppGlutWindow_getWindowPosition(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	
+	ofPoint* pt = new ofPoint();
+	*pt = window->getWindowPosition();
+	value ret = alloc_abstract(_ofPoint, pt);
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofAppGlutWindow_getWindowPosition,1);
 
-	int			getWindowMode();
+value _ofAppGlutWindow_getWindowSize(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	
+	ofPoint* pt = new ofPoint();
+	*pt = window->getWindowSize();
+	value ret = alloc_abstract(_ofPoint, pt);
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofAppGlutWindow_getWindowSize,1);
 
-	int			getFrameNum();
-	float		getFrameRate();
-	double		getLastFrameTime();
-	void		setFrameRate(float targetRate);
+value _ofAppGlutWindow_getScreenSize(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	
+	ofPoint* pt = new ofPoint();
+	*pt = window->getScreenSize();
+	value ret = alloc_abstract(_ofPoint, pt);
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofAppGlutWindow_getScreenSize,1);
 
-	void		enableSetupScreen();
-	void		disableSetupScreen();
+value _ofAppGlutWindow_getWindowMode(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	return alloc_int(window->getWindowMode());
+}
+DEFINE_PRIM(_ofAppGlutWindow_getWindowMode,1);
 
-	static void display(void);
-	static void mouse_cb(int button, int state, int x, int y);
-	static void motion_cb(int x, int y);
-	static void passive_motion_cb(int x, int y);
-	static void idle_cb(void);
-	static void keyboard_cb(unsigned char key, int x, int y);
-	static void keyboard_up_cb(unsigned char key, int x, int y);
-	static void special_key_cb(int key, int x, int y) ;
-	static void special_key_up_cb(int key, int x, int y) ;
-	static void resize_cb(int w, int h);
+value _ofAppGlutWindow_getFrameNum(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	return alloc_int(window->getFrameNum());
+}
+DEFINE_PRIM(_ofAppGlutWindow_getFrameNum,1);
 
+value _ofAppGlutWindow_getFrameRate(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	return alloc_float(window->getFrameRate());
+}
+DEFINE_PRIM(_ofAppGlutWindow_getFrameRate,1);
 
-	string displayString;
+value _ofAppGlutWindow_getLastFrameTime(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	return alloc_float(window->getLastFrameTime());
+}
+DEFINE_PRIM(_ofAppGlutWindow_getLastFrameTime,1);
+
+value _ofAppGlutWindow_setFrameRate(value a,value b) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	window->setFrameRate(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_setFrameRate,2);
+
+value _ofAppGlutWindow_enableSetupScreen(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	window->enableSetupScreen();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_enableSetupScreen,1);
+
+value _ofAppGlutWindow_disableSetupScreen(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	window->disableSetupScreen();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_disableSetupScreen,1);
+
+value _ofAppGlutWindow_display() {
+	ofAppGlutWindow::display();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_display,0);
+
+value _ofAppGlutWindow_mouse_cb(value a,value b,value c,value d) {
+	ofAppGlutWindow::mouse_cb(val_int(a),val_int(b),val_int(c),val_int(d));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_mouse_cb,4);
+
+value _ofAppGlutWindow_motion_cb(value a,value b) {
+	ofAppGlutWindow::motion_cb(val_int(a),val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_motion_cb,2);
+
+value _ofAppGlutWindow_passive_motion_cb(value a,value b) {
+	ofAppGlutWindow::passive_motion_cb(val_int(a),val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_passive_motion_cb,2);
+
+value _ofAppGlutWindow_idle_cb() {
+	ofAppGlutWindow::idle_cb();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_idle_cb,0);
+
+value _ofAppGlutWindow_keyboard_cb(value a,value b,value c) {
+	ofAppGlutWindow::keyboard_cb(val_int(a),val_int(b),val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_keyboard_cb,3);
+
+value _ofAppGlutWindow_keyboard_up_cb(value a,value b,value c) {
+	ofAppGlutWindow::keyboard_up_cb(val_int(a),val_int(b),val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_keyboard_up_cb,3);
+
+value _ofAppGlutWindow_special_key_cb(value a,value b,value c) {
+	ofAppGlutWindow::special_key_cb(val_int(a),val_int(b),val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_special_key_cb,3);
+
+value _ofAppGlutWindow_special_key_up_cb(value a,value b,value c) {
+	ofAppGlutWindow::special_key_up_cb(val_int(a),val_int(b),val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_special_key_up_cb,3);
+
+value _ofAppGlutWindow_resize_cb(value a,value b) {
+	ofAppGlutWindow::resize_cb(val_int(a),val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofAppGlutWindow_resize_cb,2);
+
+value _ofAppGlutWindow_getDisplayString(value a) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	return alloc_string(window->displayString.c_str());
+}
+DEFINE_PRIM(_ofAppGlutWindow_getDisplayString,1);
+
+value _ofAppGlutWindow_setDisplayString(value a,value b) {
+	ofAppGlutWindow* window = (ofAppGlutWindow*) val_data(a);
+	return alloc_string((window->displayString = val_string(b)).c_str());
+}
+DEFINE_PRIM(_ofAppGlutWindow_setDisplayString,2);
+
+/*
+	ofBaseApp
 */
 
 class ofBaseAppX : public ofBaseApp{
@@ -357,10 +606,6 @@ class ofBaseAppX : public ofBaseApp{
 			val_ocallN(handler, val_id("mouseReleased"), args, 3); 
 		}*/
 };
-
-/*
-	ofBaseApp
-*/
 
 DEFINE_KIND(_ofBaseApp);
 
@@ -859,64 +1104,3 @@ value _ofNextContour(value a) {
 	return alloc_null();
 }
 DEFINE_PRIM(_ofNextContour,1);
-
-/*
-	ofTypes
-*/
-
-DEFINE_KIND(_ofPoint);
-
-void delete_ofPoint(value a) {
-	ofPoint* app = (ofPoint*) val_data(a);
-	delete app;
-}
-
-value _ofPoint_new(value a,value b,value c) {
-	value ret = alloc_abstract(_ofPoint, new ofPoint(val_float(a),val_float(b),val_float(c)));
-	val_gc(ret, delete_ofPoint);
-	return ret;
-}
-DEFINE_PRIM(_ofPoint_new,3);
-
-value _ofPoint_getX(value a) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	return alloc_float(pt->x);
-}
-DEFINE_PRIM(_ofPoint_getX,1);
-
-value _ofPoint_getY(value a) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	return alloc_float(pt->y);
-}
-DEFINE_PRIM(_ofPoint_getY,1);
-
-value _ofPoint_getZ(value a) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	return alloc_float(pt->z);
-}
-DEFINE_PRIM(_ofPoint_getZ,1);
-
-value _ofPoint_setX(value a,value b) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	return alloc_float(pt->x = val_float(b));
-}
-DEFINE_PRIM(_ofPoint_setX,2);
-
-value _ofPoint_setY(value a,value b) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	return alloc_float(pt->y = val_float(b));
-}
-DEFINE_PRIM(_ofPoint_setY,2);
-
-value _ofPoint_setZ(value a,value b) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	return alloc_float(pt->z = val_float(b));
-}
-DEFINE_PRIM(_ofPoint_setZ,2);
-
-value _ofPoint_set(value a,value b,value c,value d) {
-	ofPoint* pt = (ofPoint*) val_data(a);
-	pt->set(val_float(b),val_float(c),val_float(d));
-	return alloc_null();
-}
-DEFINE_PRIM(_ofPoint_set,4);
