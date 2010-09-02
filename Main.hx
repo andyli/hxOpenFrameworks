@@ -18,7 +18,9 @@ class Main extends of.BaseApp
 		
 		Graphics.setCircleResolution(50);
 		Graphics.background(255, 255, 255);
-		of.AppRunner.currentWindow.setWindowTitle("graphics example");
+		of.AppRunner.getWindowPtr().setWindowTitle("graphics example");
+		
+		of.AppRunner.setFrameRate(60); // if vertical sync is off, we can go a bit fast... this caps the framerate at 60fps.
 	}
 	
 	override public function update():Void {

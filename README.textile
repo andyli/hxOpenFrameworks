@@ -1,0 +1,17 @@
+h1. hxOpenFrameworks
+
+"haXe":http://haxe.org/ binding of "OpenFrameworks":http://www.openframeworks.cc/.
+
+h2. Why?
+
+See my blog post "haXe for interactivity/creative coding":http://blog.onthewings.net/2010/05/06/haxe-for-interactivitycreative-coding/.
+
+h2. Usage
+
+Please refer to "Main.hx":http://github.com/andyli/hxOpenFrameworks/blob/master/Main.hx and "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml for usage.
+
+It is under active development, only part of the API is wrapped. Please also expect some API cleanup in the near future.
+
+Currently it is Windows only. Mac and Linux support will be added soon.
+
+Support C++ target only at this moment.

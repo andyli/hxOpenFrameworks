@@ -29,6 +29,129 @@ value _ofSetupOpenGL(value a, value b, value c, value d) {
 }
 DEFINE_PRIM(_ofSetupOpenGL,4);
 
+value _ofGetFrameRate() {
+	return alloc_float(ofGetFrameRate());
+}
+DEFINE_PRIM(_ofGetFrameRate,0);
+
+value _ofGetFrameNum() {
+	return alloc_int(ofGetFrameNum());
+}
+DEFINE_PRIM(_ofGetFrameNum,0);
+
+value _ofSetFrameRate(value a) {
+	ofSetFrameRate(val_int(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetFrameRate,1);
+
+value _ofSleepMillis(value a) {
+	ofSleepMillis(val_int(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSleepMillis,1);
+
+value _ofGetLastFrameTime() {
+	return alloc_float(ofGetLastFrameTime());
+}
+DEFINE_PRIM(_ofGetLastFrameTime,0);
+
+value _ofHideCursor() {
+	ofHideCursor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofHideCursor,0);
+
+value _ofShowCursor() {
+	ofShowCursor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofShowCursor,0);
+
+value _ofGetWindowPositionX() {
+	return alloc_int(ofGetWindowPositionX());
+}
+DEFINE_PRIM(_ofGetWindowPositionX,0);
+
+value _ofGetWindowPositionY() {
+	return alloc_int(ofGetWindowPositionY());
+}
+DEFINE_PRIM(_ofGetWindowPositionY,0);
+
+value _ofGetScreenWidth() {
+	return alloc_int(ofGetScreenWidth());
+}
+DEFINE_PRIM(_ofGetScreenWidth,0);
+
+value _ofGetScreenHeight() {
+	return alloc_int(ofGetScreenHeight());
+}
+DEFINE_PRIM(_ofGetScreenHeight,0);
+
+value _ofGetWindowMode() {
+	return alloc_int(ofGetWindowMode());
+}
+DEFINE_PRIM(_ofGetWindowMode,0);
+
+value _ofGetWidth() {
+	return alloc_int(ofGetWidth());
+}
+DEFINE_PRIM(_ofGetWidth,0);
+
+value _ofGetHeight() {
+	return alloc_int(ofGetHeight());
+}
+DEFINE_PRIM(_ofGetHeight,0);
+
+value _ofSetWindowPosition(value a,value b) {
+	ofSetWindowPosition(val_int(a),val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetWindowPosition,2);
+
+value _ofSetWindowShape(value a,value b) {
+	ofSetWindowShape(val_int(a),val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetWindowShape,2);
+
+value _ofSetWindowTitle(value a) {
+	ofSetWindowTitle(val_string(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetWindowTitle,1);
+
+value _ofEnableSetupScreen() {
+	ofEnableSetupScreen();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofEnableSetupScreen,0);
+
+value _ofDisableSetupScreen() {
+	ofDisableSetupScreen();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofDisableSetupScreen,0);
+
+value _ofSetFullscreen(value a) {
+	ofSetFullscreen(val_bool(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetFullscreen,1);
+
+value _ofToggleFullscreen() {
+	ofToggleFullscreen();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofToggleFullscreen,0);
+
+value _ofSetVerticalSync(value a) {
+	ofSetVerticalSync(val_bool(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetVerticalSync,1);
+
+
 /*
 	ofAppGlutWindow
 */
