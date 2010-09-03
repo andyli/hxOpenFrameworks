@@ -135,6 +135,179 @@ value _ofRectangle_setHeight(value a,value b) {
 }
 DEFINE_PRIM(_ofRectangle_setHeight,2);
 
+//ofColor
+DEFINE_KIND(_ofColor);
+
+void delete_ofColor(value a) {
+	ofColor* rect = (ofColor*) val_data(a);
+	delete rect;
+}
+
+value _ofColor_new() {
+	value ret = alloc_abstract(_ofColor, new ofColor());
+	val_gc(ret, delete_ofColor);
+	return ret;
+}
+DEFINE_PRIM(_ofColor_new,0);
+
+value _ofColor_getR(value a) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->r);
+}
+DEFINE_PRIM(_ofColor_getR,1);
+
+value _ofColor_getG(value a) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->g);
+}
+DEFINE_PRIM(_ofColor_getG,1);
+
+value _ofColor_getB(value a) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->b);
+}
+DEFINE_PRIM(_ofColor_getB,1);
+
+value _ofColor_getA(value a) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->a);
+}
+DEFINE_PRIM(_ofColor_getA,1);
+
+value _ofColor_setR(value a,value b) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->r = val_float(b));
+}
+DEFINE_PRIM(_ofColor_setR,2);
+
+value _ofColor_setG(value a,value b) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->g = val_float(b));
+}
+DEFINE_PRIM(_ofColor_setG,2);
+
+value _ofColor_setB(value a,value b) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->b = val_float(b));
+}
+DEFINE_PRIM(_ofColor_setB,2);
+
+value _ofColor_setA(value a,value b) {
+	ofColor* pt = (ofColor*) val_data(a);
+	return alloc_float(pt->a = val_float(b));
+}
+DEFINE_PRIM(_ofColor_setA,2);
+
+//ofStyle
+DEFINE_KIND(_ofStyle);
+
+void delete_ofStyle(value a) {
+	ofStyle* rect = (ofStyle*) val_data(a);
+	delete rect;
+}
+
+value _ofStyle_new() {
+	value ret = alloc_abstract(_ofStyle, new ofStyle());
+	val_gc(ret, delete_ofStyle);
+	return ret;
+}
+DEFINE_PRIM(_ofStyle_new,0);
+
+
+value _ofStyle_getPolyMode(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_int(pt->polyMode);
+}
+DEFINE_PRIM(_ofStyle_getPolyMode,1);
+
+value _ofStyle_setPolyMode(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_int(pt->polyMode = val_int(b));
+}
+DEFINE_PRIM(_ofStyle_setPolyMode,2);
+
+value _ofStyle_getRectMode(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_int(pt->rectMode);
+}
+DEFINE_PRIM(_ofStyle_getRectMode,1);
+
+value _ofStyle_setRectMode(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_int(pt->rectMode = val_int(b));
+}
+DEFINE_PRIM(_ofStyle_setRectMode,2);
+
+value _ofStyle_getBFill(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_bool(pt->bFill);
+}
+DEFINE_PRIM(_ofStyle_getBFill,1);
+
+value _ofStyle_setBFill(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_bool(pt->bFill = val_bool(b));
+}
+DEFINE_PRIM(_ofStyle_setBFill,2);
+
+value _ofStyle_getBlending(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_bool(pt->blending);
+}
+DEFINE_PRIM(_ofStyle_getBlending,1);
+
+value _ofStyle_setBlending(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_bool(pt->blending = val_bool(b));
+}
+DEFINE_PRIM(_ofStyle_setBlending,2);
+
+value _ofStyle_getSmoothing(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_bool(pt->smoothing);
+}
+DEFINE_PRIM(_ofStyle_getSmoothing,1);
+
+value _ofStyle_setSmoothing(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_bool(pt->smoothing = val_bool(b));
+}
+DEFINE_PRIM(_ofStyle_setSmoothing,2);
+
+value _ofStyle_getCircleResolution(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_int(pt->circleResolution);
+}
+DEFINE_PRIM(_ofStyle_getCircleResolution,1);
+
+value _ofStyle_setCircleResolution(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_int(pt->circleResolution = val_int(b));
+}
+DEFINE_PRIM(_ofStyle_setCircleResolution,2);
+
+value _ofStyle_getLineWidth(value a) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_float(pt->lineWidth);
+}
+DEFINE_PRIM(_ofStyle_getLineWidth,1);
+
+value _ofStyle_setLineWidth(value a,value b) {
+	ofStyle* pt = (ofStyle*) val_data(a);
+	return alloc_float(pt->lineWidth = val_float(b));
+}
+DEFINE_PRIM(_ofStyle_setLineWidth,2);
+
+value _ofStyle_getColor(value a) {
+	ofStyle* styl = (ofStyle*) val_data(a);
+	
+	value ret = alloc_abstract(_ofColor, &styl->color);
+	val_gc(ret, delete_ofColor);
+	return ret;
+}
+DEFINE_PRIM(_ofStyle_getColor,1);
+
+
 /*
 	ofAppRunner
 */
