@@ -51,7 +51,7 @@ class Image
 
 	// alter the image
 	public function setFromPixels(pixels:BytesData, w:Int, h:Int, newType:Int, ?bOrderIsRGB:Bool = true):Void{
-		_ofImage_setFromPixels(__handle, pixels, w, h, newType, bOrderIsRGB);
+		_ofImage_setFromPixels(__handle, {pixels:pixels, w:w, h:h, newType:newType, bOrderIsRGB:bOrderIsRGB});
 	}
 	
 	public function setImageType(type:Int):Void{

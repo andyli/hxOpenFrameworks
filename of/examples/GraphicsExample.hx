@@ -1,15 +1,10 @@
-﻿/**
- * Ported from graphicsExample of OpenFrameworks
- */
-
-package of.examples;
+﻿package of.examples;
 
 import cpp.Lib;
+import of.AppRunner;
 import of.Graphics;
 import of.Types;
-import of.Utils;
 import of.Constants;
-import of.Image;
 
 class GraphicsExample extends of.BaseApp
 {
@@ -22,9 +17,9 @@ class GraphicsExample extends of.BaseApp
 		
 		Graphics.setCircleResolution(50);
 		Graphics.background(255, 255, 255);
-		of.AppRunner.setWindowTitle("graphics example");
+		AppRunner.setWindowTitle("graphics example");
 		
-		of.AppRunner.setFrameRate(60); // if vertical sync is off, we can go a bit fast... this caps the framerate at 60fps.
+		AppRunner.setFrameRate(60); // if vertical sync is off, we can go a bit fast... this caps the framerate at 60fps.
 	}
 	
 	override public function update():Void {
@@ -102,8 +97,8 @@ class GraphicsExample extends of.BaseApp
 		}
 	}
 	
-	static function main():Void {
-		of.AppRunner.setupOpenGL(new of.AppGlutWindow(), 900, 600, of.Constants.OF_WINDOW);
-		of.AppRunner.runApp(new GraphicsExample());
+	public static function main():Void {
+		AppRunner.setupOpenGL(new of.AppGlutWindow(), 900, 600, Constants.OF_WINDOW);
+		AppRunner.runApp(new GraphicsExample());
 	}
 }

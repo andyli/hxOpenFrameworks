@@ -1,8 +1,9 @@
 -cpp bin
--main of.examples.GraphicsExample
+-main Main
 
--cmd mt.exe  /outputresource:"bin\GraphicsExample.exe;#1" /manifest .\project\obj\Release\hxOpenFrameworks.ndll.intermediate.manifest
+-cmd mt.exe  /outputresource:"bin\Main.exe;#1" /manifest .\project\obj\Release\hxOpenFrameworks.ndll.intermediate.manifest
 -cmd xcopy /e /i /y "ndll\Windows\*.*" "bin"
 
 -cmd cd bin
--cmd GraphicsExample.exe
+-cmd if not exist "data" mkdir "data"
+-cmd Main.exe
