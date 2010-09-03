@@ -302,7 +302,6 @@ value _ofStyle_getColor(value a) {
 	ofStyle* styl = (ofStyle*) val_data(a);
 	
 	value ret = alloc_abstract(_ofColor, &styl->color);
-	val_gc(ret, delete_ofColor);
 	return ret;
 }
 DEFINE_PRIM(_ofStyle_getColor,1);
@@ -1142,10 +1141,21 @@ value _ofDisableSmoothing() {
 }
 DEFINE_PRIM(_ofDisableSmoothing,0);
 
-/* TODO
-ofStyle ofGetStyle();
-void ofSetStyle(ofStyle style);
-*/
+value _ofGetStyle() {
+	ofStyle* pt = new ofStyle();
+	*pt = ofGetStyle();
+	value ret = alloc_abstract(_ofStyle, pt);
+	val_gc(ret, delete_ofStyle);
+	return ret;
+}
+DEFINE_PRIM(_ofGetStyle,0);
+
+value _ofSetStyle(value a) {
+	ofStyle* val = (ofStyle*) val_data(a);
+	ofSetStyle(*val);
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetStyle,1);
 
 value _ofPushStyle() {
 	ofPushStyle();

@@ -1,5 +1,6 @@
 package of;
 
+import of.Types;
 import cpp.Lib;
 
 class Graphics 
@@ -117,11 +118,14 @@ class Graphics
 	}
 
 	// drawing style - combines color, fill, blending and smoothing
-	/* TODO
-	ofStyle ofGetStyle();
-	static public function setStyle(ofStyle style):Void{	
-		
-	}*/
+
+	static public function getStyle():Style {
+		return new Style(_ofGetStyle());
+	}
+	static public function setStyle(style:Style):Void {	
+		_ofSetStyle(style.__handle);
+	}
+	
 	static public function pushStyle():Void{	
 		_ofPushStyle();
 	}
@@ -233,6 +237,8 @@ class Graphics
 	static var _ofEnableSmoothing = Lib.load("hxOpenFrameworks", "_ofEnableSmoothing", 0);
 	static var _ofDisableSmoothing = Lib.load("hxOpenFrameworks", "_ofDisableSmoothing", 0);
 
+	static var _ofGetStyle = Lib.load("hxOpenFrameworks", "_ofGetStyle", 0);
+	static var _ofSetStyle = Lib.load("hxOpenFrameworks", "_ofSetStyle", 1);
 	static var _ofPushStyle = Lib.load("hxOpenFrameworks", "_ofPushStyle", 0);
 	static var _ofPopStyle = Lib.load("hxOpenFrameworks", "_ofPopStyle", 0);
 
