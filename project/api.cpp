@@ -1436,3 +1436,170 @@ value _ofNextContour(value a) {
 	return alloc_null();
 }
 DEFINE_PRIM(_ofNextContour,1);
+
+/*
+	ofImage
+*/
+DEFINE_KIND(_ofImage);
+
+void delete_ofImage(value a) {
+	ofImage* rect = (ofImage*) val_data(a);
+	delete rect;
+}
+
+value _ofImage_new() {
+	value ret = alloc_abstract(_ofImage, new ofImage());
+	val_gc(ret, delete_ofImage);
+	return ret;
+}
+DEFINE_PRIM(_ofImage_new,0);
+
+
+value _ofImage_allocate(value a,value b,value c,value d) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->allocate(val_int(b),val_int(c),val_int(d));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_allocate,4);
+
+value _ofImage_clear(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->clear();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_clear,1);
+
+value _ofImage_clone(value a,value b) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->clone(*(ofImage*) val_data(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_clone,2);
+
+value _ofImage_setUseTexture(value a,value b) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->setUseTexture(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_setUseTexture,2);
+
+/*/for getting a reference to the texture TODO
+ofTexture & getTextureReference();
+*/
+
+value _ofImage_loadImage(value a,value b) {
+	ofImage* pt = (ofImage*) val_data(a);
+	return alloc_bool(pt->loadImage(val_string(b)));
+}
+DEFINE_PRIM(_ofImage_loadImage,2);
+
+value _ofImage_saveImage(value a,value b) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->saveImage(val_string(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_saveImage,2);
+
+value _ofImage_getPixels(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	return buffer_val(alloc_buffer((const char *) pt->getPixels()));
+}
+DEFINE_PRIM(_ofImage_getPixels,1);
+
+value _ofImage_setFromPixels(value a,value b) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->setFromPixels(	(unsigned char*) buffer_data(val_to_buffer(val_field(b, val_id("pixels")))), 
+						val_field_numeric(b, val_id("w")), 
+						val_field_numeric(b, val_id("h")), 
+						val_field_numeric(b, val_id("newType")), 
+						val_bool(val_field(b, val_id("bOrderIsRGB"))));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_setFromPixels,2);
+
+value _ofImage_setImageType(value a,value b) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->setImageType(val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_setImageType,2);
+
+value _ofImage_resize(value a,value b,value c) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->resize(val_int(b),val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_resize,3);
+
+value _ofImage_grabScreen(value a,value b,value c,value d,value e) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->grabScreen(val_int(b),val_int(c),val_int(d),val_int(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_grabScreen,5);
+
+value _ofImage_update(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->update();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_update,1);
+
+value _ofImage_setAnchorPercent(value a,value b,value c) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->setAnchorPercent(val_float(b),val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_setAnchorPercent,3);
+
+value _ofImage_setAnchorPoint(value a,value b,value c) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->setAnchorPoint(val_float(b),val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_setAnchorPoint,3);
+
+value _ofImage_resetAnchor(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->resetAnchor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_resetAnchor,1);
+
+value _ofImage_draw4(value a,value b,value c,value d,value e) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->draw(val_float(b),val_float(c),val_float(d),val_float(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_draw4,5);
+
+value _ofImage_draw2(value a,value b,value c) {
+	ofImage* pt = (ofImage*) val_data(a);
+	pt->draw(val_float(b),val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_draw2,3);
+
+value _ofImage_getWidth(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	return alloc_float(pt->width);
+}
+DEFINE_PRIM(_ofImage_getWidth,1);
+
+value _ofImage_getHeight(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	return alloc_float(pt->height);
+}
+DEFINE_PRIM(_ofImage_getHeight,1);
+
+value _ofImage_getBpp(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	return alloc_int(pt->bpp);
+}
+DEFINE_PRIM(_ofImage_getBpp,1);
+
+value _ofImage_getType(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	return alloc_int(pt->type);
+}
+DEFINE_PRIM(_ofImage_getType,1);

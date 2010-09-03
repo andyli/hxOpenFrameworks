@@ -1,9 +1,8 @@
 -cpp bin
--main Main
--debug
+-main of.examples.GraphicsExample
 
--cmd mt.exe  /outputresource:"bin\Main-debug.exe;#1" /manifest .\project\obj\Release\hxOpenFrameworks.ndll.intermediate.manifest
+-cmd mt.exe  /outputresource:"bin\GraphicsExample.exe;#1" /manifest .\project\obj\Release\hxOpenFrameworks.ndll.intermediate.manifest
 -cmd xcopy /e /i /y "ndll\Windows\*.*" "bin"
 
 -cmd cd bin
--cmd Main-debug.exe
+-cmd GraphicsExample.exe

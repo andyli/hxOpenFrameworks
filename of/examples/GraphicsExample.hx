@@ -2,15 +2,16 @@
  * Ported from graphicsExample of OpenFrameworks
  */
 
-package ;
+package of.examples;
 
 import cpp.Lib;
 import of.Graphics;
 import of.Types;
 import of.Utils;
 import of.Constants;
+import of.Image;
 
-class Main extends of.BaseApp
+class GraphicsExample extends of.BaseApp
 {
 	var counter:Float;
 	var bSmooth:Bool;
@@ -103,6 +104,6 @@ class Main extends of.BaseApp
 	
 	static function main():Void {
 		of.AppRunner.setupOpenGL(new of.AppGlutWindow(), 900, 600, of.Constants.OF_WINDOW);
-		of.AppRunner.runApp(new Main());
+		of.AppRunner.runApp(new GraphicsExample());
 	}
 }
