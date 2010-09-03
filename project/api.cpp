@@ -306,6 +306,155 @@ value _ofStyle_getColor(value a) {
 }
 DEFINE_PRIM(_ofStyle_getColor,1);
 
+/*
+	ofUtils
+*/
+
+value _ofResetElapsedTimeCounter() {
+	ofResetElapsedTimeCounter();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofResetElapsedTimeCounter,0);
+
+value _ofGetElapsedTimef() {
+	return alloc_float(ofGetElapsedTimef());
+}
+DEFINE_PRIM(_ofGetElapsedTimef,0);
+
+value _ofGetElapsedTimeMillis() {
+	return alloc_int(ofGetElapsedTimeMillis());
+}
+DEFINE_PRIM(_ofGetElapsedTimeMillis,0);
+
+value _ofGetSeconds() {
+	return alloc_int(ofGetSeconds());
+}
+DEFINE_PRIM(_ofGetSeconds,0);
+
+value _ofGetMinutes() {
+	return alloc_int(ofGetMinutes());
+}
+DEFINE_PRIM(_ofGetMinutes,0);
+
+value _ofGetHours() {
+	return alloc_int(ofGetHours());
+}
+DEFINE_PRIM(_ofGetHours,0);
+
+value _ofGetSystemTime() {
+	return alloc_float(ofGetSystemTime());
+}
+DEFINE_PRIM(_ofGetSystemTime,0);
+
+value _ofGetYear() {
+	return alloc_int(ofGetYear());
+}
+DEFINE_PRIM(_ofGetYear,0);
+
+value _ofGetMonth() {
+	return alloc_int(ofGetMonth());
+}
+DEFINE_PRIM(_ofGetMonth,0);
+
+value _ofGetDay() {
+	return alloc_int(ofGetDay());
+}
+DEFINE_PRIM(_ofGetDay,0);
+
+value _ofGetWeekday() {
+	return alloc_int(ofGetWeekday());
+}
+DEFINE_PRIM(_ofGetWeekday,0);
+
+value _ofLaunchBrowser(value a) {
+	ofLaunchBrowser(val_string(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofLaunchBrowser,1);
+
+value _ofEnableDataPath() {
+	ofEnableDataPath();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofEnableDataPath,0);
+
+value _ofDisableDataPath() {
+	ofDisableDataPath();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofDisableDataPath,0);
+
+value _ofToDataPath(value a,value b) {
+	return alloc_string(ofToDataPath(val_string(a),val_bool(b)).c_str());
+}
+DEFINE_PRIM(_ofToDataPath,2);
+
+value _ofSetDataPathRoot(value a) {
+	ofSetDataPathRoot(val_string(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetDataPathRoot,1);
+
+value _ofToString2(value a,value b) {
+	return alloc_string(ofToString(val_float(a),val_int(b)).c_str());
+}
+DEFINE_PRIM(_ofToString2,2);
+
+value _ofToString1(value a) {
+	return alloc_string(ofToString(val_int(a)).c_str());
+}
+DEFINE_PRIM(_ofToString1,1);
+
+value _ofToInt(value a) {
+	return alloc_int(ofToInt(val_string(a)));
+}
+DEFINE_PRIM(_ofToInt,1);
+
+value _ofToFloat(value a) {
+	return alloc_float(ofToFloat(val_string(a)));
+}
+DEFINE_PRIM(_ofToFloat,1);
+
+value _ofGetVersionInfo() {
+	return alloc_string(ofGetVersionInfo().c_str());
+}
+DEFINE_PRIM(_ofGetVersionInfo,0);
+
+value _ofSaveScreen(value a) {
+	ofSaveScreen(val_string(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSaveScreen,1);
+
+value _ofSaveFrame() {
+	ofSaveFrame();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSaveFrame,0);
+
+value _ofSetLogLevel(value a) {
+	ofSetLogLevel(val_int(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetLogLevel,1);
+
+value _ofLog(value a,value b) {
+	ofLog(val_int(a),val_string(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofLog,2);
+
+value _ofSetConsoleColor(value a) {
+	ofSetConsoleColor(val_int(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetConsoleColor,1);
+
+value _ofRestoreConsoleColor() {
+	ofRestoreConsoleColor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofRestoreConsoleColor,0);
 
 /*
 	ofAppRunner
