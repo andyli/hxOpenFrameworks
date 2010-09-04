@@ -8,6 +8,7 @@ class Main {
 		
 		//of.examples.GraphicsExample.main();
 		//of.examples.ImageLoaderExample.main(); //you need to copy files from OF\apps\examples\imageLoaderExample\bin\data to bin\data
-		of.examples.TextureExample.main();
+		//of.examples.TextureExample.main();
+		of.examples.PolygonExample.main();
 	}
 }
