@@ -1438,6 +1438,336 @@ value _ofNextContour(value a) {
 DEFINE_PRIM(_ofNextContour,1);
 
 /*
+	ofTextureData
+*/
+DEFINE_KIND(_ofTextureData);
+
+void delete_ofTextureData(value a) {
+	ofTextureData* rect = (ofTextureData*) val_data(a);
+	delete rect;
+}
+
+value _ofTextureData_get_glType(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->glType);
+}
+DEFINE_PRIM(_ofTextureData_get_glType,1);
+
+value _ofTextureData_set_glType(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->glType = val_int(b));
+}
+DEFINE_PRIM(_ofTextureData_set_glType,2);
+
+value _ofTextureData_get_glTypeInternal(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->glTypeInternal);
+}
+DEFINE_PRIM(_ofTextureData_get_glTypeInternal,1);
+
+value _ofTextureData_set_glTypeInternal(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->glTypeInternal = val_int(b));
+}
+DEFINE_PRIM(_ofTextureData_set_glTypeInternal,2);
+
+value _ofTextureData_get_textureTarget(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->textureTarget);
+}
+DEFINE_PRIM(_ofTextureData_get_textureTarget,1);
+
+value _ofTextureData_set_textureTarget(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->textureTarget = val_int(b));
+}
+DEFINE_PRIM(_ofTextureData_set_textureTarget,2);
+
+value _ofTextureData_get_pixelType(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->pixelType);
+}
+DEFINE_PRIM(_ofTextureData_get_pixelType,1);
+
+value _ofTextureData_set_pixelType(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->pixelType = val_int(b));
+}
+DEFINE_PRIM(_ofTextureData_set_pixelType,2);
+
+value _ofTextureData_get_tex_t(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_t);
+}
+DEFINE_PRIM(_ofTextureData_get_tex_t,1);
+
+value _ofTextureData_set_tex_t(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_t = val_float(b));
+}
+DEFINE_PRIM(_ofTextureData_set_tex_t,2);
+
+value _ofTextureData_get_tex_u(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_u);
+}
+DEFINE_PRIM(_ofTextureData_get_tex_u,1);
+
+value _ofTextureData_set_tex_u(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_u = val_float(b));
+}
+DEFINE_PRIM(_ofTextureData_set_tex_u,2);
+
+value _ofTextureData_get_tex_w(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_w);
+}
+DEFINE_PRIM(_ofTextureData_get_tex_w,1);
+
+value _ofTextureData_set_tex_w(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_w = val_float(b));
+}
+DEFINE_PRIM(_ofTextureData_set_tex_w,2);
+
+value _ofTextureData_get_tex_h(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_h);
+}
+DEFINE_PRIM(_ofTextureData_get_tex_h,1);
+
+value _ofTextureData_set_tex_h(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->tex_h = val_float(b));
+}
+DEFINE_PRIM(_ofTextureData_set_tex_h,2);
+
+value _ofTextureData_get_width(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->width);
+}
+DEFINE_PRIM(_ofTextureData_get_width,1);
+
+value _ofTextureData_set_width(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->width = val_float(b));
+}
+DEFINE_PRIM(_ofTextureData_set_width,2);
+
+value _ofTextureData_get_height(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->height);
+}
+DEFINE_PRIM(_ofTextureData_get_height,1);
+
+value _ofTextureData_set_height(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_float(pt->height = val_float(b));
+}
+DEFINE_PRIM(_ofTextureData_set_height,2);
+
+value _ofTextureData_get_bFlipTexture(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_bool(pt->bFlipTexture);
+}
+DEFINE_PRIM(_ofTextureData_get_bFlipTexture,1);
+
+value _ofTextureData_set_bFlipTexture(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_bool(pt->bFlipTexture = val_bool(b));
+}
+DEFINE_PRIM(_ofTextureData_set_bFlipTexture,2);
+
+value _ofTextureData_get_textureID(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->textureID);
+}
+DEFINE_PRIM(_ofTextureData_get_textureID,1);
+
+value _ofTextureData_set_textureID(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_int(pt->textureID = val_int(b));
+}
+DEFINE_PRIM(_ofTextureData_set_textureID,2);
+
+value _ofTextureData_get_bAllocated(value a) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_bool(pt->bAllocated);
+}
+DEFINE_PRIM(_ofTextureData_get_bAllocated,1);
+
+value _ofTextureData_set_bAllocated(value a,value b) {
+	ofTextureData* pt = (ofTextureData*) val_data(a);
+	return alloc_bool(pt->bAllocated = val_bool(b));
+}
+DEFINE_PRIM(_ofTextureData_set_bAllocated,2);
+
+
+
+/*
+	ofTexture
+*/
+DEFINE_KIND(_ofTexture);
+
+void delete_ofTexture(value a) {
+	ofTexture* rect = (ofTexture*) val_data(a);
+	delete rect;
+}
+
+value _ofTexture_new() {
+	value ret = alloc_abstract(_ofTexture, new ofTexture());
+	val_gc(ret, delete_ofTexture);
+	return ret;
+}
+DEFINE_PRIM(_ofTexture_new,0);
+
+value _ofTexture_clone(value a,value b) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	*pt = *(ofTexture*) val_data(b);
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_clone,2);
+
+value _ofTexture_allocate(value a,value b,value c,value d,value e) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->allocate(val_int(b),val_int(c),val_int(d),val_bool(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_allocate,5);
+
+value _ofTexture_clear(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->clear();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_clear,1);
+
+value _ofTexture_loadData(value a,value b,value c,value d,value e) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->loadData(	(unsigned char*) buffer_data(val_to_buffer(b)), 
+					val_int(c), 
+					val_int(d),
+					val_int(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_loadData,5);
+
+value _ofTexture_loadScreenData(value a,value b,value c,value d,value e) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->loadScreenData(val_int(b), val_int(c), val_int(d), val_int(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_loadScreenData,5);
+
+value _ofTexture_setAnchorPercent(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->setAnchorPercent(val_float(b), val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_setAnchorPercent,3);
+
+value _ofTexture_setAnchorPoint(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->setAnchorPoint(val_float(b), val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_setAnchorPoint,3);
+
+value _ofTexture_resetAnchor(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->resetAnchor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_resetAnchor,1);
+
+value _ofTexture_draw4(value a,value b,value c,value d,value e) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->draw(val_float(b),val_float(c),val_float(d),val_float(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_draw4,5);
+
+value _ofTexture_draw2(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->draw(val_float(b),val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_draw2,3);
+
+value _ofTexture_bind(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->bind();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_bind,1);
+
+value _ofTexture_unbind(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->unbind();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_unbind,1);
+
+value _ofTexture_getCoordFromPoint(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	
+	value ret = alloc_abstract(_ofPoint, new ofPoint(pt->getCoordFromPoint(val_float(b),val_float(c))));
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofTexture_getCoordFromPoint,3);
+
+value _ofTexture_getCoordFromPercent(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	
+	value ret = alloc_abstract(_ofPoint, new ofPoint(pt->getCoordFromPercent(val_float(b),val_float(c))));
+	val_gc(ret, delete_ofPoint);
+	return ret;
+}
+DEFINE_PRIM(_ofTexture_getCoordFromPercent,3);
+
+value _ofTexture_setTextureWrap(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->setTextureWrap(val_int(b), val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_setTextureWrap,3);
+
+value _ofTexture_setTextureMinMagFilter(value a,value b,value c) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->setTextureMinMagFilter(val_int(b), val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_setTextureMinMagFilter,3);
+
+value _ofTexture_bAllocated(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	pt->bAllocated();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTexture_bAllocated,1);
+
+value _ofTexture_getWidth(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	return alloc_float(pt->getWidth());
+}
+DEFINE_PRIM(_ofTexture_getWidth,1);
+
+value _ofTexture_getHeight(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	return alloc_float(pt->getHeight());
+}
+DEFINE_PRIM(_ofTexture_getHeight,1);
+
+value _ofTexture_getTextureData(value a) {
+	ofTexture* pt = (ofTexture*) val_data(a);
+	return alloc_abstract(_ofTextureData,&pt->getTextureData());
+}
+DEFINE_PRIM(_ofTexture_getTextureData,1);
+
+
+/*
 	ofImage
 */
 DEFINE_KIND(_ofImage);
@@ -1483,9 +1813,12 @@ value _ofImage_setUseTexture(value a,value b) {
 }
 DEFINE_PRIM(_ofImage_setUseTexture,2);
 
-/*/for getting a reference to the texture TODO
-ofTexture & getTextureReference();
-*/
+value _ofImage_getTextureReference(value a) {
+	ofImage* pt = (ofImage*) val_data(a);
+	value ret = alloc_abstract(_ofTexture, &pt->getTextureReference());
+	return ret;
+}
+DEFINE_PRIM(_ofImage_getTextureReference,1);
 
 value _ofImage_loadImage(value a,value b) {
 	ofImage* pt = (ofImage*) val_data(a);

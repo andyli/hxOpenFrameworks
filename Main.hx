@@ -1,5 +1,7 @@
 package;
 
+import of.Texture;
+
 class Main {
 	static function main():Void {
 		//uncomment one of the below to see the example

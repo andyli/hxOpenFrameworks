@@ -2,6 +2,7 @@ package of;
 
 import cpp.Lib;
 import haxe.io.BytesData;
+import of.Texture;
 
 class Image 
 {
@@ -30,10 +31,10 @@ class Image
 		_ofImage_setUseTexture(__handle, bUse);
 	}
 
-	/*/for getting a reference to the texture TODO
+	//for getting a reference to the texture TODO
 	public function getTextureReference():Texture{
-		return _ofImage_getTextureReference();
-	}*/
+		return new Texture(_ofImage_getTextureReference());
+	}
 
 	// file loading / saving
 	public function loadImage(fileName:String):Bool{
@@ -131,7 +132,7 @@ class Image
 	static var _ofImage_clear = Lib.load("hxOpenFrameworks", "_ofImage_clear", 1);
 	static var _ofImage_clone = Lib.load("hxOpenFrameworks", "_ofImage_clone", 2);
 	static var _ofImage_setUseTexture = Lib.load("hxOpenFrameworks", "_ofImage_setUseTexture", 2);
-	//static var _ofImage_getTextureReference = Lib.load("hxOpenFrameworks", "_ofImage_getTextureReference", 1);
+	static var _ofImage_getTextureReference = Lib.load("hxOpenFrameworks", "_ofImage_getTextureReference", 1);
 	static var _ofImage_loadImage = Lib.load("hxOpenFrameworks", "_ofImage_loadImage", 2);
 	static var _ofImage_saveImage = Lib.load("hxOpenFrameworks", "_ofImage_saveImage", 2);
 	static var _ofImage_getPixels = Lib.load("hxOpenFrameworks", "_ofImage_getPixels", 1);
