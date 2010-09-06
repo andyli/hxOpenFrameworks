@@ -9,7 +9,7 @@ class Main {
 		//of.examples.TextureExample.main();
 		//of.examples.PolygonExample.main();
 		//of.examples.TextureScreengrabExample.main();
-		//of.examples.FontShapesExample.main();
-		of.examples.FontsExample.main();
+		//of.examples.FontShapesExample.main(); //you need to copy files from OF\apps\examples\fontShapesExample\bin\data to bin\data
+		of.examples.FontsExample.main(); //you need to copy files from OF\apps\examples\fontsExample\bin\data to bin\data
 	}
 }

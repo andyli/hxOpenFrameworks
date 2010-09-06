@@ -1,13 +1,13 @@
 package of.examples;
 
 import cpp.Lib;
-import of.AppRunner;
-import of.Graphics;
-import of.Types;
-import of.Constants;
-import of.TrueTypeFont;
+import of.utils.Types;
+import of.utils.Constants;
+import of.graphics.TrueTypeFont;
 
-class FontsExample extends of.BaseApp
+using of.helpers.FunctionInjector;
+
+class FontsExample extends of.app.BaseApp
 {
 	var franklinBook:TrueTypeFont;
 	var verdana:TrueTypeFont;
@@ -29,64 +29,64 @@ class FontsExample extends of.BaseApp
 	}
 	
 	override public function update():Void {
-		Graphics.background(255,255,255);	
+		background(255,255,255);	
 		counter += 1.0;
 	}
 	
 	override public function draw():Void {
-		Graphics.setColor(0x00FF00);
+		setColor(0x00FF00);
 		franklinBook.drawString("hello, this is franklin book calling\nanyone home?", 100,100);
 		
-		Graphics.setColor(0x000000);
+		setColor(0x000000);
 		verdana.drawString("hello, I am aliased verdana -- full character set, see: � ! ", 100,210);
 		
-		Graphics.setColor(0x00FF00);
+		setColor(0x00FF00);
 		franklinBook.drawString("I can't make an (�) like you", 100,310);
 		
-		Graphics.setColor(0x000000);
+		setColor(0x000000);
 		verdana.drawString("yeah, but I'm not exactly pretty\nthe problem is with freeType library...\napple has a patent on TTF font hints\nso our aliased type via freeType isn't super looking", 100,380);
 		
-		Graphics.setColor(0x00FF00);
+		setColor(0x00FF00);
 		franklinBook.drawString("you look ok ! don't worry", 100,520);
 		
 		//------------------- bounding rectangle : 
 		var tempString = Std.string(counter);
 		// ok first job to rotate around the center, is to get the bounding box:
-		var rect = franklinBook.getStringBoundingBox(tempString, 0,0);
+		var rct = franklinBook.getStringBoundingBox(tempString, 0,0);
 		// this is the actual midpt (x + w/2, y + h/2);
-		var centerx = rect.x + rect.width / 2;
-		var centery = rect.y + rect.height / 2;
+		var centerx = rct.x + rct.width / 2;
+		var centery = rct.y + rct.height / 2;
 
-		Graphics.pushMatrix();
-			Graphics.translate(100,650,0);
-			Graphics.rotate(counter, 0,0,1);
+		pushMatrix();
+			translate(100,650,0);
+			rotate(counter, 0,0,1);
 			// draw type & rect centered around 0,0 (subtract midpt from both):
-			Graphics.setColor(0xcccccc);
-			Graphics.rect(rect.x - centerx, rect.y - centery, rect.width, rect.height);
-			Graphics.setColor(0xff3399);
+			setColor(0xcccccc);
+			rect(rct.x - centerx, rct.y - centery, rct.width, rct.height);
+			setColor(0xff3399);
 			franklinBook.drawString(tempString, -centerx,-centery);
-		Graphics.popMatrix();
+		popMatrix();
 
 		// -------------------------------------
 
-		Graphics.pushMatrix();
-			Graphics.translate(225,675,0);
-			Graphics.scale(5,5,1);
-			Graphics.setColor(0x333333);
+		pushMatrix();
+			translate(225,675,0);
+			scale(5,5,1);
+			setColor(0x333333);
 			verdana.drawString("scale 5x!",0, 0);
-		Graphics.popMatrix();
+		popMatrix();
 		
-		var size:Float = 2 + 2*Math.sin(counter/300.0);
-		Graphics.pushMatrix();
-			Graphics.translate(520,675,0);
-			Graphics.scale(size,size,1);
-			Graphics.setColor(0x00FF00);
+		var size:Float = 2 + 2*sin(counter/300.0);
+		pushMatrix();
+			translate(520,675,0);
+			scale(size,size,1);
+			setColor(0x00FF00);
 			franklinBook.drawString("$k@!%",0, 0);
-		Graphics.popMatrix();
+		popMatrix();
 	}
 	
 	public static function main():Void {
-		AppRunner.setupOpenGL(new of.AppGlutWindow(), 800, 700, Constants.OF_WINDOW);
-		AppRunner.runApp(new FontsExample());
+		setupOpenGL(new of.app.AppGlutWindow(), 800, 700, Constants.OF_WINDOW);
+		runApp(new FontsExample());
 	}
 }

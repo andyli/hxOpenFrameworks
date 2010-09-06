@@ -1,8 +1,8 @@
-package of;
+package of.graphics;
 
 import cpp.Lib;
 import haxe.io.BytesData;
-import of.Texture;
+import of.graphics.Texture;
 
 class Image 
 {

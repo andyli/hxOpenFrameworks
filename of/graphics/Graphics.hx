@@ -1,6 +1,6 @@
-package of;
+package of.graphics;
 
-import of.Types;
+import of.utils.Types;
 import cpp.Lib;
 
 class Graphics 

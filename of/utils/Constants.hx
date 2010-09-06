@@ -1,4 +1,4 @@
-package of;
+package of.utils;
 
 class Constants 
 {

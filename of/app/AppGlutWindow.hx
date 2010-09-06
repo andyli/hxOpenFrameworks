@@ -1,7 +1,7 @@
-package of;
+package of.app;
 
 import cpp.Lib;
-import of.Types;
+import of.utils.Types;
 
 class AppGlutWindow 
 {

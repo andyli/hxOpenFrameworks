@@ -1,14 +1,13 @@
 package of.examples;
 
 import cpp.Lib;
-import of.AppRunner;
-import of.Graphics;
-import of.Types;
-import of.Constants;
-import of.Image;
-import of.Utils;
+import of.utils.Types;
+import of.utils.Constants;
+import of.graphics.Image;
 
-class ImageLoaderExample extends of.BaseApp
+using of.helpers.FunctionInjector;
+
+class ImageLoaderExample extends of.app.BaseApp
 {
 	var bikers:Image;
 	var gears:Image;
@@ -37,26 +36,26 @@ class ImageLoaderExample extends of.BaseApp
 	}
 	
 	override public function update():Void {
-		Graphics.background(255,255,255);	
+		background(255,255,255);	
 	}
 	
 	override public function draw():Void {
-		Graphics.setColor(0xFFFFFF);
+		setColor(0xFFFFFF);
 
 		bikers.draw(0,0);
 		gears.draw(600,0);
 		tdf.draw(600,300);
 		
-		Graphics.setColor(0xDD3333);
+		setColor(0xDD3333);
 		tdfSmall.draw(200,300);
 		
-		Graphics.setColor(0xFFFFFF);
-		Graphics.enableAlphaBlending();
-		transparency.draw(Math.sin(Utils.getElapsedTimeMillis()/1000.0) * 100 + 500,20);
-		Graphics.disableAlphaBlending();
+		setColor(0xFFFFFF);
+		enableAlphaBlending();
+		transparency.draw(sin(getElapsedTimeMillis()/1000.0) * 100 + 500,20);
+		disableAlphaBlending();
 		
 		
-		Graphics.setColor(0x000000);
+		setColor(0x000000);
 		
 		// getting the pixels out of an image, 
 		// and then use the values to draw circles
@@ -67,16 +66,16 @@ class ImageLoaderExample extends of.BaseApp
 			for (j in 0...h){
 				var value:Int = cast pixels[j * w + i];
 				var pct = 1 - (value / 255.0);
-				Graphics.circle(i*10,500 + j*10,1 + 5*pct);		
+				circle(i*10,500 + j*10,1 + 5*pct);		
 			}
 		}
 		
-		Graphics.setColor(0xFFFFFF);
+		setColor(0xFFFFFF);
 		bikeIcon.draw(300,500, 20,20);
 	}
 	
 	public static function main():Void {
-		AppRunner.setupOpenGL(new of.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		AppRunner.runApp(new ImageLoaderExample());
+		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		runApp(new ImageLoaderExample());
 	}
 }

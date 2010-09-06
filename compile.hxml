@@ -1,7 +1,6 @@
 -cpp bin
 -main Main
 
-#-cmd mt.exe  /outputresource:"bin\Main.exe;#1" /manifest .\project\obj\Release\hxOpenFrameworks.ndll.intermediate.manifest
 -cmd xcopy /e /i /y "ndll\Windows\*.*" "bin"
 
 -cmd cd bin

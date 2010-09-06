@@ -3,15 +3,13 @@ package of.examples;
 import cpp.Lib;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
-import of.AppRunner;
-import of.Graphics;
-import of.Types;
-import of.Constants;
-import of.Texture;
-import of.Math;
-import of.Utils;
+import of.utils.Types;
+import of.utils.Constants;
+import of.graphics.Texture;
 
-class TextureExample extends of.BaseApp
+using of.helpers.FunctionInjector;
+
+class TextureExample extends of.app.BaseApp
 {
 	var texGray:Texture;
 	var texColor:Texture;
@@ -42,7 +40,7 @@ class TextureExample extends of.BaseApp
 
 		// gray pixels, set them randomly
 		for (i in 0...w*h){
-			grayPixels[i] = cast (Math.randomuf() * 255);
+			grayPixels[i] = cast (randomuf() * 255);
 		}
 		
 		// color pixels, use w and h to control red and green
@@ -71,18 +69,18 @@ class TextureExample extends of.BaseApp
 	}
 	
 	override public function update():Void {
-		Graphics.background(255,255,255);
+		background(255,255,255);
 	
 		for (i in 0...w){
 			for (j in 0...h){
-				grayPixels[j*w+i] = cast (Math.randomuf() * 255);
+				grayPixels[j*w+i] = cast (randomuf() * 255);
 			}
 		}
 		texGray.loadData(grayPixels, w,h, 6409); //GL_LUMINANCE
 	}
 	
 	override public function draw():Void {
-		Graphics.setColor(0xffffff);
+		setColor(0xffffff);
 		
 		texGray.draw(100,100,w,h);
 		texColor.draw(350,300,w,h);
@@ -90,14 +88,14 @@ class TextureExample extends of.BaseApp
 		// 	blending had to be enabled 
 		// 	for transparency to work:
 		
-		Graphics.enableAlphaBlending();
+		enableAlphaBlending();
 		texColorAlpha.draw(250, 200, w, h);
-		Graphics.disableAlphaBlending();
+		disableAlphaBlending();
 	}
 	
 	override public function mouseMoved(x:Int, y:Int):Void {
 		// when the mouse moves, we change the color image:
-		var pct = x / AppRunner.getWidth();
+		var pct = x / getWidth();
 		for (i in 0...w){
 			for (j in 0...h){
 				colorPixels[(j*w+i)*3 + 0] = cast i;	// r
@@ -110,7 +108,7 @@ class TextureExample extends of.BaseApp
 	}
 	
 	public static function main():Void {
-		AppRunner.setupOpenGL(new of.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
-		AppRunner.runApp(new TextureExample());
+		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
+		runApp(new TextureExample());
 	}
 }

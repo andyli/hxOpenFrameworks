@@ -1,6 +1,7 @@
-package of;
+package of.app;
 
 import cpp.Lib;
+import of.utils.Utils;
 
 class BaseApp 
 {
@@ -16,19 +17,12 @@ class BaseApp
 
 
 		public function windowResized(w:Int, h:Int):Void {}
-
 		public function keyPressed( key:Int ):Void {}
-		
 		public function keyReleased( key:Int ):Void {}
-
 		public function mouseMoved( x:Int, y:Int ):Void {}
-		
 		public function mouseDragged( x:Int, y:Int, button:Int ):Void {}
-		
 		public function mousePressed( x:Int, y:Int, button:Int ):Void {}
-		
 		public function mouseReleased( ?x:Int, ?y:Int, ?button:Int ):Void {}
-		
 
 		//public function audioReceived( float * input, int bufferSize, int nChannels ):Void{}
 		//public function audioRequested( float * output, int bufferSize, int nChannels ):Void{}
