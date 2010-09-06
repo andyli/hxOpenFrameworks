@@ -74,7 +74,7 @@
 		<lib name = '-DYNAMICBASE:NO' if="windows"/>
 		<!--<lib name = '-MACHINE:X86' if="windows"/>-->
 		
-		<lib name = 'openframeworksLib.lib' if="windows"/>
+		<lib name = 'openframeworksLib.lib'/>
 		<lib name = 'OpenGL32.lib' />
 		<lib name = 'GLu32.lib' />
 		<lib name = 'kernel32.lib' />

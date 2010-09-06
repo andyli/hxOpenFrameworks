@@ -1936,3 +1936,165 @@ value _ofImage_getType(value a) {
 	return alloc_int(pt->type);
 }
 DEFINE_PRIM(_ofImage_getType,1);
+
+
+/*
+	ofTrueTypeFont
+*/
+DEFINE_KIND(_ofTrueTypeFont);
+
+void delete_ofTrueTypeFont(value a) {
+	ofTrueTypeFont* rect = (ofTrueTypeFont*) val_data(a);
+	delete rect;
+}
+
+value _ofTrueTypeFont_new() {
+	value ret = alloc_abstract(_ofTrueTypeFont, new ofTrueTypeFont());
+	val_gc(ret, delete_ofTrueTypeFont);	
+	return ret;
+}
+DEFINE_PRIM(_ofTrueTypeFont_new,0);
+
+value _ofTrueTypeFont_loadFont(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	const char* filename = val_string(val_field(b, val_id("filename")));
+	int fontsize = val_field_numeric(b, val_id("fontsize"));
+	bool _bAntiAliased = val_bool(val_field(b, val_id("_bAntiAliased")));
+	bool _bFullCharacterSet = val_bool(val_field(b, val_id("_bFullCharacterSet")));
+	bool makeContours = val_bool(val_field(b, val_id("makeContours")));
+					
+	gc_enter_blocking();
+//	ofTrueTypeFont f;
+//	f.loadFont(	"cooperBlack.ttf",52,true,true,false);
+	pt->loadFont(	filename, 
+					fontsize,
+					_bAntiAliased, 
+					_bFullCharacterSet, 
+					makeContours);
+					
+	gc_exit_blocking();
+
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTrueTypeFont_loadFont,2);
+
+value _ofTrueTypeFont_getLineHeight(value a) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_float(pt->getLineHeight());
+}
+DEFINE_PRIM(_ofTrueTypeFont_getLineHeight,1);
+
+value _ofTrueTypeFont_setLineHeight(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	pt->setLineHeight(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTrueTypeFont_setLineHeight,2);
+
+value _ofTrueTypeFont_stringWidth(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_float(pt->stringWidth(val_string(b)));
+}
+DEFINE_PRIM(_ofTrueTypeFont_stringWidth,2);
+
+value _ofTrueTypeFont_stringHeight(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_float(pt->stringHeight(val_string(b)));
+}
+DEFINE_PRIM(_ofTrueTypeFont_stringHeight,2);
+
+value _ofTrueTypeFont_getStringBoundingBox(value a,value b,value c,value d) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	ofRectangle rect = pt->getStringBoundingBox(val_string(b),val_float(c),val_float(d));
+	value ret = alloc_abstract(_ofRectangle,new ofRectangle(rect.x,rect.y,rect.width,rect.height));
+	val_gc(ret, delete_ofRectangle);
+	return ret;
+}
+DEFINE_PRIM(_ofTrueTypeFont_getStringBoundingBox,4);
+
+value _ofTrueTypeFont_drawString(value a,value b,value c,value d) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	pt->drawString(val_string(b),val_float(c),val_float(d));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTrueTypeFont_drawString,4);
+
+value _ofTrueTypeFont_drawStringAsShapes(value a,value b,value c,value d) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	pt->drawStringAsShapes(val_string(b),val_float(c),val_float(d));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofTrueTypeFont_drawStringAsShapes,4);
+
+value _ofTrueTypeFont_getCharacterAsPoints(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	ofTTFCharacter chr = pt->getCharacterAsPoints(val_int(b));
+	int num = chr.contours.size();
+	
+	value contours = alloc_array(num);
+	value ret = alloc_empty_object();	
+	for (int i = 0 ; i < num ; ++i) {
+		value pts = alloc_array(num);
+		value contour = alloc_empty_object();
+		alloc_field(contour,val_id("pts"),pts);
+		val_array_set_i(contours,i,contour);
+		
+		ofTTFContour* cntr = &chr.contours[i];
+		int num = cntr->pts.size();
+		for (int p = 0 ; p < num ; ++p) {
+			value pt = alloc_abstract(_ofTrueTypeFont, new ofPoint(cntr->pts[p]));
+			val_gc(pt, delete_ofPoint);
+			val_array_set_i(pts,p,pt);
+		}
+	}
+	return ret;
+}
+DEFINE_PRIM(_ofTrueTypeFont_getCharacterAsPoints,2);
+
+value _ofTrueTypeFont_get_nCharacters(value a) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_int(pt->nCharacters);
+}
+DEFINE_PRIM(_ofTrueTypeFont_get_nCharacters,1);
+
+value _ofTrueTypeFont_set_nCharacters(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_int(pt->nCharacters = val_int(b));
+}
+DEFINE_PRIM(_ofTrueTypeFont_set_nCharacters,2);
+
+value _ofTrueTypeFont_get_bLoadedOk(value a) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_bool(pt->bLoadedOk);
+}
+DEFINE_PRIM(_ofTrueTypeFont_get_bLoadedOk,1);
+
+value _ofTrueTypeFont_set_bLoadedOk(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_bool(pt->bLoadedOk = val_bool(b));
+}
+DEFINE_PRIM(_ofTrueTypeFont_set_bLoadedOk,2);
+
+value _ofTrueTypeFont_get_bAntiAlised(value a) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_bool(pt->bAntiAlised);
+}
+DEFINE_PRIM(_ofTrueTypeFont_get_bAntiAlised,1);
+
+value _ofTrueTypeFont_set_bAntiAlised(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_bool(pt->bAntiAlised = val_bool(b));
+}
+DEFINE_PRIM(_ofTrueTypeFont_set_bAntiAlised,2);
+
+value _ofTrueTypeFont_get_bFullCharacterSet(value a) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_bool(pt->bFullCharacterSet);
+}
+DEFINE_PRIM(_ofTrueTypeFont_get_bFullCharacterSet,1);
+
+value _ofTrueTypeFont_set_bFullCharacterSet(value a,value b) {
+	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
+	return alloc_bool(pt->bFullCharacterSet = val_bool(b));
+}
+DEFINE_PRIM(_ofTrueTypeFont_set_bFullCharacterSet,2);
