@@ -1,7 +1,11 @@
 <xml>
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
-	<set name="OF_DIR" value="D:/of_preRelease_v0061_all" />
+	<set name="OF_DIR" value="D:/of_preRelease_v0061_all" if="windows" />
+	<set name="OF_DIR" value="/Users/andylihahaha/Documents/of_preRelease_v0061_all" if="macos" />
+
+	<set name="OF_PLATFORM" value="vs2008" if="windows" />
+	<set name="OF_PLATFORM" value="osx" if="macos" />
 	
 	<files id="oF_Files">
 		<file name="api.cpp"/>
@@ -40,6 +44,10 @@
 		<compilerflag value = "-W3" if="windows"/>
 		<compilerflag value = "-c" if="windows"/>
 		<compilerflag value = "-TP" if="windows"/>
+
+		
+		<compilerflag value = "-D__MACOSX_CORE__" if="macos"/>
+		<compilerflag value = "-lpthread" if="macos"/>
 	</files>
 	
 	<target id="hxOpenFrameworks.ndll" tool="linker" toolid="dll" output="hxOpenFrameworks">
@@ -48,17 +56,17 @@
 		<outdir name="../ndll/${BINDIR}"/>
 		
 		<lib name="${LIB_LINK}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/glut/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/rtAudio/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/FreeImage/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/freetype/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/quicktime/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/fmodex/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/videoInput/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/glee/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/glu/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/Poco/lib/vs2008"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/vs2008"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glut/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/freetype/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/quicktime/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/fmodex/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/videoInput/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glee/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glu/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}"/>
 		
 		<lib name = '-MANIFEST' if="windows"/>
 		<lib name = '-MANIFESTFILE:obj/Release/hxOpenFrameworks.ndll.intermediate.manifest' if="windows"/>
@@ -74,46 +82,73 @@
 		<lib name = '-DYNAMICBASE:NO' if="windows"/>
 		<!--<lib name = '-MACHINE:X86' if="windows"/>-->
 		
-		<lib name = 'openframeworksLib.lib'/>
-		<lib name = 'OpenGL32.lib' />
-		<lib name = 'GLu32.lib' />
-		<lib name = 'kernel32.lib' />
-		<lib name = 'setupapi.lib' />
-		<lib name = 'glut32.lib' />
-		<lib name = 'rtAudio.lib' />
-		<lib name = 'videoInput.lib' />
-		<lib name = 'libfreetype.lib' />
-		<lib name = 'FreeImage.lib' />
-		<lib name = 'qtmlClient.lib' />
-		<lib name = 'dsound.lib' />
-		<lib name = 'user32.lib' />
-		<lib name = 'gdi32.lib' />
-		<lib name = 'winspool.lib' />
-		<lib name = 'comdlg32.lib' />
-		<lib name = 'advapi32.lib' />
-		<lib name = 'shell32.lib' />
-		<lib name = 'ole32.lib' />
-		<lib name = 'oleaut32.lib' />
-		<lib name = 'uuid.lib' />
-		<lib name = 'GLee.lib' />
-		<lib name = 'fmodex_vc.lib' />
-		<lib name = 'glu32.lib' />
-		<lib name = 'PocoFoundationmt.lib' />
-		<lib name = 'PocoNetmt.lib' />
-		<lib name = 'PocoUtilmt.lib' />
-		<lib name = 'PocoXMLmt.lib' />
-		<lib name = 'kernel32.lib' />
-		<lib name = 'user32.lib' />
-		<lib name = 'gdi32.lib' />
-		<lib name = 'winspool.lib' />
-		<lib name = 'comdlg32.lib' />
-		<lib name = 'advapi32.lib' />
-		<lib name = 'shell32.lib' />
-		<lib name = 'ole32.lib' />
-		<lib name = 'oleaut32.lib' />
-		<lib name = 'uuid.lib' />
-		<lib name = 'odbc32.lib' />
-		<lib name = 'odbccp32.lib' />		
+		<lib name = 'openframeworksLib.lib' if="windows"/>
+		<lib name = 'OpenGL32.lib' if="windows" />
+		<lib name = 'GLu32.lib' if="windows" />
+		<lib name = 'kernel32.lib' if="windows" />
+		<lib name = 'setupapi.lib' if="windows" />
+		<lib name = 'glut32.lib' if="windows" />
+		<lib name = 'rtAudio.lib' if="windows" />
+		<lib name = 'videoInput.lib' if="windows" />
+		<lib name = 'libfreetype.lib' if="windows" />
+		<lib name = 'FreeImage.lib' if="windows" />
+		<lib name = 'qtmlClient.lib' if="windows" />
+		<lib name = 'dsound.lib' if="windows" />
+		<lib name = 'user32.lib' if="windows" />
+		<lib name = 'gdi32.lib' if="windows" />
+		<lib name = 'winspool.lib' if="windows" />
+		<lib name = 'comdlg32.lib' if="windows" />
+		<lib name = 'advapi32.lib' if="windows" />
+		<lib name = 'shell32.lib' if="windows" />
+		<lib name = 'ole32.lib' if="windows" />
+		<lib name = 'oleaut32.lib' if="windows" />
+		<lib name = 'uuid.lib' if="windows" />
+		<lib name = 'GLee.lib' if="windows" />
+		<lib name = 'fmodex_vc.lib' if="windows" />
+		<lib name = 'glu32.lib' if="windows" />
+		<lib name = 'PocoFoundationmt.lib' if="windows" />
+		<lib name = 'PocoNetmt.lib' if="windows" />
+		<lib name = 'PocoUtilmt.lib' if="windows" />
+		<lib name = 'PocoXMLmt.lib' if="windows" />
+		<lib name = 'kernel32.lib' if="windows" />
+		<lib name = 'user32.lib' if="windows" />
+		<lib name = 'gdi32.lib' if="windows" />
+		<lib name = 'winspool.lib' if="windows" />
+		<lib name = 'comdlg32.lib' if="windows" />
+		<lib name = 'advapi32.lib' if="windows" />
+		<lib name = 'shell32.lib' if="windows" />
+		<lib name = 'ole32.lib' if="windows" />
+		<lib name = 'oleaut32.lib' if="windows" />
+		<lib name = 'uuid.lib' if="windows" />
+		<lib name = 'odbc32.lib' if="windows" />
+		<lib name = 'odbccp32.lib' if="windows" />
+
+		
+		<lib name = 'openFrameworksUniversal.a' if="macos" />
+		<lib name = 'GLee.a' if="macos" />
+		<lib name = 'rtAudio.a' if="macos" />
+		<lib name = 'CppUnit.a' if="macos" />
+		<lib name = 'PocoFoundation.a' if="macos" />
+		<lib name = 'PocoNet.a' if="macos" />
+		<lib name = 'PocoUtil.a' if="macos" />
+		<lib name = 'PocoXML.a' if="macos" />
+		<lib name = 'freetype.a' if="macos" />
+		<lib name = 'libfmodex.dylib' if="macos" />
+		<lib name = 'freeimage.a' if="macos" />
+
+		<vflag name="-framework" value="AGL" if="macos"/>
+		<vflag name="-framework" value="ApplicationServices" if="macos"/>
+		<vflag name="-framework" value="AudioToolbox" if="macos"/>
+		<vflag name="-framework" value="Carbon" if="macos"/>
+		<vflag name="-framework" value="CoreAudio" if="macos"/>
+		<vflag name="-framework" value="CoreFoundation" if="macos"/>
+		<vflag name="-framework" value="CoreServices" if="macos"/>
+		<vflag name="-framework" value="OpenGL" if="macos"/>
+		<vflag name="-framework" value="QuickTime" if="macos"/>
+		<vflag name="-framework" value="AppKit" if="macos"/>
+		<vflag name="-framework" value="Cocoa" if="macos"/>
+		<vflag name="-framework" value="IOKit" if="macos"/>
+		<vflag name="-framework" value="GLUT" if="macos"/>
 	</target>
 
 	<target id="default">
