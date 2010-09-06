@@ -22,7 +22,7 @@ class FontsExample extends of.BaseApp
 		// now load another font, but with extended parameters:
 		// font name, size, anti-aliased, full character set
 		verdana = new TrueTypeFont();
-		verdana.loadFont("verdana.ttf", 8, false);//, true);
+		verdana.loadFont("verdana.ttf", 8, false, true);
 		verdana.setLineHeight(20.0);
 		
 		counter = 0;

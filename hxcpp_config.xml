@@ -1,3 +1,4 @@
+<!-- put it in %USERPROFILE% -->
 <xml>
 	<section id="vars">
 		<set name="ABI" value="-MD" />

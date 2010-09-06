@@ -7,6 +7,8 @@
 	<set name="OF_PLATFORM" value="vs2008" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
 	
+	<set name="ABI" value="-MD" />
+	
 	<files id="oF_Files">
 		<file name="api.cpp"/>
 		
@@ -40,7 +42,6 @@
 		<compilerflag value = "-DUNICODE" if="windows"/>-->
 		<compilerflag value = "-FD" if="windows"/>
 		<compilerflag value = "-EHsc" if="windows"/>
-		<compilerflag value = "-MD" if="windows"/>
 		<compilerflag value = "-W3" if="windows"/>
 		<compilerflag value = "-c" if="windows"/>
 		<compilerflag value = "-TP" if="windows"/>

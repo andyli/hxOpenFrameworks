@@ -1964,8 +1964,7 @@ value _ofTrueTypeFont_loadFont(value a,value b) {
 	bool makeContours = val_bool(val_field(b, val_id("makeContours")));
 					
 	gc_enter_blocking();
-//	ofTrueTypeFont f;
-//	f.loadFont(	"cooperBlack.ttf",52,true,true,false);
+
 	pt->loadFont(	filename, 
 					fontsize,
 					_bAntiAliased, 
@@ -2026,30 +2025,37 @@ value _ofTrueTypeFont_drawStringAsShapes(value a,value b,value c,value d) {
 }
 DEFINE_PRIM(_ofTrueTypeFont_drawStringAsShapes,4);
 
-value _ofTrueTypeFont_getCharacterAsPoints(value a,value b) {
-	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);
-	ofTTFCharacter chr = pt->getCharacterAsPoints(val_int(b));
+value _ofTrueTypeFont_getCharacterAsPoints(value a,value b, value c) {
+	ofTrueTypeFont* ttf = (ofTrueTypeFont*) val_data(a);
+	ofTTFCharacter chr = ttf->getCharacterAsPoints(val_int(b));
 	int num = chr.contours.size();
 	
 	value contours = alloc_array(num);
-	value ret = alloc_empty_object();	
+	value ret = alloc_empty_object();
+	alloc_field(ret,val_id("contours"),contours);
 	for (int i = 0 ; i < num ; ++i) {
+		ofTTFContour* cntr = &chr.contours[i];
+		int num = cntr->pts.size();
 		value pts = alloc_array(num);
 		value contour = alloc_empty_object();
 		alloc_field(contour,val_id("pts"),pts);
 		val_array_set_i(contours,i,contour);
-		
-		ofTTFContour* cntr = &chr.contours[i];
-		int num = cntr->pts.size();
 		for (int p = 0 ; p < num ; ++p) {
-			value pt = alloc_abstract(_ofTrueTypeFont, new ofPoint(cntr->pts[p]));
+			value pt = alloc_abstract(_ofPoint, new ofPoint(cntr->pts[p]));
 			val_gc(pt, delete_ofPoint);
-			val_array_set_i(pts,p,pt);
+			
+			value args = alloc_array(4);
+			val_array_set_i(args,0,alloc_null());
+			val_array_set_i(args,1,alloc_null());
+			val_array_set_i(args,2,alloc_null());
+			val_array_set_i(args,3,pt);
+			
+			val_array_set_i(pts, p, val_call1(c, args));
 		}
 	}
 	return ret;
 }
-DEFINE_PRIM(_ofTrueTypeFont_getCharacterAsPoints,2);
+DEFINE_PRIM(_ofTrueTypeFont_getCharacterAsPoints,3);
 
 value _ofTrueTypeFont_get_nCharacters(value a) {
 	ofTrueTypeFont* pt = (ofTrueTypeFont*) val_data(a);

@@ -50,15 +50,14 @@ class FontShapesExample extends of.BaseApp
 		//lets draw the key pressed as a tex and a vector both fill and no fill
 		//here we show how easy it is to get
 
-		var str = "";
-		str += String.fromCharCode(letter);
+		var str = String.fromCharCode(letter);
 
 		testFont.drawString(str, 100, 250);
 
 		//okay lets get the character back as ofPoints
 		//all curves are calculated for us so all we need to do is draw!
 		var testChar:TTFCharacter = testFont.getCharacterAsPoints(letter);
-
+		
 		Graphics.fill();
 		Graphics.pushMatrix();
 			Graphics.translate(250, 250, 0);
@@ -84,8 +83,6 @@ class FontShapesExample extends of.BaseApp
 				}
 			Graphics.endShape( true );
 		Graphics.popMatrix();
-
-
 	}
 	
 	override public function keyPressed(key:Int):Void {

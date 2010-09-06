@@ -63,7 +63,7 @@ class TrueTypeFont
 	
 
 	public function getCharacterAsPoints(character:Int):TTFCharacter{
-		return _ofTrueTypeFont_getCharacterAsPoints(character);
+		return _ofTrueTypeFont_getCharacterAsPoints(__handle, character, callback(Type.createInstance,Point));
 	}
 	
 	public var __handle(default, null):Dynamic;
@@ -106,7 +106,7 @@ class TrueTypeFont
 	static var _ofTrueTypeFont_getStringBoundingBox = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_getStringBoundingBox", 4);
 	static var _ofTrueTypeFont_drawString = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_drawString", 4);
 	static var _ofTrueTypeFont_drawStringAsShapes = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_drawStringAsShapes", 4);
-	static var _ofTrueTypeFont_getCharacterAsPoints = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_getCharacterAsPoints", 2);
+	static var _ofTrueTypeFont_getCharacterAsPoints = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_getCharacterAsPoints", 3);
 	static var _ofTrueTypeFont_get_bLoadedOk = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_get_bLoadedOk", 1);
 	static var _ofTrueTypeFont_set_bLoadedOk = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_set_bLoadedOk", 2);
 	static var _ofTrueTypeFont_get_bAntiAlised = Lib.load("hxOpenFrameworks", "_ofTrueTypeFont_get_bAntiAlised", 1);

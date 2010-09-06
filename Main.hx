@@ -9,7 +9,7 @@ class Main {
 		//of.examples.TextureExample.main();
 		//of.examples.PolygonExample.main();
 		//of.examples.TextureScreengrabExample.main();
-		//of.examples.FontShapesExample.main(); //not working...
-		of.examples.FontsExample.main(); //half working...
+		//of.examples.FontShapesExample.main();
+		of.examples.FontsExample.main();
 	}
 }
