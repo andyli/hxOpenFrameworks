@@ -1,0 +1,8 @@
+-cpp bin
+-main Main
+
+-cmd cp ndll/Mac/*.* bin
+
+-cmd cd bin
+-cmd mkdir -p data
+-cmd ./Main

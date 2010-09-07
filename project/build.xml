@@ -22,7 +22,7 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glut/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>
-		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include"/>
+		<!--<compilerflag value = "-I${OF_DIR}/libs/quicktime/include"/>-->
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freeImage/include"/>
@@ -32,6 +32,8 @@
 		<compilerflag value = "-I${OF_DIR}/libs/glu/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/poco/include"/>
 		<compilerflag value = "-I${OF_DIR}/addons"/>
+		<compilerflag value = "-I/usr/include" if="macos"/>
+		<compilerflag value = "-I/usr/include/GL" if="macos"/>
 		
 		<compilerflag value = "-DWIN32" if="windows"/>
 		<compilerflag value = "-DNDEBUG" if="windows"/>
@@ -48,6 +50,10 @@
 
 		
 		<compilerflag value = "-D__MACOSX_CORE__" if="macos"/>
+		<compilerflag value = "-w" if="macos"/>
+		<compilerflag value = "-Wfatal-errors" if="macos"/>
+		<compilerflag value = "-W" if="macos"/>
+		<compilerflag value = "-fexceptions" if="macos"/>
 		<compilerflag value = "-lpthread" if="macos"/>
 	</files>
 	
@@ -57,17 +63,17 @@
 		<outdir name="../ndll/${BINDIR}"/>
 		
 		<lib name="${LIB_LINK}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/glut/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/freetype/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/quicktime/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/fmodex/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/videoInput/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/glee/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/glu/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glut/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/freetype/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/quicktime/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/fmodex/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/videoInput/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glee/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/glu/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}" if="windows"/>
+		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}" if="windows"/>
 		
 		<lib name = '-MANIFEST' if="windows"/>
 		<lib name = '-MANIFESTFILE:obj/Release/hxOpenFrameworks.ndll.intermediate.manifest' if="windows"/>
@@ -125,17 +131,17 @@
 		<lib name = 'odbccp32.lib' if="windows" />
 
 		
-		<lib name = 'openFrameworksUniversal.a' if="macos" />
-		<lib name = 'GLee.a' if="macos" />
-		<lib name = 'rtAudio.a' if="macos" />
-		<lib name = 'CppUnit.a' if="macos" />
-		<lib name = 'PocoFoundation.a' if="macos" />
-		<lib name = 'PocoNet.a' if="macos" />
-		<lib name = 'PocoUtil.a' if="macos" />
-		<lib name = 'PocoXML.a' if="macos" />
-		<lib name = 'freetype.a' if="macos" />
-		<lib name = 'libfmodex.dylib' if="macos" />
-		<lib name = 'freeimage.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}/openFrameworksUniversal.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/glee/lib/${OF_PLATFORM}/GLee.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}/rtAudio.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}/CppUnit.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}/PocoFoundation.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}/PocoNet.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}/PocoUtil.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}/PocoXML.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/freetype/lib/${OF_PLATFORM}/freetype.a' if="macos" />
+		<lib name = '${OF_DIR}/libs/fmodex/lib/${OF_PLATFORM}/libfmodex.dylib' if="macos" />
+		<lib name = '${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}/freeimage.a' if="macos" />
 
 		<vflag name="-framework" value="AGL" if="macos"/>
 		<vflag name="-framework" value="ApplicationServices" if="macos"/>

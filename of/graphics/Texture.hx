@@ -84,14 +84,14 @@ class Texture
 		return new Point(null,null,null,_ofTexture_getCoordFromPercent(__handle, xPts, yPts));
 	}
 	
-	
+	/*
 	public function setTextureWrap(wrapModeHorizontal:Int, wrapModeVertical:Int):Void{
 		_ofTexture_setTextureWrap(wrapModeHorizontal, wrapModeVertical);
 	}
 	
 	public function setTextureMinMagFilter(minFilter:Int, maxFilter:Int):Void{
 		_ofTexture_setTextureMinMagFilter(minFilter, maxFilter);
-	}
+	}*/
 
 	
 	public function bAllocated():Bool{
@@ -127,9 +127,11 @@ class Texture
 	static var _ofTexture_bind = Lib.load("hxOpenFrameworks", "_ofTexture_bind", 1);
 	static var _ofTexture_unbind = Lib.load("hxOpenFrameworks", "_ofTexture_unbind", 1);
 	static var _ofTexture_getCoordFromPoint = Lib.load("hxOpenFrameworks", "_ofTexture_getCoordFromPoint", 3);		
-	static var _ofTexture_getCoordFromPercent = Lib.load("hxOpenFrameworks", "_ofTexture_getCoordFromPercent", 3);	
+	static var _ofTexture_getCoordFromPercent = Lib.load("hxOpenFrameworks", "_ofTexture_getCoordFromPercent", 3);
+	/*	
 	static var _ofTexture_setTextureWrap = Lib.load("hxOpenFrameworks", "_ofTexture_setTextureWrap", 3);
 	static var _ofTexture_setTextureMinMagFilter = Lib.load("hxOpenFrameworks", "_ofTexture_setTextureMinMagFilter", 3);
+	*/
 	static var _ofTexture_bAllocated = Lib.load("hxOpenFrameworks", "_ofTexture_bAllocated", 1);
 	static var _ofTexture_draw4 = Lib.load("hxOpenFrameworks", "_ofTexture_draw4", 5);
 	static var _ofTexture_draw2 = Lib.load("hxOpenFrameworks", "_ofTexture_draw2", 3);

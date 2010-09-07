@@ -1727,6 +1727,7 @@ value _ofTexture_getCoordFromPercent(value a,value b,value c) {
 }
 DEFINE_PRIM(_ofTexture_getCoordFromPercent,3);
 
+/* since I cannot make it compiles on Mac, and these are not in the OF docs anyway, I remove it.
 value _ofTexture_setTextureWrap(value a,value b,value c) {
 	ofTexture* pt = (ofTexture*) val_data(a);
 	pt->setTextureWrap(val_int(b), val_int(c));
@@ -1740,6 +1741,7 @@ value _ofTexture_setTextureMinMagFilter(value a,value b,value c) {
 	return alloc_null();
 }
 DEFINE_PRIM(_ofTexture_setTextureMinMagFilter,3);
+*/
 
 value _ofTexture_bAllocated(value a) {
 	ofTexture* pt = (ofTexture*) val_data(a);
