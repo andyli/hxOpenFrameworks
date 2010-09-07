@@ -10,8 +10,10 @@ h2. Usage
 
 Please refer to "Main.hx":http://github.com/andyli/hxOpenFrameworks/blob/master/Main.hx and "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml for usage.
 
+For API documentation please refer to the "original one":http://www.openframeworks.cc/documentation?adv=yes.
+
 It is under active development, only part of the API is wrapped. Please also expect some minor API cleanup in the future.
 
-Currently it support Windows and Mac. Linux support will be added later.
+Currently it supports Windows and Mac. Linux support will be added later.
 
 Support C++ target only at this moment.
