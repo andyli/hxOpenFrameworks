@@ -22,7 +22,7 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glut/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>
-		<!--<compilerflag value = "-I${OF_DIR}/libs/quicktime/include"/>-->
+		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" if="windows" />
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freeImage/include"/>

@@ -1668,7 +1668,7 @@ DEFINE_PRIM(_ofTexture_setAnchorPercent,3);
 
 value _ofTexture_setAnchorPoint(value a,value b,value c) {
 	ofTexture* pt = (ofTexture*) val_data(a);
-	pt->setAnchorPoint(val_float(b), val_float(c));
+	pt->setAnchorPoint(val_int(b), val_int(c));
 	return alloc_null();
 }
 DEFINE_PRIM(_ofTexture_setAnchorPoint,3);
@@ -1888,7 +1888,7 @@ DEFINE_PRIM(_ofImage_setAnchorPercent,3);
 
 value _ofImage_setAnchorPoint(value a,value b,value c) {
 	ofImage* pt = (ofImage*) val_data(a);
-	pt->setAnchorPoint(val_float(b),val_float(c));
+	pt->setAnchorPoint(val_int(b),val_int(c));
 	return alloc_null();
 }
 DEFINE_PRIM(_ofImage_setAnchorPoint,3);
@@ -2105,3 +2105,169 @@ value _ofTrueTypeFont_set_bFullCharacterSet(value a,value b) {
 	return alloc_bool(pt->bFullCharacterSet = val_bool(b));
 }
 DEFINE_PRIM(_ofTrueTypeFont_set_bFullCharacterSet,2);
+
+
+/*
+	ofVideoGrabber
+*/
+DEFINE_KIND(_ofVideoGrabber);
+
+void delete_ofVideoGrabber(value a) {
+	ofVideoGrabber* rect = (ofVideoGrabber*) val_data(a);
+	delete rect;
+}
+
+value _ofVideoGrabber_new() {
+	value ret = alloc_abstract(_ofVideoGrabber, new ofVideoGrabber());
+	val_gc(ret, delete_ofVideoGrabber);
+	return ret;
+}
+DEFINE_PRIM(_ofVideoGrabber_new,0);
+
+
+value _ofVideoGrabber_listDevices(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->listDevices();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_listDevices,1);
+
+value _ofVideoGrabber_isFrameNew(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return alloc_bool(pt->isFrameNew());
+}
+DEFINE_PRIM(_ofVideoGrabber_isFrameNew,1);
+
+value _ofVideoGrabber_grabFrame(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->grabFrame();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_grabFrame,1);
+
+value _ofVideoGrabber_close(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->close();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_close,1);
+
+value _ofVideoGrabber_initGrabber(value a,value b,value c,value d) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return alloc_bool(pt->initGrabber(val_int(b),val_int(c),val_bool(d)));
+}
+DEFINE_PRIM(_ofVideoGrabber_initGrabber,4);
+
+value _ofVideoGrabber_videoSettings(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->videoSettings();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_videoSettings,1);
+
+value _ofVideoGrabber_getPixels(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return buffer_val(alloc_buffer((const char *) pt->getPixels()));
+}
+DEFINE_PRIM(_ofVideoGrabber_getPixels,1);
+
+value _ofVideoGrabber_getTextureReference(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	value ret = alloc_abstract(_ofTexture, &pt->getTextureReference());
+	return ret;
+}
+DEFINE_PRIM(_ofVideoGrabber_getTextureReference,1);
+
+value _ofVideoGrabber_setVerbose(value a,value b) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->setVerbose(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_setVerbose,2);
+
+value _ofVideoGrabber_setDeviceID(value a,value b) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->setDeviceID(val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_setDeviceID,2);
+
+value _ofVideoGrabber_setDesiredFrameRate(value a,value b) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->setDesiredFrameRate(val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_setDesiredFrameRate,2);
+
+value _ofVideoGrabber_setUseTexture(value a,value b) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->setUseTexture(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_setUseTexture,2);
+
+value _ofVideoGrabber_draw4(value a,value b,value c,value d,value e) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->draw(val_float(b),val_float(c),val_float(d),val_float(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_draw4,5);
+
+value _ofVideoGrabber_draw2(value a,value b,value c) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->draw(val_float(b),val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_draw2,3);
+
+value _ofVideoGrabber_update(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->update();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_update,1);
+
+value _ofVideoGrabber_setAnchorPercent(value a,value b,value c) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->setAnchorPercent(val_float(b), val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_setAnchorPercent,3);
+
+value _ofVideoGrabber_setAnchorPoint(value a,value b,value c) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->setAnchorPoint(val_int(b), val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_setAnchorPoint,3);
+
+value _ofVideoGrabber_resetAnchor(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	pt->resetAnchor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoGrabber_resetAnchor,1);
+
+value _ofVideoGrabber_get_height(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return alloc_int(pt->height);
+}
+DEFINE_PRIM(_ofVideoGrabber_get_height,1);
+
+value _ofVideoGrabber_set_height(value a,value b) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return alloc_int(pt->height = val_int(b));
+}
+DEFINE_PRIM(_ofVideoGrabber_set_height,2);
+
+value _ofVideoGrabber_get_width(value a) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return alloc_int(pt->width);
+}
+DEFINE_PRIM(_ofVideoGrabber_get_width,1);
+
+value _ofVideoGrabber_set_width(value a,value b) {
+	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
+	return alloc_int(pt->width = val_int(b));
+}
+DEFINE_PRIM(_ofVideoGrabber_set_width,2);

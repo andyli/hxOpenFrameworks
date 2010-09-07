@@ -1,5 +1,7 @@
 package;
 
+import of.video.VideoGrabber;
+
 class Main {
 	static function main():Void {
 		//uncomment one of the following lines to see the example
