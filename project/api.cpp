@@ -1836,7 +1836,9 @@ DEFINE_PRIM(_ofImage_saveImage,2);
 
 value _ofImage_getPixels(value a) {
 	ofImage* pt = (ofImage*) val_data(a);
-	return buffer_val(alloc_buffer((const char *) pt->getPixels()));
+	buffer b = alloc_buffer(NULL);
+	buffer_append_sub(b,(const char *) pt->getPixels(),pt->width * pt->height * pt->bpp/8);
+	return buffer_val(b);
 }
 DEFINE_PRIM(_ofImage_getPixels,1);
 
@@ -2167,7 +2169,9 @@ DEFINE_PRIM(_ofVideoGrabber_videoSettings,1);
 
 value _ofVideoGrabber_getPixels(value a) {
 	ofVideoGrabber* pt = (ofVideoGrabber*) val_data(a);
-	return buffer_val(alloc_buffer((const char *) pt->getPixels()));
+	buffer b = alloc_buffer(NULL);
+	buffer_append_sub(b,(const char *) pt->getPixels(),pt->width * pt->height * 3);
+	return buffer_val(b);
 }
 DEFINE_PRIM(_ofVideoGrabber_getPixels,1);
 
