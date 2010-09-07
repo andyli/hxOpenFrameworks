@@ -9,7 +9,6 @@
 #include "ofMain.h"
 #include "ofAppGlutWindow.h"
 
-
 /*
 	ofTypes
 */

@@ -11,7 +11,7 @@ class GraphicsExample extends of.app.BaseApp
 	var counter:Float;
 	var bSmooth:Bool;
 	
-	override public function setup():Void {
+	override public function setup():Void {trace(toDataPath("abc",true));
 		counter = 0;
 		bSmooth = false;
 		

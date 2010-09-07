@@ -32,7 +32,7 @@ class BaseApp
 		public var mouseY(__getMouseY, null):Int;
 		
 		public var __handle(default, null):Dynamic;
-		
+
 		function __getMouseX():Int {
 			return _ofBaseApp_getMouseX(__handle);
 		}
