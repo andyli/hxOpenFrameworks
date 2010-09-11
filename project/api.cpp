@@ -2275,3 +2275,341 @@ value _ofVideoGrabber_set_width(value a,value b) {
 	return alloc_int(pt->width = val_int(b));
 }
 DEFINE_PRIM(_ofVideoGrabber_set_width,2);
+
+
+/*
+	ofVideoPlayer
+*/
+DEFINE_KIND(_ofVideoPlayer);
+
+void delete_ofVideoPlayer(value a) {
+	ofVideoPlayer* rect = (ofVideoPlayer*) val_data(a);
+	delete rect;
+}
+
+value _ofVideoPlayer_new() {
+	value ret = alloc_abstract(_ofVideoPlayer, new ofVideoPlayer());
+	val_gc(ret, delete_ofVideoPlayer);
+	return ret;
+}
+DEFINE_PRIM(_ofVideoPlayer_new,0);
+
+value _ofVideoPlayer_loadMovie(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->loadMovie(val_string(b)));
+}
+DEFINE_PRIM(_ofVideoPlayer_loadMovie,2);
+
+value _ofVideoPlayer_closeMovie(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->closeMovie();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_closeMovie,1);
+
+value _ofVideoPlayer_close(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->close();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_close,1);
+
+value _ofVideoPlayer_update(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->update();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_update,1);
+
+value _ofVideoPlayer_idleMovie(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->idleMovie();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_idleMovie,1);
+
+value _ofVideoPlayer_play(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->play();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_play,1);
+
+value _ofVideoPlayer_stop(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->stop();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_stop,1);
+
+value _ofVideoPlayer_isFrameNew(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->isFrameNew());
+}
+DEFINE_PRIM(_ofVideoPlayer_isFrameNew,1);
+
+value _ofVideoPlayer_getPixels(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	buffer b = alloc_buffer(NULL);
+	buffer_append_sub(b,(const char *) pt->getPixels(),pt->width * pt->height * 3);
+	return buffer_val(b);
+}
+DEFINE_PRIM(_ofVideoPlayer_getPixels,1);
+
+value _ofVideoPlayer_set_pixels(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->pixels = (unsigned char *) buffer_data(val_to_buffer(b));
+	return b;
+}
+DEFINE_PRIM(_ofVideoPlayer_set_pixels,2);
+
+value _ofVideoPlayer_getPosition(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_float(pt->getPosition());
+}
+DEFINE_PRIM(_ofVideoPlayer_getPosition,1);
+
+value _ofVideoPlayer_getSpeed(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_float(pt->getSpeed());
+}
+DEFINE_PRIM(_ofVideoPlayer_getSpeed,1);
+
+value _ofVideoPlayer_getDuration(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_float(pt->getDuration());
+}
+DEFINE_PRIM(_ofVideoPlayer_getDuration,1);
+
+value _ofVideoPlayer_getIsMovieDone(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->getIsMovieDone());
+}
+DEFINE_PRIM(_ofVideoPlayer_getIsMovieDone,1);
+
+value _ofVideoPlayer_setPosition(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setPosition(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setPosition,2);
+
+value _ofVideoPlayer_setVolume(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setVolume(val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setVolume,2);
+
+value _ofVideoPlayer_setLoopState(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setLoopState(val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setLoopState,2);
+
+value _ofVideoPlayer_setSpeed(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setSpeed(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setSpeed,2);
+
+value _ofVideoPlayer_setFrame(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setFrame(val_int(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setFrame,2);
+
+value _ofVideoPlayer_getTextureReference(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	value ret = alloc_abstract(_ofTexture, &pt->getTextureReference());
+	return ret;
+}
+DEFINE_PRIM(_ofVideoPlayer_getTextureReference,1);
+
+value _ofVideoPlayer_setUseTexture(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setUseTexture(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setUseTexture,2);
+
+value _ofVideoPlayer_draw4(value a,value b,value c,value d,value e) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->draw(val_float(b),val_float(c),val_float(d),val_float(e));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_draw4,5);
+
+value _ofVideoPlayer_draw2(value a,value b,value c) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->draw(val_float(b),val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_draw2,3);
+
+value _ofVideoPlayer_setAnchorPercent(value a,value b,value c) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setAnchorPercent(val_float(b), val_float(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setAnchorPercent,3);
+
+value _ofVideoPlayer_setAnchorPoint(value a,value b,value c) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setAnchorPoint(val_int(b), val_int(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setAnchorPoint,3);
+
+value _ofVideoPlayer_resetAnchor(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->resetAnchor();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_resetAnchor,1);
+
+value _ofVideoPlayer_setPaused(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->setPaused(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_setPaused,2);
+
+value _ofVideoPlayer_getCurrentFrame(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->getCurrentFrame());
+}
+DEFINE_PRIM(_ofVideoPlayer_getCurrentFrame,1);
+
+value _ofVideoPlayer_getTotalNumFrames(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->getTotalNumFrames());
+}
+DEFINE_PRIM(_ofVideoPlayer_getTotalNumFrames,1);
+
+value _ofVideoPlayer_firstFrame(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->firstFrame();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_firstFrame,1);
+
+value _ofVideoPlayer_nextFrame(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->nextFrame();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_nextFrame,1);
+
+value _ofVideoPlayer_previousFrame(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->previousFrame();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofVideoPlayer_previousFrame,1);
+
+value _ofVideoPlayer_get_width(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->width);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_width,1);
+
+value _ofVideoPlayer_set_width(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->width = val_int(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_width,2);
+
+value _ofVideoPlayer_get_height(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->height);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_height,1);
+
+value _ofVideoPlayer_set_height(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->height = val_int(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_height,2);
+
+value _ofVideoPlayer_get_speed(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_float(pt->speed);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_speed,1);
+
+value _ofVideoPlayer_set_speed(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_float(pt->speed = val_float(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_speed,2);
+
+value _ofVideoPlayer_get_bLoaded(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->bLoaded);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_bLoaded,1);
+
+value _ofVideoPlayer_set_bLoaded(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->bLoaded = val_bool(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_bLoaded,2);
+
+value _ofVideoPlayer_get_nFrames(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->nFrames);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_nFrames,1);
+
+value _ofVideoPlayer_set_nFrames(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_int(pt->nFrames = val_int(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_nFrames,2);
+
+value _ofVideoPlayer_get_bHavePixelsChanged(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->bHavePixelsChanged);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_bHavePixelsChanged,1);
+
+value _ofVideoPlayer_set_bHavePixelsChanged(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->bHavePixelsChanged = val_bool(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_bHavePixelsChanged,2);
+
+value _ofVideoPlayer_set_tex(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	pt->tex = *(ofTexture*) val_data(b);
+	return b;
+}
+DEFINE_PRIM(_ofVideoPlayer_set_tex,2);
+
+value _ofVideoPlayer_get_bUseTexture(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->bUseTexture);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_bUseTexture,1);
+
+value _ofVideoPlayer_set_bUseTexture(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->bUseTexture = val_bool(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_bUseTexture,2);
+
+value _ofVideoPlayer_get_allocated(value a) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->allocated);
+}
+DEFINE_PRIM(_ofVideoPlayer_get_allocated,1);
+
+value _ofVideoPlayer_set_allocated(value a,value b) {
+	ofVideoPlayer* pt = (ofVideoPlayer*) val_data(a);
+	return alloc_bool(pt->allocated = val_bool(b));
+}
+DEFINE_PRIM(_ofVideoPlayer_set_allocated,2);

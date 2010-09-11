@@ -12,7 +12,6 @@ class VideoGrabber
 		__handle = handle == null ? _ofVideoGrabber_new() : handle;
 	}
 	
-	
 	public function listDevices():Void{
 		_ofVideoGrabber_listDevices(__handle);
 	}
@@ -42,7 +41,7 @@ class VideoGrabber
 	}
 	
 	public function getTextureReference():Texture{
-		return _ofVideoGrabber_getTextureReference(__handle);
+		return new Texture(_ofVideoGrabber_getTextureReference(__handle));
 	}
 	
 	public function setVerbose(bTalkToMe:Bool):Void{

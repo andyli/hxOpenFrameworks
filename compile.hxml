@@ -1,5 +1,7 @@
 -cpp bin
 -main Main
+#-debug
+#-D HXCPP_MULTI_THREADED
 
 -cmd xcopy /e /i /y "ndll\Windows\*.*" "bin"
 
