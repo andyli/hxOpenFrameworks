@@ -2289,7 +2289,7 @@ void delete_ofVideoPlayer(value a) {
 
 value _ofVideoPlayer_new() {
 	value ret = alloc_abstract(_ofVideoPlayer, new ofVideoPlayer());
-	val_gc(ret, delete_ofVideoPlayer);
+	//val_gc(ret, delete_ofVideoPlayer);
 	return ret;
 }
 DEFINE_PRIM(_ofVideoPlayer_new,0);

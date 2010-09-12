@@ -12,6 +12,6 @@ class Main {
 		//of.examples.FontShapesExample.main();			//you need to copy files from OF\apps\examples\fontShapesExample\bin\data to bin\data
 		//of.examples.FontsExample.main();				//you need to copy files from OF\apps\examples\fontsExample\bin\data to bin\data
 		//of.examples.MovieGrabberExample.main();
-		of.examples.MoviePlayerExample.main();			//Crash on exit... you need to copy files from OF\apps\examples\moviePlayerExample\bin\data to bin\data
+		of.examples.MoviePlayerExample.main();			//you need to copy files from OF\apps\examples\moviePlayerExample\bin\data to bin\data
 	}
 }

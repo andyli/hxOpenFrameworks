@@ -3,6 +3,7 @@
 #-debug
 #-D HXCPP_MULTI_THREADED
 
+#-cmd mt.exe  /outputresource:"bin\Main.exe;#1" /manifest .\project\obj\Debug\hxOpenFrameworks.ndll.intermediate.manifest
 -cmd xcopy /e /i /y "ndll\Windows\*.*" "bin"
 
 -cmd cd bin

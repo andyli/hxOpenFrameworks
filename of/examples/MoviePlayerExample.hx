@@ -78,10 +78,6 @@ class MoviePlayerExample extends of.app.BaseApp
 				fingerMovie.nextFrame();
 			case '0'.charCodeAt(0):
 				fingerMovie.firstFrame();
-			case Constants.OF_KEY_END:
-				fingerMovie.stop();
-				fingerMovie.close();
-				trace(fingerMovie.bLoaded);
 		}
 	}
 	

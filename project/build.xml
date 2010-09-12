@@ -7,7 +7,10 @@
 	<set name="OF_PLATFORM" value="vs2008" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
 	
-	<set name="ABI" value="-MD" />
+	<set name="TARGET_MODE" value="Debug" if="debug" />
+	<set name="TARGET_MODE" value="Release" unless="debug" />
+	
+	<!--<set name="ABI" value="-MD" />-->
 	
 	<files id="oF_Files">
 		<file name="api.cpp"/>
@@ -35,6 +38,7 @@
 		<compilerflag value = "-I/usr/include" if="macos"/>
 		<compilerflag value = "-I/usr/include/GL" if="macos"/>
 		
+		<compilerflag value = "-D__WIN32__" if="windows"/>
 		<compilerflag value = "-DWIN32" if="windows"/>
 		<compilerflag value = "-DNDEBUG" if="windows"/>
 		<compilerflag value = "-D_CONSOLE" if="windows"/>
@@ -45,6 +49,7 @@
 		<compilerflag value = "-FD" if="windows"/>
 		<compilerflag value = "-EHsc" if="windows"/>
 		<compilerflag value = "-W3" if="windows"/>
+		<compilerflag value = "-MD" if="windows"/>
 		<compilerflag value = "-c" if="windows"/>
 		<compilerflag value = "-TP" if="windows"/>
 
@@ -76,7 +81,7 @@
 		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}" if="windows"/>
 		
 		<lib name = '-MANIFEST' if="windows"/>
-		<lib name = '-MANIFESTFILE:obj/Release/hxOpenFrameworks.ndll.intermediate.manifest' if="windows"/>
+		<lib name = '-MANIFESTFILE:obj/${TARGET_MODE}/hxOpenFrameworks.ndll.intermediate.manifest' if="windows"/>
 		
 		<lib name = '-NODEFAULTLIB:atlthunk.lib' if="windows"/>
 		<lib name = '-NODEFAULTLIB:libc.lib' if="windows"/>
