@@ -4,6 +4,7 @@ import of.app.BaseApp;
 import of.app.AppRunner;
 import of.app.AppGlutWindow;
 import of.graphics.Graphics;
+import of.sound.SoundPlayer;
 import of.utils.Utils;
 import of.utils.Types;
 
@@ -508,5 +509,21 @@ class FunctionInjector
 	
 	inline static public function nextContour(_:BaseApp, bClose:Bool = false):Void{
 		return Graphics.nextContour(bClose);
+	}
+	
+	inline static public function soundStopAll(_:BaseApp):Void{
+		return SoundPlayer.soundStopAll();
+	}
+	
+	inline static public function soundSetVolume(_:BaseApp, vol:Float):Void{
+		return SoundPlayer.soundSetVolume(vol);
+	}
+	
+	inline static public function soundUpdate(_:BaseApp):Void{
+		return SoundPlayer.soundUpdate();
+	}
+	
+	inline static public function soundGetSpectrum(_:BaseApp, nBands:Int):Array<Float>{
+		return SoundPlayer.soundGetSpectrum(nBands);
 	}
 }

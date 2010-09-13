@@ -8,7 +8,11 @@ See my blog post "haXe for interactivity/creative coding":http://blog.onthewings
 
 h2. Usage
 
-Please refer to "Main.hx":http://github.com/andyli/hxOpenFrameworks/blob/master/Main.hx and "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml for usage.
+Please refer to the examples under "of/examples":http://github.com/andyli/hxOpenFrameworks/tree/master/of/examples.
+
+Refer to "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml and "compile-mac.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile-mac.hxml for compilation.
+
+Note that on windows you need to copy ".hxcpp_config.xml":http://github.com/andyli/hxOpenFrameworks/blob/master/.hxcpp_config.xml to %USERPROFILE%.
 
 For API documentation please refer to the "original one":http://www.openframeworks.cc/documentation?adv=yes.
 
@@ -17,3 +21,8 @@ It is under active development, only part of the API is wrapped. Please also exp
 Currently it supports Windows and Mac. Linux support will be added later.
 
 Support C++ target only at this moment.
+
+h2. Changes to the OF source before compiling ndll
+
+ * Comment out @FMOD_System_Close@ in ofSoundPlayer.cpp
+ * Comment out @ExitMovies@ and @TerminateQTML@ in ofQtUtils.cpp

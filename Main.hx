@@ -1,5 +1,7 @@
 package;
 
+import of.sound.SoundPlayer;
+
 class Main {
 	static function main():Void {
 		//uncomment one of the following lines to see the example
@@ -12,6 +14,7 @@ class Main {
 		//of.examples.FontShapesExample.main();			//you need to copy files from OF\apps\examples\fontShapesExample\bin\data to bin\data
 		//of.examples.FontsExample.main();				//you need to copy files from OF\apps\examples\fontsExample\bin\data to bin\data
 		//of.examples.MovieGrabberExample.main();
-		of.examples.MoviePlayerExample.main();			//you need to copy files from OF\apps\examples\moviePlayerExample\bin\data to bin\data
+		//of.examples.MoviePlayerExample.main();			//you need to copy files from OF\apps\examples\moviePlayerExample\bin\data to bin\data
+		of.examples.SoundPlayerExample.main();			//you need to copy files from OF\apps\examples\soundPlayerExample\bin\data to bin\data
 	}
 }

@@ -2613,3 +2613,271 @@ value _ofVideoPlayer_set_allocated(value a,value b) {
 	return alloc_bool(pt->allocated = val_bool(b));
 }
 DEFINE_PRIM(_ofVideoPlayer_set_allocated,2);
+
+
+/*
+	ofSoundPlayer
+*/
+DEFINE_KIND(_ofSoundPlayer);
+
+void delete_ofSoundPlayer(value a) {
+	ofSoundPlayer* rect = (ofSoundPlayer*) val_data(a);
+	delete rect;
+}
+
+value _ofSoundStopAll() {
+	ofSoundStopAll();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundStopAll,0);
+
+value _ofSoundSetVolume(value a) {
+	ofSoundSetVolume(val_float(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundSetVolume,1);
+
+value _ofSoundUpdate() {
+	ofSoundUpdate();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundUpdate,0);
+
+value _ofSoundGetSpectrum(value a) {
+	int n = val_int(a);
+	float* ary = ofSoundGetSpectrum(n);
+	value ret = alloc_array(n);
+	for (int i = 0; i < n ; ++i) {
+		val_array_set_i(ret, i, alloc_float(ary[i]));
+	}
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundGetSpectrum,1);
+
+value _ofSoundPlayer_new() {
+	value ret = alloc_abstract(_ofSoundPlayer, new ofSoundPlayer());
+	//val_gc(ret, delete_ofSoundPlayer);
+	return ret;
+}
+DEFINE_PRIM(_ofSoundPlayer_new,0);
+
+value _ofSoundPlayer_initializeFmod() {
+	ofSoundPlayer::initializeFmod();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_initializeFmod,0);
+
+value _ofSoundPlayer_closeFmod() {
+	ofSoundPlayer::closeFmod();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_closeFmod,0);
+
+value _ofSoundPlayer_loadSound(value a,value b,value c) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->loadSound(val_string(b), val_bool(c));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_loadSound,3);
+
+value _ofSoundPlayer_unloadSound(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->unloadSound();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_unloadSound,1);
+
+value _ofSoundPlayer_play(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->play();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_play,1);
+
+value _ofSoundPlayer_stop(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->stop();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_stop,1);
+
+value _ofSoundPlayer_setVolume(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setVolume(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setVolume,2);
+
+value _ofSoundPlayer_setPan(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setPan(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setPan,2);
+
+value _ofSoundPlayer_setSpeed(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setSpeed(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setSpeed,2);
+
+value _ofSoundPlayer_setPaused(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setPaused(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setPaused,2);
+
+value _ofSoundPlayer_setLoop(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setLoop(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setLoop,2);
+
+value _ofSoundPlayer_setMultiPlay(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setMultiPlay(val_bool(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setMultiPlay,2);
+
+value _ofSoundPlayer_setPosition(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	pt->setPosition(val_float(b));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundPlayer_setPosition,2);
+
+value _ofSoundPlayer_getPosition(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->getPosition());
+}
+DEFINE_PRIM(_ofSoundPlayer_getPosition,1);
+
+value _ofSoundPlayer_getIsPlaying(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->getIsPlaying());
+}
+DEFINE_PRIM(_ofSoundPlayer_getIsPlaying,1);
+
+value _ofSoundPlayer_get_isStreaming(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->isStreaming);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_isStreaming,1);
+
+value _ofSoundPlayer_set_isStreaming(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->isStreaming = val_bool(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_isStreaming,2);
+
+value _ofSoundPlayer_get_bMultiPlay(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bMultiPlay);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_bMultiPlay,1);
+
+value _ofSoundPlayer_set_bMultiPlay(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bMultiPlay = val_bool(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_bMultiPlay,2);
+
+value _ofSoundPlayer_get_bLoop(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bLoop);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_bLoop,1);
+
+value _ofSoundPlayer_set_bLoop(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bLoop = val_bool(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_bLoop,2);
+
+value _ofSoundPlayer_get_bLoadedOk(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bLoadedOk);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_bLoadedOk,1);
+
+value _ofSoundPlayer_set_bLoadedOk(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bLoadedOk = val_bool(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_bLoadedOk,2);
+
+value _ofSoundPlayer_get_bPaused(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bPaused);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_bPaused,1);
+
+value _ofSoundPlayer_set_bPaused(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_bool(pt->bPaused = val_bool(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_bPaused,2);
+
+value _ofSoundPlayer_get_pan(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->pan);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_pan,1);
+
+value _ofSoundPlayer_set_pan(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->pan = val_float(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_pan,2);
+
+value _ofSoundPlayer_get_volume(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->volume);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_volume,1);
+
+value _ofSoundPlayer_set_volume(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->volume = val_float(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_volume,2);
+
+value _ofSoundPlayer_get_internalFreq(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->internalFreq);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_internalFreq,1);
+
+value _ofSoundPlayer_set_internalFreq(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->internalFreq = val_float(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_internalFreq,2);
+
+value _ofSoundPlayer_get_speed(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->speed);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_speed,1);
+
+value _ofSoundPlayer_set_speed(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_float(pt->speed = val_float(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_speed,2);
+
+value _ofSoundPlayer_get_length(value a) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_int(pt->length);
+}
+DEFINE_PRIM(_ofSoundPlayer_get_length,1);
+
+value _ofSoundPlayer_set_length(value a,value b) {
+	ofSoundPlayer* pt = (ofSoundPlayer*) val_data(a);
+	return alloc_int(pt->length = val_int(b));
+}
+DEFINE_PRIM(_ofSoundPlayer_set_length,2);
