@@ -935,7 +935,7 @@ class ofBaseAppX : public ofBaseApp{
 			for (int i = 0 ; i < size ; ++i) {
 				val_array_set_i(ary, i , alloc_float(output[i]));
 			}
-			alloc_field(args,val_id("input"),ary);
+			alloc_field(args,val_id("output"),ary);
 			
 			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
@@ -2667,7 +2667,7 @@ value _ofSoundGetSpectrum(value a) {
 	for (int i = 0; i < n ; ++i) {
 		val_array_set_i(ret, i, alloc_float(ary[i]));
 	}
-	return alloc_null();
+	return ret;
 }
 DEFINE_PRIM(_ofSoundGetSpectrum,1);
 

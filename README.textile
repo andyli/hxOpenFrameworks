@@ -25,4 +25,5 @@ Support C++ target only at this moment.
 h2. Changes to the OF source before compiling ndll
 
  * Comment out @FMOD_System_Close@ in ofSoundPlayer.cpp
+ * Comment out the content of @ofSoundStreamClose@ in ofSoundStream.cpp
  * Comment out @ExitMovies@ and @TerminateQTML@ in ofQtUtils.cpp

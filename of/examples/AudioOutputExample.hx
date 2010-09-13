@@ -22,7 +22,7 @@ class AudioOutputExample extends of.app.BaseApp
 	var phaseAdder:Float;
 	var phaseAdderTarget:Float;
 		
-	override public function setup():Void {
+	override public function setup():Void {		
 		background(255,255,255);
 
 		// 2 output channels,
@@ -39,13 +39,13 @@ class AudioOutputExample extends of.app.BaseApp
 		bNoise 				= false;
 		lAudio = new Array<Float>();
 		rAudio = new Array<Float>();
-		soundStreamSetup(2, 0);//,this, sampleRate,256, 4);
+		
+		soundStreamSetup(2, 0, this, sampleRate,256, 4);
 
 		setFrameRate(60);
 	}
 	
 	override public function draw():Void {
-		/*
 		// draw the left:
 		setColor(0x333333);
 		rect(100,100,256,200);
@@ -66,43 +66,43 @@ class AudioOutputExample extends of.app.BaseApp
 		var reportString = "volume: (" + volume + ") modify with -/+ keys\npan: (" + pan + ")\nsynthesis: " + (bNoise ? "noise" : "sine wave");
 		if (!bNoise) reportString += " (" + targetFrequency + "hz)";
 
-		drawBitmapString(reportString,80,380);*/
+		drawBitmapString(reportString,80,380);
 	}
 	
-	override public function keyPressed(key:Int):Void {/*
+	override public function keyPressed(key:Int):Void {
 		if (key == '-'.charCodeAt(0)){
 			volume -= 0.05;
 			volume = max(volume, 0);
 		} else if (key == '+'.charCodeAt(0)){
 			volume += 0.05;
 			volume = min(volume, 1);
-		}*/
+		}
 	}
 	
-	override public function mouseMoved(x:Int, y:Int):Void {/*
+	override public function mouseMoved(x:Int, y:Int):Void {
 		var width = getWidth();
 		pan = x / width;
 		var height = getHeight();
 		var heightPct = ((height-y) / height);
 		targetFrequency = 2000.0 * heightPct;
-		phaseAdderTarget = (targetFrequency / sampleRate) * Constants.TWO_PI;*/
+		phaseAdderTarget = (targetFrequency / sampleRate) * Constants.TWO_PI;
 	}
 	
 	override public function mouseDragged(x:Int, y:Int, button:Int):Void {
-		//var width = getWidth();
-		//pan = x / width;
+		var width = getWidth();
+		pan = x / width;
 	}
 	
 	override public function mousePressed(x:Int, y:Int, button:Int):Void {
-		//bNoise = true;
+		bNoise = true;
 	}
 	
 	override public function mouseReleased(?x:Int, ?y:Int, ?button:Int):Void {
-		//bNoise = false;
+		bNoise = false;
 	}
-	
-	override public function audioReceived(output:Array<Float>, bufferSize:Int, nChannels:Int):Void {/*
-		//pan = 0.5f;
+	override public function audioRequested(output:Array<Float>, bufferSize:Int, nChannels:Int):Void {
+		return;
+		//pan = 0.5;
 		var leftScale = 1 - pan;
 		var rightScale = pan;
 
@@ -126,7 +126,7 @@ class AudioOutputExample extends of.app.BaseApp
 				lAudio[i] = output[i*nChannels    ] = sample * volume * leftScale;
 				rAudio[i] = output[i*nChannels + 1] = sample * volume * rightScale;
 			}
-		}*/
+		}
 	}
 	
 	public static function main():Void {

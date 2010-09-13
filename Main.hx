@@ -13,7 +13,8 @@ class Main {
 		//of.examples.FontsExample.main();				//you need to copy files from OF\apps\examples\fontsExample\bin\data to bin\data
 		//of.examples.MovieGrabberExample.main();
 		//of.examples.MoviePlayerExample.main();		//you need to copy files from OF\apps\examples\moviePlayerExample\bin\data to bin\data
-		//of.examples.SoundPlayerExample.main();			//you need to copy files from OF\apps\examples\soundPlayerExample\bin\data to bin\data
-		of.examples.AudioOutputExample.main();
+		//of.examples.SoundPlayerExample.main();		//you need to copy files from OF\apps\examples\soundPlayerExample\bin\data to bin\data
+		//of.examples.AudioOutputExample.main();		//not working...
+		of.examples.SoundPlayerFFTExample.main();		//you need to copy files from OF\apps\examples\soundPlayerFFTExample\bin\data to bin\data
 	}
 }

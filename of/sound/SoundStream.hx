@@ -5,11 +5,11 @@ import of.app.BaseApp;
 
 class SoundStream 
 {
-	static public function soundStreamSetup(nOutputChannels:Int, nInputChannels:Int, ?OFSA:BaseApp = null, ?sampleRate:Int = 44100, ?bufferSize:Int = 256, ?nBuffers:Int = 4):Void {
+	static public function soundStreamSetup(nOutputChannels:Int, nInputChannels:Int, OFSA:BaseApp, ?sampleRate:Int = 44100, ?bufferSize:Int = 256, ?nBuffers:Int = 4):Void {
 		_ofSoundStreamSetup( {
 				nOutputChannels:nOutputChannels, 
 				nInputChannels:nInputChannels, 
-				OFSA:OFSA, 
+				OFSA:OFSA.__handle, 
 				sampleRate:sampleRate, 
 				bufferSize:bufferSize, 
 				nBuffers:nBuffers
