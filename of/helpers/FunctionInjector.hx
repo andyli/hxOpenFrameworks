@@ -5,6 +5,7 @@ import of.app.AppRunner;
 import of.app.AppGlutWindow;
 import of.graphics.Graphics;
 import of.sound.SoundPlayer;
+import of.sound.SoundStream;
 import of.utils.Utils;
 import of.utils.Types;
 
@@ -525,5 +526,25 @@ class FunctionInjector
 	
 	inline static public function soundGetSpectrum(_:BaseApp, nBands:Int):Array<Float>{
 		return SoundPlayer.soundGetSpectrum(nBands);
+	}
+	
+	inline static public function soundStreamSetup(_:BaseApp, nOutputChannels:Int, nInputChannels:Int, ?OFSA:BaseApp = null, ?sampleRate:Int = 44100, ?bufferSize:Int = 256, ?nBuffers:Int = 4):Void {
+		return SoundStream.soundStreamSetup(nOutputChannels, nInputChannels, OFSA, sampleRate, bufferSize, nBuffers);
+	}
+	
+	inline static public function soundStreamStop(_:BaseApp):Void {
+		return SoundStream.soundStreamStop();
+	}
+	
+	inline static public function soundStreamStart(_:BaseApp):Void {
+		return SoundStream.soundStreamStart();
+	}
+	
+	inline static public function soundStreamClose(_:BaseApp):Void {
+		return SoundStream.soundStreamClose();
+	}
+	
+	inline static public function soundStreamListDevices(_:BaseApp):Void {
+		return SoundStream.soundStreamListDevices();
 	}
 }

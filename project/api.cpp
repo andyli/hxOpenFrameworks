@@ -911,20 +911,37 @@ class ofBaseAppX : public ofBaseApp{
 			val_ocall1(handler, val_id("__mouseReleased"), args); 
 		}
 		
-		/*
-		void mousePressed( int x, int y, int button ){ 
-			value args[] = {alloc_int(x), alloc_int(y), alloc_int(button)};
-			val_ocallN(handler, val_id("mousePressed"), args, 3); 
+		void audioReceived( float * input, int bufferSize, int nChannels ){
+			value args = alloc_empty_object();
+			
+			int size = bufferSize*nChannels;
+			value ary = alloc_array(size);
+			for (int i = 0 ; i < size ; ++i) {
+				val_array_set_i(ary, i , alloc_float(input[i]));
+			}
+			alloc_field(args,val_id("input"),ary);
+			
+			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
+			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
+			
+			val_ocall1(handler, val_id("__audioReceived"), args);
 		}
-		void mouseDragged( int x, int y, int button ){ 
-			value args[] = {alloc_int(x), alloc_int(y), alloc_int(button)};
-			val_ocallN(handler, val_id("mouseDragged"), args, 3); 
+		
+		void audioRequested( float * output, int bufferSize, int nChannels ){
+			value args = alloc_empty_object();
+			
+			int size = bufferSize*nChannels;
+			value ary = alloc_array(size);
+			for (int i = 0 ; i < size ; ++i) {
+				val_array_set_i(ary, i , alloc_float(output[i]));
+			}
+			alloc_field(args,val_id("input"),ary);
+			
+			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
+			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
+			
+			val_ocall1(handler, val_id("__audioRequested"), args);
 		}
-		void mouseReleased(){ val_ocall0(handler, val_id("mouseReleased")); }
-		void mouseReleased( int x, int y, int button ){ 
-			value args[] = {alloc_int(x), alloc_int(y), alloc_int(button)};
-			val_ocallN(handler, val_id("mouseReleased"), args, 3); 
-		}*/
 };
 
 DEFINE_KIND(_ofBaseApp);
@@ -2881,3 +2898,43 @@ value _ofSoundPlayer_set_length(value a,value b) {
 	return alloc_int(pt->length = val_int(b));
 }
 DEFINE_PRIM(_ofSoundPlayer_set_length,2);
+
+
+/*
+	ofSoundStream
+*/
+
+value _ofSoundStreamStop() {
+	ofSoundStreamStop();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundStreamStop,0);
+
+value _ofSoundStreamStart() {
+	ofSoundStreamStart();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundStreamStart,0);
+
+value _ofSoundStreamClose() {
+	ofSoundStreamClose();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundStreamClose,0);
+
+value _ofSoundStreamListDevices() {
+	ofSoundStreamListDevices();
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundStreamListDevices,0);
+
+value _ofSoundStreamSetup(value a) {
+	ofSoundStreamSetup(	val_field_numeric(a, val_id("nOutputChannels")), 
+						val_field_numeric(a, val_id("nInputChannels")), 
+						(ofBaseApp *) val_data(val_field(a, val_id("OFSA"))), 
+						val_field_numeric(a, val_id("sampleRate")), 
+						val_field_numeric(a, val_id("bufferSize")),
+						val_field_numeric(a, val_id("nBuffers")));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSoundStreamSetup,1);

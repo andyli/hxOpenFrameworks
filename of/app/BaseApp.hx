@@ -24,8 +24,8 @@ class BaseApp
 		public function mousePressed( x:Int, y:Int, button:Int ):Void {}
 		public function mouseReleased( ?x:Int, ?y:Int, ?button:Int ):Void {}
 
-		//public function audioReceived( float * input, int bufferSize, int nChannels ):Void{}
-		//public function audioRequested( float * output, int bufferSize, int nChannels ):Void{}
+		public function audioReceived( input:Array<Float>, bufferSize:Int, nChannels:Int ):Void{}
+		public function audioRequested( output:Array<Float>, bufferSize:Int, nChannels:Int ):Void{}
 
 		// for processing heads
 		public var mouseX(__getMouseX, null):Int;
@@ -50,6 +50,13 @@ class BaseApp
 		
 		function __mouseReleased( args: { x:Int, y:Int, button:Int } ):Void {
 			mouseReleased(args.x, args.y, args.button);
+		}
+		
+		function __audioReceived( args: { input:Array<Float>, bufferSize:Int, nChannels:Int } ):Void {
+			audioReceived(args.input, args.bufferSize, args.nChannels);
+		}
+		function __audioRequested( args: { output:Array<Float>, bufferSize:Int, nChannels:Int } ):Void {
+			audioRequested(args.output, args.bufferSize, args.nChannels);
 		}
 		
 		
