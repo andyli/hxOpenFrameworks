@@ -528,7 +528,7 @@ class FunctionInjector
 		return SoundPlayer.soundGetSpectrum(nBands);
 	}
 	
-	inline static public function soundStreamSetup(_:BaseApp, nOutputChannels:Int, nInputChannels:Int, ?OFSA:BaseApp = null, ?sampleRate:Int = 44100, ?bufferSize:Int = 256, ?nBuffers:Int = 4):Void {
+	inline static public function soundStreamSetup(_:BaseApp, nOutputChannels:Int, nInputChannels:Int, OFSA:BaseApp, ?sampleRate:Int = 44100, ?bufferSize:Int = 256, ?nBuffers:Int = 4):Void {
 		return SoundStream.soundStreamSetup(nOutputChannels, nInputChannels, OFSA, sampleRate, bufferSize, nBuffers);
 	}
 	
