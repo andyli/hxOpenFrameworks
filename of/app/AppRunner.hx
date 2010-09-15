@@ -7,8 +7,8 @@ class AppRunner
 	static public function runApp(app:BaseApp):Void {
 		of.utils.Utils.setDataPathRoot("data/");
 		
-		_ofRunApp(app.__handle);
 		_appPtr = app;
+		_ofRunApp(app.__handle);
 	}
 	
 	static public function setupOpenGL(window:AppGlutWindow, w:Int, h:Int, screenMode:Int):Void {

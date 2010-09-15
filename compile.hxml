@@ -1,6 +1,7 @@
 -cpp bin
 -main Main
 -lib hxcpp
+-lib hsl-1
 -D HXOF
 -debug
 #-D HXCPP_MULTI_THREADED

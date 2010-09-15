@@ -852,37 +852,79 @@ DEFINE_PRIM(_ofAppGlutWindow_setDisplayString,2);
 	ofBaseApp
 */
 
+int id_dispatch = val_id("__dispatch");
+
 class ofBaseAppX : public ofBaseApp{
 
 	public:
 		value handler;
 		
+		value setupSignaler;
+		value updateSignaler;
+		value drawSignaler;
+		value exitSignaler;
+		value windowResizedSignaler;
+		value keyPressedSignaler;
+		value keyReleasedSignaler;
+		value mouseMovedSignaler;
+		value mouseDraggedSignaler;
+		value mousePressedSignaler;
+		value mouseReleasedSignaler;
+		value audioReceivedSignaler;
+		value audioRequestedSignaler;
+		value touchDownSignaler;
+		value touchUpSignaler;
+		value touchMovedSignaler;
+		value touchDoubleTapSignaler;
+		
 		void setup(){ 
 			val_ocall0(handler, val_id("setup")); 
+			val_ocall2(handler, id_dispatch, setupSignaler, alloc_empty_object()); 
 		}
 		void update(){ 
 			val_ocall0(handler, val_id("update")); 
+			val_ocall2(handler, id_dispatch, updateSignaler, alloc_empty_object());  
 		}
 		void draw(){ 
 			val_ocall0(handler, val_id("draw"));
+			val_ocall2(handler, id_dispatch, drawSignaler, alloc_empty_object());  
 		}
 		void exit(){ 
 			val_ocall0(handler, val_id("exit"));
+			val_ocall2(handler, id_dispatch, exitSignaler, alloc_empty_object());  
 		}
 
 
 		void windowResized(int w, int h){ 
 			val_ocall2(handler, val_id("windowResized"), alloc_int(w), alloc_int(h)); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("width"), alloc_int(w));
+			alloc_field(eventArgs, val_id("height"), alloc_int(h));
+			val_ocall2(handler, id_dispatch, windowResizedSignaler, eventArgs); 
 		}
 
 		void keyPressed( int key ){ 
 			val_ocall1(handler, val_id("keyPressed"), alloc_int(key)); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("key"), alloc_int(key));
+			val_ocall2(handler, id_dispatch, keyPressedSignaler, eventArgs); 
 		}
 		void keyReleased( int key ){ 
 			val_ocall1(handler, val_id("keyReleased"), alloc_int(key)); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("key"), alloc_int(key));
+			val_ocall2(handler, id_dispatch, keyReleasedSignaler, eventArgs); 
 		}
 		void mouseMoved( int x, int y ){ 
 			val_ocall2(handler, val_id("mouseMoved"), alloc_int(x), alloc_int(y)); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("x"), alloc_int(x));
+			alloc_field(eventArgs, val_id("y"), alloc_int(y));
+			val_ocall2(handler, id_dispatch, mouseMovedSignaler, eventArgs); 
 		}
 		
 		void mousePressed( int x, int y, int button ){ 
@@ -892,6 +934,12 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("button"),alloc_int(button));
 			
 			val_ocall1(handler, val_id("__mousePressed"), args); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("x"), alloc_int(x));
+			alloc_field(eventArgs, val_id("y"), alloc_int(y));
+			alloc_field(eventArgs, val_id("button"), alloc_int(button));
+			val_ocall2(handler, id_dispatch, mousePressedSignaler, eventArgs); 
 		}
 		void mouseDragged( int x, int y, int button ){ 
 			value args = alloc_empty_object();
@@ -900,8 +948,20 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("button"),alloc_int(button));
 			
 			val_ocall1(handler, val_id("__mouseDragged"), args); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("x"), alloc_int(x));
+			alloc_field(eventArgs, val_id("y"), alloc_int(y));
+			alloc_field(eventArgs, val_id("button"), alloc_int(button));
+			val_ocall2(handler, id_dispatch, mouseDraggedSignaler, eventArgs); 
 		}
-		void mouseReleased(){ val_ocall0(handler, val_id("mouseReleased")); }
+		void mouseReleased(){ 
+			val_ocall0(handler, val_id("mouseReleased"));
+			
+			value eventArgs = alloc_empty_object();
+			val_ocall2(handler, id_dispatch, mouseReleasedSignaler, eventArgs); 
+			
+		}
 		void mouseReleased( int x, int y, int button ){ 
 			value args = alloc_empty_object();
 			alloc_field(args,val_id("x"),alloc_int(x));
@@ -909,6 +969,12 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("button"),alloc_int(button));
 			
 			val_ocall1(handler, val_id("__mouseReleased"), args); 
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("x"), alloc_int(x));
+			alloc_field(eventArgs, val_id("y"), alloc_int(y));
+			alloc_field(eventArgs, val_id("button"), alloc_int(button));
+			val_ocall2(handler, id_dispatch, mouseReleasedSignaler, eventArgs); 
 		}
 		
 		void audioReceived( float * input, int bufferSize, int nChannels ){
@@ -925,6 +991,12 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
 			
 			val_ocall1(handler, val_id("__audioReceived"), args);
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("buffer"), ary);
+			alloc_field(eventArgs, val_id("bufferSize"), alloc_int(bufferSize));
+			alloc_field(eventArgs, val_id("nChannels"), alloc_int(nChannels));
+			val_ocall2(handler, id_dispatch, audioReceivedSignaler, eventArgs); 
 		}
 		
 		void audioRequested( float * output, int bufferSize, int nChannels ){
@@ -941,6 +1013,12 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
 			
 			val_ocall1(handler, val_id("__audioRequested"), args);
+			
+			value eventArgs = alloc_empty_object();
+			alloc_field(eventArgs, val_id("buffer"), ary);
+			alloc_field(eventArgs, val_id("bufferSize"), alloc_int(bufferSize));
+			alloc_field(eventArgs, val_id("nChannels"), alloc_int(nChannels));
+			val_ocall2(handler, id_dispatch, audioRequestedSignaler, eventArgs); 
 		}
 };
 
@@ -961,6 +1039,27 @@ DEFINE_PRIM(_ofBaseApp_new,0);
 value _ofBaseApp_setHandle(value a, value b) {
 	ofBaseAppX* app = (ofBaseAppX*) val_data(a);
 	app->handler = b;
+	
+	value events = val_field(b, val_id("events"));
+	
+	app->setupSignaler = val_field(events, val_id("setup"));
+	app->updateSignaler = val_field(events, val_id("update"));
+	app->drawSignaler = val_field(events, val_id("draw"));
+	app->exitSignaler = val_field(events, val_id("exit"));
+	app->windowResizedSignaler = val_field(events, val_id("windowResized"));
+	app->keyPressedSignaler = val_field(events, val_id("keyPressed"));
+	app->keyReleasedSignaler = val_field(events, val_id("keyReleased"));
+	app->mouseMovedSignaler = val_field(events, val_id("mouseMoved"));
+	app->mouseDraggedSignaler = val_field(events, val_id("mouseDragged"));
+	app->mousePressedSignaler = val_field(events, val_id("mousePressed"));
+	app->mouseReleasedSignaler = val_field(events, val_id("mouseReleased"));
+	app->audioReceivedSignaler = val_field(events, val_id("audioReceived"));
+	app->audioRequestedSignaler = val_field(events, val_id("audioRequested"));
+	app->touchDownSignaler = val_field(events, val_id("touchDown"));
+	app->touchUpSignaler = val_field(events, val_id("touchUp"));
+	app->touchMovedSignaler = val_field(events, val_id("touchMoved"));
+	app->touchDoubleTapSignaler = val_field(events, val_id("touchDoubleTap"));
+	
 	return alloc_null();
 }
 DEFINE_PRIM(_ofBaseApp_setHandle,2);

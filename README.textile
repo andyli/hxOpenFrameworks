@@ -12,18 +12,24 @@ Please refer to the examples under "of/examples":http://github.com/andyli/hxOpen
 
 Refer to "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml and "compile-mac.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile-mac.hxml for compilation.
 
-Note that on windows you need to copy ".hxcpp_config.xml":http://github.com/andyli/hxOpenFrameworks/blob/master/.hxcpp_config.xml to %USERPROFILE%.
+Note that on Windows you need to copy ".hxcpp_config.xml":http://github.com/andyli/hxOpenFrameworks/blob/master/.hxcpp_config.xml to ==%USERPROFILE%==.
 
 For API documentation please refer to the "original one":http://www.openframeworks.cc/documentation?adv=yes.
 
-It is under active development, only part of the API is wrapped. Please also expect some minor API cleanup in the future.
+I have replaced the event system with "HSL":http://code.google.com/p/hxhsl/. However, a little patch is needed for HSL to work in C++ target ("see here":http://lists.motion-twin.com/pipermail/haxe/2010-September/038589.html)
+
+It is under active development, but most of the API have been wrapped. Please also expect some minor API cleanup in the future.
 
 Currently it supports Windows and Mac. Linux support will be added later.
 
 Support C++ target only at this moment.
 
+h2. Known bugs
+
+* SoundStream is not working, the program crashes if you use it. If you're good at C++, please have a look and tell me why...
+
 h2. Changes to the OF source before compiling ndll
 
- * Comment out @FMOD_System_Close@ in ofSoundPlayer.cpp
- * Comment out the content of @ofSoundStreamClose@ in ofSoundStream.cpp
- * Comment out @ExitMovies@ and @TerminateQTML@ in ofQtUtils.cpp
+* Comment out @FMOD_System_Close@ in ofSoundPlayer.cpp
+* Comment out the content of @ofSoundStreamClose@ in ofSoundStream.cpp
+* Comment out @ExitMovies@ and @TerminateQTML@ in ofQtUtils.cpp

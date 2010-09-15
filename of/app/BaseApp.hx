@@ -2,13 +2,18 @@ package of.app;
 
 import cpp.Lib;
 import of.utils.Utils;
+import of.events.Events;
+import hsl.haxe.Signaler;
 
 class BaseApp 
 {
 		public function new():Void {
             __handle = _ofBaseApp_new();
+			events = new Events(this);
 			Lib.load("hxOpenFrameworks", "_ofBaseApp_setHandle", 2)(__handle, this);
         }
+		
+		public var events:Events;
 
 		public function setup():Void {}
 		public function update():Void {}
@@ -59,6 +64,9 @@ class BaseApp
 			audioRequested(args.output, args.bufferSize, args.nChannels);
 		}
 		
+		function __dispatch(signaler:Signaler<Dynamic>, args:Dynamic):Void {
+			signaler.dispatch(args);
+		}
 		
 		static var _ofBaseApp_new = Lib.load("hxOpenFrameworks", "_ofBaseApp_new", 0);
 		static var _ofBaseApp_getMouseX = Lib.load("hxOpenFrameworks", "_ofBaseApp_getMouseX", 1);
