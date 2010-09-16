@@ -1,5 +1,7 @@
 -cpp bin
 -main Main
+-lib hxcpp
+-lib hsl-1
 
 -cmd cp ndll/Mac/*.* bin
 

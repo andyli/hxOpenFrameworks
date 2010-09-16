@@ -3,9 +3,11 @@
 	
 	<set name="OF_DIR" value="D:\repo\openFrameworks" if="windows" />
 	<set name="OF_DIR" value="/Users/andylihahaha/Documents/of_preRelease_v0061_all" if="macos" />
+	<set name="OF_DIR" value="/home/andy/Documents/repo/openFrameworks" if="linux" />
 
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
+	<set name="OF_PLATFORM" value="linux" if="linux" />
 	
 	<set name="TARGET_MODE" value="Debug" if="debug" />
 	<set name="TARGET_MODE" value="Release" unless="debug" />
@@ -23,16 +25,18 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/communication"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/video"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
-		<compilerflag value = "-I${OF_DIR}/libs/glut/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/glut/include" unless="linux"/>
 		<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" if="windows" />
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
-		<compilerflag value = "-I${OF_DIR}/libs/freeImage/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/FreeImage/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/fmodex/include"/>
-		<compilerflag value = "-I${OF_DIR}/libs/videoInput/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/videoInput/include" unless="linux"/>
+		<compilerflag value = "-I${OF_DIR}/libs/unicap/include" if="linux"/>
+		<compilerflag value = "-I${OF_DIR}/libs/gstappsink/include" if="linux"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glee/include"/>
-		<compilerflag value = "-I${OF_DIR}/libs/glu/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/glu/include" unless="linux"/>
 		<compilerflag value = "-I${OF_DIR}/libs/poco/include"/>
 		<compilerflag value = "-I${OF_DIR}/addons"/>
 		<compilerflag value = "-I/usr/include" if="macos"/>
@@ -60,6 +64,20 @@
 		<compilerflag value = "-W" if="macos"/>
 		<compilerflag value = "-fexceptions" if="macos"/>
 		<compilerflag value = "-lpthread" if="macos"/>
+		
+		
+		<!--<compilerflag value = "-march=native" if="linux"/>
+		<compilerflag value = "-O3" if="linux"/>
+		<compilerflag value = "-MMD" if="linux"/>
+		<!--<compilerflag value = "-Wall" if="linux"/>
+		<compilerflag value = "$(pkg-config  gstreamer-0.10 gstreamer-video-0.10 gstreamer-base-0.10 libudev --cflags)" if="linux"/>-->
+		<!-- -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2 -->
+		<compilerflag value = "-pthread" if="linux"/>
+		<compilerflag value = "-I/usr/include/gstreamer-0.10" if="linux"/>
+		<compilerflag value = "-I/usr/include/glib-2.0" if="linux"/>
+		<compilerflag value = "-I/usr/lib/glib-2.0/include" if="linux"/>
+		<compilerflag value = "-I/usr/include/libxml2" if="linux"/>
+		<!--<compilerflag value = "-fexceptions" if="linux"/>-->
 	</files>
 	
 	<target id="hxOpenFrameworks.ndll" tool="linker" toolid="dll" output="hxOpenFrameworks">
@@ -161,6 +179,11 @@
 		<vflag name="-framework" value="Cocoa" if="macos"/>
 		<vflag name="-framework" value="IOKit" if="macos"/>
 		<vflag name="-framework" value="GLUT" if="macos"/>
+		
+		
+		
+		<lib name = '-s' if="linux"/>
+		<lib name = '${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}/libopenFrameworks.a' if="linux" />
 	</target>
 
 	<target id="default">
