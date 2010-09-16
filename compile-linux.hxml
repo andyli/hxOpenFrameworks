@@ -3,7 +3,7 @@
 -lib hxcpp
 -lib hsl-1
 
--cmd cp ndll/Mac/*.* bin
+-cmd cp ndll/Linux/*.* bin
 
 -cmd cd bin
 -cmd mkdir -p data

@@ -3,7 +3,7 @@
 -lib hxcpp
 -lib hsl-1
 -D HXOF
--debug
+#-debug
 #-D HXCPP_MULTI_THREADED
 
 #-cmd mt.exe  /outputresource:"bin\Main.exe;#1" /manifest .\project\obj\Debug\hxOpenFrameworks.ndll.intermediate.manifest
@@ -11,4 +11,4 @@
 
 -cmd cd bin
 -cmd if not exist "data" mkdir "data"
--cmd Main-debug.exe
+-cmd Main.exe
