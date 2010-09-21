@@ -78,6 +78,10 @@ class Constants
 	inline static public var OF_KEY_HOME = (106 | OF_KEY_MODIFIER);
 	inline static public var OF_KEY_END = (107 | OF_KEY_MODIFIER);
 	inline static public var OF_KEY_INSERT = (108 | OF_KEY_MODIFIER);
+	
+	inline static public var GL_RGB = 6407;
+	inline static public var GL_RGBA = 6408;
+	inline static public var GL_LUMINANCE = 6409;
 }
 
 class LogLevel {

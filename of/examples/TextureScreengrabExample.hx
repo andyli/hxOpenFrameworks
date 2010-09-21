@@ -16,7 +16,7 @@ class TextureScreengrabExample extends of.app.BaseApp
 		counter = 0;
 		setCircleResolution(100);
 		texScreen = new Texture();
-		texScreen.allocate(300,300,6407); //GL_RGB
+		texScreen.allocate(300,300,Constants.GL_RGB);
 		background(230,230,240);
 	}
 	

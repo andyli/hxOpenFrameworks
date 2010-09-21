@@ -1,7 +1,8 @@
 <project name="hxOF" url="http://github.com/andyli/hxOpenFrameworks" license="BSD">
     <user name="andyli"/>
-    <tag v="c++"/>
+    <tag v="cpp"/>
+    <tag v="graphics"/>
 	<depends name="hsl-1" version="1.4"/>
     <description>haXe binding of OpenFrameworks</description>
-    <version name="0.061">90% of the OpenFrameworks v0.061 APIs are wrapped. Supporting Windows and Mac.</version>
+    <version name="0.061.0">90% of the OpenFrameworks v0.061 APIs are wrapped. Supporting Windows and Mac.</version>
 </project>

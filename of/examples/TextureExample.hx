@@ -30,9 +30,9 @@ class TextureExample extends of.app.BaseApp
 		texColor = new Texture();
 		texColorAlpha = new Texture();
 		
-		texGray.allocate(w,h,6409); //GL_LUMINANCE
-		texColor.allocate(w,h,6407); //GL_RGB
-		texColorAlpha.allocate(w,h,6408); //GL_RGBA
+		texGray.allocate(w,h,Constants.GL_LUMINANCE);
+		texColor.allocate(w,h,Constants.GL_RGB);
+		texColorAlpha.allocate(w,h,Constants.GL_RGBA);
 		
 		grayPixels			= Bytes.alloc(w*h).getData();
 		colorPixels 		= Bytes.alloc(w*h*3).getData();
@@ -63,9 +63,9 @@ class TextureExample extends of.app.BaseApp
 		}
 		
 		
-		texGray.loadData(grayPixels, w,h, 6409); //GL_LUMINANCE
-		texColor.loadData(colorPixels, w,h, 6407); //GL_RGB
-		texColorAlpha.loadData(colorAlphaPixels, w,h, 6408); //GL_RGBA
+		texGray.loadData(grayPixels, w,h, Constants.GL_LUMINANCE);
+		texColor.loadData(colorPixels, w,h, Constants.GL_RGB);
+		texColorAlpha.loadData(colorAlphaPixels, w,h, Constants.GL_RGBA);
 	}
 	
 	override public function update():Void {
@@ -76,7 +76,7 @@ class TextureExample extends of.app.BaseApp
 				grayPixels[j*w+i] = cast (randomuf() * 255);
 			}
 		}
-		texGray.loadData(grayPixels, w,h, 6409); //GL_LUMINANCE
+		texGray.loadData(grayPixels, w,h, Constants.GL_LUMINANCE);
 	}
 	
 	override public function draw():Void {
@@ -104,7 +104,7 @@ class TextureExample extends of.app.BaseApp
 			}
 		}
 		// finally, load those pixels into the texture
-		texColor.loadData(colorPixels, w,h, 6407); //GL_RGB
+		texColor.loadData(colorPixels, w,h, Constants.GL_RGB);
 	}
 	
 	public static function main():Void {

@@ -29,7 +29,7 @@ class MovieGrabberExample extends of.app.BaseApp
 		videoInverted 	= Bytes.alloc(camWidth * camHeight * 3).getData();
 		
 		videoTexture = new Texture();
-		videoTexture.allocate(camWidth, camHeight, 6407); //GL_RGB
+		videoTexture.allocate(camWidth, camHeight, Constants.GL_RGB);
 	}
 	
 	override public function update():Void {
@@ -43,7 +43,7 @@ class MovieGrabberExample extends of.app.BaseApp
 			for (i in 0...totalPixels){
 				videoInverted[i] = cast (255 - cast pixels[i]);
 			}
-			videoTexture.loadData(videoInverted, camWidth, camHeight, 6407); //GL_RGB
+			videoTexture.loadData(videoInverted, camWidth, camHeight, Constants.GL_RGB);
 		}
 	}
 	
