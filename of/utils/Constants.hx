@@ -1,5 +1,7 @@
 package of.utils;
 
+import cpp.Sys;
+
 class Constants 
 {
 	inline static public var OF_VERSION = 6;
@@ -49,13 +51,8 @@ class Constants
 	inline static public var OF_KEY_RETURN = 13;
 	inline static public var OF_KEY_ESC = 27;
 
-	#if TARGET_OSX /* TODO */
-		inline static public var OF_KEY_BACKSPACE = 127;
-		inline static public var OF_KEY_DEL = 8;
-	#else
-		inline static public var OF_KEY_BACKSPACE = 8;
-		inline static public var OF_KEY_DEL = 127;
-	#end
+	inline static public var OF_KEY_BACKSPACE = Sys.systemName() == "Mac" ? 127 : 8;
+	inline static public var OF_KEY_DEL = Sys.systemName() == "Mac" ? 8 : 127;
 
 	inline static public var OF_KEY_F1 = (1 | OF_KEY_MODIFIER);
 	inline static public var OF_KEY_F2 = (2 | OF_KEY_MODIFIER);
