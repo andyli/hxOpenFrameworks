@@ -4,7 +4,7 @@ import cpp.Lib;
 import of.utils.Types;
 import of.utils.Constants;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 typedef DraggableVertex = {
 	var	x:Float;

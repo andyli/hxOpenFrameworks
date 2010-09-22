@@ -5,7 +5,7 @@ import of.utils.Types;
 import of.utils.Constants;
 import of.graphics.TrueTypeFont;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class FontsExample extends of.app.BaseApp
 {

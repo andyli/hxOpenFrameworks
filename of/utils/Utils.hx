@@ -112,7 +112,7 @@ class Utils
 		_ofSetLogLevel(logLevel);
 	}
 	
-	static public function log(logLevel:Int, message:String):Void {
+	static public function ofLog(logLevel:Int, message:String):Void {
 		_ofLog(logLevel, message);
 	}
 	

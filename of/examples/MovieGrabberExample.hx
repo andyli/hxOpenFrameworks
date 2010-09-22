@@ -8,7 +8,7 @@ import of.utils.Constants;
 import of.video.VideoGrabber;
 import of.graphics.Texture;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class MovieGrabberExample extends of.app.BaseApp
 {

@@ -6,7 +6,7 @@ import of.graphics.TrueTypeFont;
 import of.utils.Types;
 import of.utils.Constants;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class SoundPlayerExample extends of.app.BaseApp
 {

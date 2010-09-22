@@ -7,7 +7,7 @@ import of.utils.Types;
 import of.utils.Constants;
 import of.graphics.Texture;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class TextureExample extends of.app.BaseApp
 {

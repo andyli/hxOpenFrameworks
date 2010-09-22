@@ -6,7 +6,7 @@ import of.utils.Types;
 import of.utils.Constants;
 import of.events.Events;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 using of.events.EventUtils;
 
 /*

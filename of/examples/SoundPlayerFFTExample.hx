@@ -5,7 +5,7 @@ import of.sound.SoundPlayer;
 import of.utils.Types;
 import of.utils.Constants;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class SoundPlayerFFTExample extends of.app.BaseApp
 {

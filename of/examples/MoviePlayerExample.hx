@@ -8,7 +8,7 @@ import of.utils.Constants;
 import of.video.VideoPlayer;
 import of.graphics.Texture;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class MoviePlayerExample extends of.app.BaseApp
 {

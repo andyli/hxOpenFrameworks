@@ -5,7 +5,7 @@ import of.utils.Types;
 import of.utils.Constants;
 import of.graphics.Image;
 
-using of.helpers.FunctionInjector;
+using of.helpers.OpenFrameworksContext;
 
 class ImageLoaderExample extends of.app.BaseApp
 {

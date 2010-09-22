@@ -9,7 +9,7 @@ import of.sound.SoundStream;
 import of.utils.Utils;
 import of.utils.Types;
 
-class FunctionInjector 
+class OpenFrameworksContext 
 {	
 	inline static public function runApp(_:BaseApp, app:BaseApp):Void {
 		return AppRunner.runApp(app);
@@ -216,8 +216,8 @@ class FunctionInjector
 		return Utils.setLogLevel(logLevel);
 	}
 	
-	inline static public function log(_:BaseApp, logLevel:Int, message:String):Void {
-		return Utils.log(logLevel, message);
+	inline static public function ofLog(_:BaseApp, logLevel:Int, message:String):Void {
+		return Utils.ofLog(logLevel, message);
 	}
 	
 	inline static public function setConsoleColor(_:BaseApp, color:Int):Void {
@@ -347,6 +347,9 @@ class FunctionInjector
 	}
 	inline static public function pow(_:BaseApp, v:Float,exp:Float):Float{
 		return Math.pow(v,exp);
+	}
+	inline static public function log(_:BaseApp, v:Float):Float{
+		return Math.log(v);
 	}
 	
 	inline static public function background(_:BaseApp, r:Int, g:Int, b:Int):Void{

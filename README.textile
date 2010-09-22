@@ -18,6 +18,8 @@ For API documentation please refer to the "original one":http://www.openframewor
 
 I have replaced the event system with "HSL":http://code.google.com/p/hxhsl/. However, you need the latest SVN version to workaround a hxcpp bug("see here":http://lists.motion-twin.com/pipermail/haxe/2010-September/038589.html). Simply get the SVN version of HSL and run @haxelib dev hsl-1 absolute/path/to/hxhsl/hsl source@ and @haxelib dev hsl-pico-1 absolute/path/to/hxhsl/hsl-pico source@.
 
+__of__ prefix is removed except @ofLog@(there is @log@ for math).
+
 Currently it supports Windows and Mac. Linux support will be added later.
 
 Support C++ target only at this moment.
