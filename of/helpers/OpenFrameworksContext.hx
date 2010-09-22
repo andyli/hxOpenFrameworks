@@ -6,6 +6,7 @@ import of.app.AppGlutWindow;
 import of.graphics.Graphics;
 import of.sound.SoundPlayer;
 import of.sound.SoundStream;
+import of.utils.Constants;
 import of.utils.Utils;
 import of.utils.Types;
 
@@ -212,11 +213,11 @@ class OpenFrameworksContext
 		return Utils.splitString(text, delimiter);
 	}
 	
-	inline static public function setLogLevel(_:BaseApp, logLevel:Int):Void {
+	inline static public function setLogLevel(_:BaseApp, logLevel:LogLevel):Void {
 		return Utils.setLogLevel(logLevel);
 	}
 	
-	inline static public function ofLog(_:BaseApp, logLevel:Int, message:String):Void {
+	inline static public function ofLog(_:BaseApp, logLevel:LogLevel, message:String):Void {
 		return Utils.ofLog(logLevel, message);
 	}
 	

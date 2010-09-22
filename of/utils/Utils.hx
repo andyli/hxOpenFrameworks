@@ -1,6 +1,7 @@
 package of.utils;
 
 import cpp.Lib;
+import of.utils.Constants;
 
 class Utils 
 {	
@@ -108,12 +109,12 @@ class Utils
 		return text.split(delimiter);
 	}
 	
-	static public function setLogLevel(logLevel:Int):Void {
-		_ofSetLogLevel(logLevel);
+	static public function setLogLevel(logLevel:LogLevel):Void {
+		_ofSetLogLevel(Type.enumIndex(logLevel));
 	}
 	
-	static public function ofLog(logLevel:Int, message:String):Void {
-		_ofLog(logLevel, message);
+	static public function ofLog(logLevel:LogLevel, message:String):Void {
+		_ofLog(Type.enumIndex(logLevel), message);
 	}
 	
 	static public function setConsoleColor(color:Int):Void {

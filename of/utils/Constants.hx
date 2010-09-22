@@ -10,7 +10,7 @@ class Constants
 	inline static public var OF_LOOP_PALINDROME = 0x02;
 	inline static public var OF_LOOP_NORMAL = 0x03;
 	
-	inline static public var OF_DEFAULT_LOG_LEVEL = LogLevel.OF_LOG_WARNING;
+	inline static public var OF_DEFAULT_LOG_LEVEL = OF_LOG_WARNING;
 	
 	inline static public var OF_SERIAL_NO_DATA = -2;
 	inline static public var OF_SERIAL_ERROR = -1;
@@ -81,13 +81,13 @@ class Constants
 	inline static public var GL_LUMINANCE = 6409;
 }
 
-class LogLevel {
-	inline static public var OF_LOG_VERBOSE = 0;
-	inline static public var OF_LOG_NOTICE = 1;
-	inline static public var OF_LOG_WARNING = 2;
-	inline static public var OF_LOG_ERROR = 3;
-	inline static public var OF_LOG_FATAL_ERROR = 4;
-	inline static public var OF_LOG_SILENT = 5;
+enum LogLevel {
+	OF_LOG_VERBOSE;
+	OF_LOG_NOTICE;
+	OF_LOG_WARNING;
+	OF_LOG_ERROR;
+	OF_LOG_FATAL_ERROR;
+	OF_LOG_SILENT;
 }
 
 /* TODO
