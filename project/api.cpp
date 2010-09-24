@@ -991,34 +991,30 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
 			
 			val_ocall1(handler, val_id("__audioReceived"), args);
-			
+			/*
 			value eventArgs = alloc_empty_object();
 			alloc_field(eventArgs, val_id("buffer"), ary);
 			alloc_field(eventArgs, val_id("bufferSize"), alloc_int(bufferSize));
 			alloc_field(eventArgs, val_id("nChannels"), alloc_int(nChannels));
-			val_ocall2(handler, id_dispatch, audioReceivedSignaler, eventArgs); 
+			val_ocall2(handler, id_dispatch, audioReceivedSignaler, eventArgs); */
 		}
 		
 		void audioRequested( float * output, int bufferSize, int nChannels ){
-			value args = alloc_empty_object();
-			
 			int size = bufferSize*nChannels;
-			value ary = alloc_array(size);
-			for (int i = 0 ; i < size ; ++i) {
-				val_array_set_i(ary, i , alloc_float(output[i]));
-			}
-			alloc_field(args,val_id("output"),ary);
 			
+			value args = alloc_empty_object();
+			value ary = alloc_array(size);
+			alloc_field(args,val_id("output"),ary);
 			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
 			
 			val_ocall1(handler, val_id("__audioRequested"), args);
 			
-			value eventArgs = alloc_empty_object();
-			alloc_field(eventArgs, val_id("buffer"), ary);
-			alloc_field(eventArgs, val_id("bufferSize"), alloc_int(bufferSize));
-			alloc_field(eventArgs, val_id("nChannels"), alloc_int(nChannels));
-			val_ocall2(handler, id_dispatch, audioRequestedSignaler, eventArgs); 
+			val_ocall2(handler, id_dispatch, audioRequestedSignaler, args);
+			
+			for (int i = 0 ; i < size ; ++i) {
+				output[i] = val_float(val_array_i(ary, i));
+			}
 		}
 };
 

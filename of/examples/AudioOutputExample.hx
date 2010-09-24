@@ -39,6 +39,9 @@ class AudioOutputExample extends of.app.BaseApp
 		bNoise 				= false;
 		lAudio = new Array<Float>();
 		rAudio = new Array<Float>();
+		for (i in 0...256) {
+			lAudio[i] = rAudio[i] = 0;
+		}
 		
 		soundStreamSetup(2, 0, this, sampleRate,256, 4);
 
@@ -101,7 +104,6 @@ class AudioOutputExample extends of.app.BaseApp
 		bNoise = false;
 	}
 	override public function audioRequested(output:Array<Float>, bufferSize:Int, nChannels:Int):Void {
-		return;
 		//pan = 0.5;
 		var leftScale = 1 - pan;
 		var rightScale = pan;
@@ -127,6 +129,7 @@ class AudioOutputExample extends of.app.BaseApp
 				rAudio[i] = output[i*nChannels + 1] = sample * volume * rightScale;
 			}
 		}
+		
 	}
 	
 	public static function main():Void {
