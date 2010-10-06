@@ -61,11 +61,22 @@ class BaseApp
 			audioReceived(args.input, args.bufferSize, args.nChannels);
 		}
 		function __audioRequested( args: { output:Array<Float>, bufferSize:Int, nChannels:Int } ):Void {
-			/*
-			trace(args.nChannels);
-			trace(args.bufferSize);
-			trace(args.output.length);
-			*/
+			if (args == null) {
+				trace("args == null");
+				return;
+			}
+			if (args.nChannels == null) {
+				trace("args.nChannels");
+				return;
+			}
+			if (args.bufferSize == null) {
+				trace("args.bufferSize == null");
+				return;
+			}
+			if (args.output == null) {
+				trace("args.output == null");
+				return;
+			}
 			audioRequested(args.output, args.bufferSize, args.nChannels);
 		}
 		

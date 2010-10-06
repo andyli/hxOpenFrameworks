@@ -1,6 +1,7 @@
 package of.graphics;
 
 import cpp.Lib;
+import haxe.io.Bytes;
 import haxe.io.BytesData;
 import of.graphics.Texture;
 
@@ -9,6 +10,7 @@ class Image
 
 	public function new(?handle:Dynamic):Void {
 		__handle = handle == null ? _ofImage_new() : handle;
+		Lib.load("hxOpenFrameworks", "_ofImage_setHandle", 2)(__handle, this);
 	}
 	
 	// alloation / deallocation routines
@@ -47,7 +49,7 @@ class Image
 	// getting the data
 	// up to you to get this right
 	public function getPixels():BytesData{
-		return _ofImage_getPixels(__handle);
+		return _pixels;
 	}
 
 	// alter the image
@@ -106,9 +108,11 @@ class Image
 	public var width(__getWidth,null):Int;
 	public var height(__getHeight,null):Int;
 	public var bpp(__getBpp,null):Int; //bits per pixel
-	public var type(__getType,null):Int; // OF_IMAGE_GRAYSCALE, OF_IMAGE_COLOR, OF_IMAGE_COLOR_ALPHA
+	public var type(__getType, null):Int; // OF_IMAGE_GRAYSCALE, OF_IMAGE_COLOR, OF_IMAGE_COLOR_ALPHA
 	
 	public var __handle(default, null):Dynamic;
+	
+	var _pixels:BytesData;
 	
 	function __getWidth():Int {
 		return Std.int(_ofImage_getWidth(__handle));
@@ -125,6 +129,10 @@ class Image
 	function __getType():Int {
 		return _ofImage_getType(__handle);
 	}
+	
+	function __newByteData(size:Int):BytesData {
+		return _pixels = Bytes.alloc(size).getData();
+	}
 
 	
 	static var _ofImage_new = Lib.load("hxOpenFrameworks", "_ofImage_new", 0);
@@ -135,7 +143,6 @@ class Image
 	static var _ofImage_getTextureReference = Lib.load("hxOpenFrameworks", "_ofImage_getTextureReference", 1);
 	static var _ofImage_loadImage = Lib.load("hxOpenFrameworks", "_ofImage_loadImage", 2);
 	static var _ofImage_saveImage = Lib.load("hxOpenFrameworks", "_ofImage_saveImage", 2);
-	static var _ofImage_getPixels = Lib.load("hxOpenFrameworks", "_ofImage_getPixels", 1);
 	static var _ofImage_setFromPixels = Lib.load("hxOpenFrameworks", "_ofImage_setFromPixels", 2);
 	static var _ofImage_setImageType = Lib.load("hxOpenFrameworks", "_ofImage_setImageType", 2);
 	static var _ofImage_resize = Lib.load("hxOpenFrameworks", "_ofImage_resize", 3);

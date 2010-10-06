@@ -34,3 +34,5 @@ h2. Changes to the OF source before compiling ndll(not required for normal user)
 * Comment out @FMOD_System_Close@ in ofSoundPlayer.cpp
 * Comment out the content of @ofSoundStreamClose@ in ofSoundStream.cpp
 * Comment out @ExitMovies@ and @TerminateQTML@ in ofQtUtils.cpp
+* For @ofImage@, add @#include <hx/CFFI.h>@, add @value handler;@ to the public section and make @allocatePixels@ not static. Comment out @delete[] pix.pixels;@. Finally replace @pix.pixels = new unsigned char[pix.width*pix.height*byteCount];@ with @pix.pixels = (unsigned char *) buffer_data(val_to_buffer(val_ocall1(handler, val_id("__newByteData"), alloc_int(pix.width*pix.height*byteCount))));@
+* Compile the lib.

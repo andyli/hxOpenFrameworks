@@ -37,13 +37,15 @@ class AudioOutputExample extends of.app.BaseApp
 		phaseAdderTarget 	= 0.0;
 		volume				= 0.1;
 		bNoise 				= false;
+		pan					= 0.5;
+		targetFrequency		= 1000.0;
 		lAudio = new Array<Float>();
 		rAudio = new Array<Float>();
 		for (i in 0...256) {
 			lAudio[i] = rAudio[i] = 0;
 		}
 		
-		soundStreamSetup(2, 0, this, sampleRate,256, 4);
+		soundStreamSetup(2, 0, this, sampleRate,256, 12);
 
 		setFrameRate(60);
 	}
@@ -103,6 +105,7 @@ class AudioOutputExample extends of.app.BaseApp
 	override public function mouseReleased(?x:Int, ?y:Int, ?button:Int):Void {
 		bNoise = false;
 	}
+	
 	override public function audioRequested(output:Array<Float>, bufferSize:Int, nChannels:Int):Void {
 		//pan = 0.5;
 		var leftScale = 1 - pan;

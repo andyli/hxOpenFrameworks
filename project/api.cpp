@@ -872,10 +872,12 @@ class ofBaseAppX : public ofBaseApp{
 		value mouseReleasedSignaler;
 		value audioReceivedSignaler;
 		value audioRequestedSignaler;
+		/*
 		value touchDownSignaler;
 		value touchUpSignaler;
 		value touchMovedSignaler;
 		value touchDoubleTapSignaler;
+		*/
 		
 		void setup(){ 
 			val_ocall0(handler, val_id("setup")); 
@@ -978,6 +980,7 @@ class ofBaseAppX : public ofBaseApp{
 		}
 		
 		void audioReceived( float * input, int bufferSize, int nChannels ){
+			/*
 			value args = alloc_empty_object();
 			
 			int size = bufferSize*nChannels;
@@ -991,7 +994,6 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
 			
 			val_ocall1(handler, val_id("__audioReceived"), args);
-			/*
 			value eventArgs = alloc_empty_object();
 			alloc_field(eventArgs, val_id("buffer"), ary);
 			alloc_field(eventArgs, val_id("bufferSize"), alloc_int(bufferSize));
@@ -1000,6 +1002,9 @@ class ofBaseAppX : public ofBaseApp{
 		}
 		
 		void audioRequested( float * output, int bufferSize, int nChannels ){
+			
+			alloc_null(); 
+			/*
 			int size = bufferSize*nChannels;
 			
 			value args = alloc_empty_object();
@@ -1007,14 +1012,13 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(args,val_id("output"),ary);
 			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
 			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
-			
 			val_ocall1(handler, val_id("__audioRequested"), args);
 			
-			val_ocall2(handler, id_dispatch, audioRequestedSignaler, args);
+			//val_ocall2(handler, id_dispatch, audioRequestedSignaler, args);
 			
 			for (int i = 0 ; i < size ; ++i) {
 				output[i] = val_float(val_array_i(ary, i));
-			}
+			}*/
 		}
 };
 
@@ -1051,10 +1055,12 @@ value _ofBaseApp_setHandle(value a, value b) {
 	app->mouseReleasedSignaler = val_field(events, val_id("mouseReleased"));
 	app->audioReceivedSignaler = val_field(events, val_id("audioReceived"));
 	app->audioRequestedSignaler = val_field(events, val_id("audioRequested"));
+	/*
 	app->touchDownSignaler = val_field(events, val_id("touchDown"));
 	app->touchUpSignaler = val_field(events, val_id("touchUp"));
 	app->touchMovedSignaler = val_field(events, val_id("touchMoved"));
 	app->touchDoubleTapSignaler = val_field(events, val_id("touchDoubleTap"));
+	*/
 	
 	return alloc_null();
 }
@@ -1883,6 +1889,7 @@ DEFINE_PRIM(_ofTexture_getTextureData,1);
 /*
 	ofImage
 */
+
 DEFINE_KIND(_ofImage);
 
 void delete_ofImage(value a) {
@@ -1897,6 +1904,14 @@ value _ofImage_new() {
 }
 DEFINE_PRIM(_ofImage_new,0);
 
+
+value _ofImage_setHandle(value a, value b) {
+	ofImage* app = (ofImage*) val_data(a);
+	app->handler = b;
+	
+	return alloc_null();
+}
+DEFINE_PRIM(_ofImage_setHandle,2);
 
 value _ofImage_allocate(value a,value b,value c,value d) {
 	ofImage* pt = (ofImage*) val_data(a);
@@ -1946,13 +1961,16 @@ value _ofImage_saveImage(value a,value b) {
 }
 DEFINE_PRIM(_ofImage_saveImage,2);
 
+/*
 value _ofImage_getPixels(value a) {
 	ofImage* pt = (ofImage*) val_data(a);
 	buffer b = alloc_buffer(NULL);
-	buffer_append_sub(b,(const char *) pt->getPixels(),pt->width * pt->height * pt->bpp/8);
+	((ByteArray) b)->Pointer() = (unsigned char *) pt->getPixels();
+	//buffer_append_sub(b,,pt->width * pt->height * pt->bpp/8);
 	return buffer_val(b);
 }
 DEFINE_PRIM(_ofImage_getPixels,1);
+*/
 
 value _ofImage_setFromPixels(value a,value b) {
 	ofImage* pt = (ofImage*) val_data(a);

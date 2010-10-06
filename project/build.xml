@@ -17,6 +17,8 @@
 	<files id="oF_Files">
 		<file name="api.cpp"/>
 		
+		<compilerflag value = "-DHAXE" />
+		
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/graphics"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/app"/>
@@ -140,16 +142,6 @@
 		<lib name = 'PocoNetmt.lib' if="windows" />
 		<lib name = 'PocoUtilmt.lib' if="windows" />
 		<lib name = 'PocoXMLmt.lib' if="windows" />
-		<lib name = 'kernel32.lib' if="windows" />
-		<lib name = 'user32.lib' if="windows" />
-		<lib name = 'gdi32.lib' if="windows" />
-		<lib name = 'winspool.lib' if="windows" />
-		<lib name = 'comdlg32.lib' if="windows" />
-		<lib name = 'advapi32.lib' if="windows" />
-		<lib name = 'shell32.lib' if="windows" />
-		<lib name = 'ole32.lib' if="windows" />
-		<lib name = 'oleaut32.lib' if="windows" />
-		<lib name = 'uuid.lib' if="windows" />
 		<lib name = 'odbc32.lib' if="windows" />
 		<lib name = 'odbccp32.lib' if="windows" />
 
