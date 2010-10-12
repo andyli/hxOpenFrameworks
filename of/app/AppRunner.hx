@@ -5,8 +5,6 @@ import cpp.Lib;
 class AppRunner 
 {
 	static public function runApp(app:BaseApp):Void {
-		of.utils.Utils.setDataPathRoot("data/");
-		
 		_appPtr = app;
 		_ofRunApp(app.__handle);
 	}
