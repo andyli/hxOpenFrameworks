@@ -1,9 +1,7 @@
 <xml>
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
-	<set name="OF_DIR" value="D:\repo\openFrameworks" if="windows" />
-	<set name="OF_DIR" value="/Users/andylihahaha/Documents/of_preRelease_v0061_all" if="macos" />
-	<set name="OF_DIR" value="/home/andy/Documents/repo/openFrameworks" if="linux" />
+	<set name="OF_DIR" value="openFrameworks" />
 
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
