@@ -1,11 +1,8 @@
 package of.examples;
 
 import cpp.Lib;
-import of.utils.Types;
-import of.utils.Constants;
-import of.graphics.TrueTypeFont;
-
-using of.helpers.OpenFrameworksContext;
+import of.Context;
+using of.Context.Functions;
 
 class FontsExample extends of.app.BaseApp
 {

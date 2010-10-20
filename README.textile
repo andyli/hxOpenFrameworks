@@ -29,10 +29,11 @@ h2. Known issues
 * @SoundStream@ is not working, the program crashes if you use it. If you're good at C++, please have a look and tell me why...
 * @ofSerial@ and @ofArduino@ are not yet wrapped. If you need it, tell me or use "hxSerial":http://github.com/andyli/hxSerial.
 
-h2. Changes to the OF source before compiling ndll(not required for normal user)
+h2. How to compiling ndll(not required for normal user)
 
-* Comment out @FMOD_System_Close@ in ofSoundPlayer.cpp
-* Comment out the content of @ofSoundStreamClose@ in ofSoundStream.cpp
-* Comment out @ExitMovies@ and @TerminateQTML@ in ofQtUtils.cpp
-* For @ofImage@, add @#include <hx/CFFI.h>@, add @value handler;@ to the public section and make @allocatePixels@ not static. Comment out @delete[] pix.pixels;@. Finally replace @pix.pixels = new unsigned char[pix.width*pix.height*byteCount];@ with @pix.pixels = (unsigned char *) buffer_data(val_to_buffer(val_ocall1(handler, val_id("__newByteData"), alloc_int(pix.width*pix.height*byteCount))));@
-* Compile the lib.
+* Clone this git repo by @git clone git://github.com/andyli/hxOpenFrameworks.git@
+* @cd /path/to/hxOpenFrameworks@
+* @git submodule init@
+* @git submodule update@. It will clone the openFramework fork to *project/openFrameworks*.
+* Compile openFramework by using the project of your platform in *project/openFrameworks/libs/openFrameworksCompiled/project*.
+* @cd project@ and compile the ndll by @haxelib run hxcpp build.xml@.

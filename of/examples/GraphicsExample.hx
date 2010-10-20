@@ -1,10 +1,8 @@
 ﻿package of.examples;
 
 import cpp.Lib;
-import of.utils.Types;
-import of.utils.Constants;
-
-using of.helpers.OpenFrameworksContext;
+import of.Context;
+using of.Context.Functions;
 
 class GraphicsExample extends of.app.BaseApp
 {

@@ -3,11 +3,8 @@ package of.examples;
 import cpp.Lib;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
-import of.utils.Types;
-import of.utils.Constants;
-import of.graphics.Texture;
-
-using of.helpers.OpenFrameworksContext;
+import of.Context;
+using of.Context.Functions;
 
 class TextureExample extends of.app.BaseApp
 {

@@ -1,4 +1,4 @@
-package of.helpers;
+package of;
 
 import of.app.BaseApp;
 import of.app.AppRunner;
@@ -10,7 +10,37 @@ import of.utils.Constants;
 import of.utils.Utils;
 import of.utils.Types;
 
-class OpenFrameworksContext 
+typedef AppGlutWindow = of.app.AppGlutWindow;
+typedef BaseApp = of.app.BaseApp;
+
+typedef Event<T> = of.events.Events.Event<T>;
+typedef EventArgs = of.events.Events.EventArgs;
+typedef KeyEventArgs = of.events.Events.KeyEventArgs;
+typedef MouseEventArgs = of.events.Events.MouseEventArgs;
+typedef TouchEventArgs = of.events.Events.TouchEventArgs;
+typedef AudioEventArgs = of.events.Events.AudioEventArgs;
+typedef ResizeEventArgs = of.events.Events.ResizeEventArgs;
+
+typedef Image = of.graphics.Image;
+typedef Texture = of.graphics.Texture;
+typedef TrueTypeFont = of.graphics.TrueTypeFont.TrueTypeFont;
+typedef TTFCharacter = of.graphics.TrueTypeFont.TTFCharacter;
+typedef TTFContour = of.graphics.TrueTypeFont.TTFContour;
+
+typedef SoundPlayer = of.sound.SoundPlayer;
+typedef SoundStream = of.sound.SoundStream;
+
+typedef Constants = of.utils.Constants;
+typedef LogLevel = of.utils.Constants.LogLevel;
+typedef Color = of.utils.Types.Color;
+typedef Point = of.utils.Types.Point;
+typedef Rectangle = of.utils.Types.Rectangle;
+typedef Style = of.utils.Types.Style;
+
+typedef VideoGrabber = of.video.VideoGrabber;
+typedef VideoPlayer = of.video.VideoPlayer;
+
+class Functions 
 {	
 	inline static public function runApp(_:BaseApp, app:BaseApp):Void {
 		return AppRunner.runApp(app);

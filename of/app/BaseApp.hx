@@ -13,7 +13,7 @@ class BaseApp
 			Lib.load("hxOpenFrameworks", "_ofBaseApp_setHandle", 2)(__handle, this);
         }
 		
-		public var events:Events;
+		public var events(default,null):Events;
 
 		public function setup():Void {}
 		public function update():Void {}

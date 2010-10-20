@@ -6,7 +6,7 @@ class Main {
 		//uncomment one of the following lines to see the example
 		
 		//of.examples.GraphicsExample.main();
-		of.examples.ImageLoaderExample.main();		//you need to copy files from OF\apps\examples\imageLoaderExample\bin\data to bin\data
+		//of.examples.ImageLoaderExample.main();		//you need to copy files from OF\apps\examples\imageLoaderExample\bin\data to bin\data
 		//of.examples.TextureExample.main();
 		//of.examples.PolygonExample.main();
 		//of.examples.TextureScreengrabExample.main();
@@ -17,6 +17,6 @@ class Main {
 		//of.examples.SoundPlayerExample.main();		//you need to copy files from OF\apps\examples\soundPlayerExample\bin\data to bin\data
 		//of.examples.AudioOutputExample.main();		//not working...
 		//of.examples.SoundPlayerFFTExample.main();		//you need to copy files from OF\apps\examples\soundPlayerFFTExample\bin\data to bin\data
-		//of.examples.AdvancedEventsExample.main();
+		of.examples.AdvancedEventsExample.main();
 	}
 }

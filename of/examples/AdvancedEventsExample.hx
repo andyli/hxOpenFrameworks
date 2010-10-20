@@ -1,12 +1,8 @@
 package of.examples;
 
 import cpp.Lib;
-import of.app.BaseApp;
-import of.utils.Types;
-import of.utils.Constants;
-import of.events.Events;
-
-using of.helpers.OpenFrameworksContext;
+import of.Context;
+using of.Context.Functions;
 using of.events.EventUtils;
 
 /*
