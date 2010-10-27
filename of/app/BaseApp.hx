@@ -10,7 +10,7 @@ class BaseApp
 		public function new():Void {
             __handle = _ofBaseApp_new();
 			events = new Events(this);
-			Lib.load("hxOpenFrameworks", "_ofBaseApp_setHandle", 2)(__handle, this);
+			_ofBaseApp_setHandle(__handle, this);
         }
 		
 		public var events(default,null):Events;
@@ -87,4 +87,5 @@ class BaseApp
 		static var _ofBaseApp_new = Lib.load("hxOpenFrameworks", "_ofBaseApp_new", 0);
 		static var _ofBaseApp_getMouseX = Lib.load("hxOpenFrameworks", "_ofBaseApp_getMouseX", 1);
 		static var _ofBaseApp_getMouseY = Lib.load("hxOpenFrameworks", "_ofBaseApp_getMouseY", 1);
+		static var _ofBaseApp_setHandle = Lib.load("hxOpenFrameworks", "_ofBaseApp_setHandle", 2);
 }

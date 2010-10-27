@@ -1002,9 +1002,6 @@ class ofBaseAppX : public ofBaseApp{
 		}
 		
 		void audioRequested( float * output, int bufferSize, int nChannels ){
-			
-			alloc_null(); 
-			/*
 			int size = bufferSize*nChannels;
 			
 			value args = alloc_empty_object();
@@ -1018,7 +1015,7 @@ class ofBaseAppX : public ofBaseApp{
 			
 			for (int i = 0 ; i < size ; ++i) {
 				output[i] = val_float(val_array_i(ary, i));
-			}*/
+			}
 		}
 };
 

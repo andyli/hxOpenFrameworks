@@ -10,7 +10,7 @@ class Image
 
 	public function new(?handle:Dynamic):Void {
 		__handle = handle == null ? _ofImage_new() : handle;
-		Lib.load("hxOpenFrameworks", "_ofImage_setHandle", 2)(__handle, this);
+		_ofImage_setHandle(__handle, this);
 	}
 	
 	// alloation / deallocation routines
@@ -157,4 +157,5 @@ class Image
 	static var _ofImage_getWidth = Lib.load("hxOpenFrameworks", "_ofImage_getWidth", 1);
 	static var _ofImage_getBpp = Lib.load("hxOpenFrameworks", "_ofImage_getBpp", 1);
 	static var _ofImage_getType = Lib.load("hxOpenFrameworks", "_ofImage_getType", 1);
+	static var _ofImage_setHandle = Lib.load("hxOpenFrameworks", "_ofImage_setHandle", 2);
 }
