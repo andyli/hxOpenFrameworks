@@ -18,7 +18,7 @@ class Texture
 	// so in other words be careful! calling clear on your texture will trash mom's
 	// texture and vice versa.
 	public function clone(mom:Texture):Void{
-		_ofTexture_clone(__handle, mom);
+		_ofTexture_clone(__handle, mom.__handle);
 	}
 	
 	// -----------------------------------------------------------------------

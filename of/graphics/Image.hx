@@ -25,7 +25,7 @@ class Image
 
 	// copying:
 	public function clone(mom:Image):Void{
-		_ofImage_clone(__handle, mom);
+		_ofImage_clone(__handle, mom.__handle);
 	}
 
 	// enable or disable using the texture of this image
