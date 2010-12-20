@@ -1,7 +1,5 @@
 package of;
 
-import of.app.BaseApp;
-import of.app.AppRunner;
 import of.app.AppGlutWindow;
 import of.graphics.Graphics;
 import of.sound.SoundPlayer;
@@ -11,6 +9,7 @@ import of.utils.Utils;
 import of.utils.Types;
 
 typedef AppGlutWindow = of.app.AppGlutWindow;
+typedef AppRunner = of.app.AppRunner
 typedef BaseApp = of.app.BaseApp;
 
 typedef Event<T> = of.events.Events.Event<T>;
