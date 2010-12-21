@@ -43,38 +43,38 @@ class SoundPlayerExample extends of.app.BaseApp
 	override public function draw():Void {		
 		// draw the background colors:
 		var widthDiv = getWidth() / 3.0;
-		setColor(0xeeeeee);
+		setHexColor(0xeeeeee);
 		rect(0,0,widthDiv,getHeight()); 
-		setColor(0xffffff);
+		setHexColor(0xffffff);
 		rect(widthDiv,0,widthDiv,getHeight()); 
-		setColor(0xdddddd);
+		setHexColor(0xdddddd);
 		rect(widthDiv*2,0,widthDiv,getHeight()); 
 		
 
 		//---------------------------------- synth:
-		if (synth.getIsPlaying()) setColor(0xFF0000);
-		else setColor(0x000000);
+		if (synth.getIsPlaying()) setHexColor(0xFF0000);
+		else setHexColor(0x000000);
 		font.drawString("synth !!", 50,50);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("click to play\npct done: "+synth.getPosition()+"\nspeed: "+synth.getSpeed()+"\npan: "+synth.getPan(), 50, getHeight()-50);
 
 
 
 		//---------------------------------- beats:
-		if (beats.getIsPlaying()) setColor(0xFF0000);
-		else setColor(0x000000);
+		if (beats.getIsPlaying()) setHexColor(0xFF0000);
+		else setHexColor(0x000000);
 		font.drawString("beats !!", widthDiv+50,50);
 
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("click and drag\npct done: "+beats.getPosition()+"\nspeed: "+beats.getSpeed(), widthDiv+50,getHeight()-50);
 
 		//---------------------------------- vocals:
-		if (vocals.getIsPlaying()) setColor(0xFF0000);
-		else setColor(0x000000);
+		if (vocals.getIsPlaying()) setHexColor(0xFF0000);
+		else setHexColor(0x000000);
 		font.drawString("vocals !!", widthDiv*2+50,50);
 
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("click to play (multiplay)\npct done: "+vocals.getPosition()+"\nspeed: "+vocals.getSpeed(), widthDiv*2+50,getHeight()-50);
 	}
 	
@@ -104,7 +104,7 @@ class SoundPlayerExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
-		runApp(new SoundPlayerExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
+		AppRunner.runApp(new SoundPlayerExample());
 	}
 }

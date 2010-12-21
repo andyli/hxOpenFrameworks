@@ -50,22 +50,22 @@ class AudioOutputExample extends of.app.BaseApp
 	
 	override public function draw():Void {
 		// draw the left:
-		setColor(0x333333);
+		setHexColor(0x333333);
 		rect(100,100,256,200);
-		setColor(0xFFFFFF);
+		setHexColor(0xFFFFFF);
 		for (i in 0...256){
 			line(100+i,200,100+i,200+lAudio[i]*100.0);
 		}
 
 		// draw the right:
-		setColor(0x333333);
+		setHexColor(0x333333);
 		rect(600,100,256,200);
-		setColor(0xFFFFFF);
+		setHexColor(0xFFFFFF);
 		for (i in 0...256){
 			line(600+i,200,600+i,200+rAudio[i]*100.0);
 		}
 
-		setColor(0x333333);
+		setHexColor(0x333333);
 		var reportString = "volume: (" + volume + ") modify with -/+ keys\npan: (" + pan + ")\nsynthesis: " + (bNoise ? "noise" : "sine wave");
 		if (!bNoise) reportString += " (" + targetFrequency + "hz)";
 
@@ -134,7 +134,7 @@ class AudioOutputExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		runApp(new AudioOutputExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.runApp(new AudioOutputExample());
 	}
 }

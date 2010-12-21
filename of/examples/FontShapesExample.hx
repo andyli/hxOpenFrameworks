@@ -92,7 +92,7 @@ class FontShapesExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 900, 600, Constants.OF_WINDOW);
-		runApp(new FontShapesExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 900, 600, Constants.OF_WINDOW);
+		AppRunner.runApp(new FontShapesExample());
 	}
 }

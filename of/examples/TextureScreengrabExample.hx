@@ -23,20 +23,20 @@ class TextureScreengrabExample extends of.app.BaseApp
 	
 	override public function draw():Void {
 		// 1st, draw on screen:
-		setColor(0x66CC33);	
+		setHexColor(0x66CC33);	
 		rect(100,100,300,300);
 		
-		setColor(0xffffff);
+		setHexColor(0xffffff);
 		pushMatrix();
 			translate(200, 200, 0);
 			rotate(counter,0,0,1);
 			circle(0,0,80);
 			circle(100,0,10);	// a small one
 		popMatrix();
-		setColor(0x333333);
+		setHexColor(0x333333);
 		drawBitmapString("(a) on screen", 150,200);
 
-		setColor(0xFFCC33);	
+		setHexColor(0xFFCC33);	
 		circle(mouseX, mouseY,20);
 		
 
@@ -53,7 +53,7 @@ class TextureScreengrabExample extends of.app.BaseApp
 		// (note: you can even draw the texture before you call loadScreenData, 
 		// in order to make some trails or feedback type effects)
 		pushMatrix();
-			setColor(0xffffff);
+			setHexColor(0xffffff);
 			translate(550,300,0);
 			//glRotatef(counter, 0.1f, 0.03f, 0);
 			var width = 200 + 100 * sin(counter/200.0);
@@ -62,18 +62,18 @@ class TextureScreengrabExample extends of.app.BaseApp
 		popMatrix();
 
 		pushMatrix();
-			setColor(0xffffff);
+			setHexColor(0xffffff);
 			translate(700,210,0);
 			rotate(counter, 0.1, 0.03, 0);
 			texScreen.draw(-50,-50,100,100);
 		popMatrix();
 
-		setColor(0x333333);
+		setHexColor(0x333333);
 		drawBitmapString("(b) in a texture, very meta!", 500,200);
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
-		runApp(new TextureScreengrabExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
+		AppRunner.runApp(new TextureScreengrabExample());
 	}
 }

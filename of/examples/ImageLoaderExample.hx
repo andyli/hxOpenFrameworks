@@ -37,22 +37,22 @@ class ImageLoaderExample extends of.app.BaseApp
 	}
 	
 	override public function draw():Void {
-		setColor(0xFFFFFF);
+		setHexColor(0xFFFFFF);
 
 		bikers.draw(0,0);
 		gears.draw(600,0);
 		tdf.draw(600,300);
 		
-		setColor(0xDD3333);
+		setHexColor(0xDD3333);
 		tdfSmall.draw(200,300);
 		
-		setColor(0xFFFFFF);
+		setHexColor(0xFFFFFF);
 		enableAlphaBlending();
 		transparency.draw(sin(getElapsedTimeMillis()/1000.0) * 100 + 500,20);
 		disableAlphaBlending();
 		
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		
 		// getting the pixels out of an image, 
 		// and then use the values to draw circles
@@ -67,12 +67,12 @@ class ImageLoaderExample extends of.app.BaseApp
 			}
 		}
 		
-		setColor(0xFFFFFF);
+		setHexColor(0xFFFFFF);
 		bikeIcon.draw(300,500, 20,20);
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		runApp(new ImageLoaderExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.runApp(new ImageLoaderExample());
 	}
 }

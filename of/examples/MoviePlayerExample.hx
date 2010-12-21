@@ -26,10 +26,10 @@ class MoviePlayerExample extends of.app.BaseApp
 	}
 	
 	override public function draw():Void {
-		setColor(0xFFFFFF);
+		setHexColor(0xFFFFFF);
 
 		fingerMovie.draw(20,20);
-		setColor(0x000000);
+		setHexColor(0x000000);
 		var pixels = fingerMovie.getPixels();
 		// let's move through the "RGB" char array
 		// using the red pixel to control the size of a circle.
@@ -46,20 +46,20 @@ class MoviePlayerExample extends of.app.BaseApp
 		}
 
 
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("press f to change",20,320);
-		if(frameByframe) setColor(0xCCCCCC);
+		if(frameByframe) setHexColor(0xCCCCCC);
 		drawBitmapString("mouse speed position",20,340);
-		if(!frameByframe) setColor(0xCCCCCC); else setColor(0x000000);
+		if(!frameByframe) setHexColor(0xCCCCCC); else setHexColor(0x000000);
 		drawBitmapString("keys <- -> frame by frame " ,190,340);
-		setColor(0x000000);
+		setHexColor(0x000000);
 
 		drawBitmapString("frame: " + toString(fingerMovie.getCurrentFrame()) + "/"+toString(fingerMovie.getTotalNumFrames()),20,380);
 		drawBitmapString("duration: " + toString(fingerMovie.getPosition()*fingerMovie.getDuration(),2) + "/"+toString(fingerMovie.getDuration(),2),20,400);
 		drawBitmapString("speed: " + toString(fingerMovie.getSpeed(),2),20,420);
 
 		if(fingerMovie.getIsMovieDone()){
-			setColor(0xFF0000);
+			setHexColor(0xFF0000);
 			drawBitmapString("end of movie",20,440);
 		}
 	}
@@ -107,7 +107,7 @@ class MoviePlayerExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		runApp(new MoviePlayerExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.runApp(new MoviePlayerExample());
 	}
 }

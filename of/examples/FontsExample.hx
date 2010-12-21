@@ -31,19 +31,19 @@ class FontsExample extends of.app.BaseApp
 	}
 	
 	override public function draw():Void {
-		setColor(0x00FF00);
+		setHexColor(0x00FF00);
 		franklinBook.drawString("hello, this is franklin book calling\nanyone home?", 100,100);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		verdana.drawString("hello, I am aliased verdana -- full character set, see: � ! ", 100,210);
 		
-		setColor(0x00FF00);
+		setHexColor(0x00FF00);
 		franklinBook.drawString("I can't make an (�) like you", 100,310);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		verdana.drawString("yeah, but I'm not exactly pretty\nthe problem is with freeType library...\napple has a patent on TTF font hints\nso our aliased type via freeType isn't super looking", 100,380);
 		
-		setColor(0x00FF00);
+		setHexColor(0x00FF00);
 		franklinBook.drawString("you look ok ! don't worry", 100,520);
 		
 		//------------------- bounding rectangle : 
@@ -58,9 +58,9 @@ class FontsExample extends of.app.BaseApp
 			translate(100,650,0);
 			rotate(counter, 0,0,1);
 			// draw type & rect centered around 0,0 (subtract midpt from both):
-			setColor(0xcccccc);
+			setHexColor(0xcccccc);
 			rect(rct.x - centerx, rct.y - centery, rct.width, rct.height);
-			setColor(0xff3399);
+			setHexColor(0xff3399);
 			franklinBook.drawString(tempString, -centerx,-centery);
 		popMatrix();
 
@@ -69,7 +69,7 @@ class FontsExample extends of.app.BaseApp
 		pushMatrix();
 			translate(225,675,0);
 			scale(5,5,1);
-			setColor(0x333333);
+			setHexColor(0x333333);
 			verdana.drawString("scale 5x!",0, 0);
 		popMatrix();
 		
@@ -77,13 +77,13 @@ class FontsExample extends of.app.BaseApp
 		pushMatrix();
 			translate(520,675,0);
 			scale(size,size,1);
-			setColor(0x00FF00);
+			setHexColor(0x00FF00);
 			franklinBook.drawString("$k@!%",0, 0);
 		popMatrix();
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 800, 700, Constants.OF_WINDOW);
-		runApp(new FontsExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 800, 700, Constants.OF_WINDOW);
+		AppRunner.runApp(new FontsExample());
 	}
 }

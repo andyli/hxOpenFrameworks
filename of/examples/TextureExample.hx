@@ -77,7 +77,7 @@ class TextureExample extends of.app.BaseApp
 	}
 	
 	override public function draw():Void {
-		setColor(0xffffff);
+		setHexColor(0xffffff);
 		
 		texGray.draw(100,100,w,h);
 		texColor.draw(350,300,w,h);
@@ -105,7 +105,7 @@ class TextureExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
-		runApp(new TextureExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
+		AppRunner.runApp(new TextureExample());
 	}
 }

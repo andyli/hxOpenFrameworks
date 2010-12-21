@@ -44,7 +44,7 @@ class MovieGrabberExample extends of.app.BaseApp
 	}
 	
 	override public function draw():Void {
-		setColor(0xffffff);
+		setHexColor(0xffffff);
 		vidGrabber.draw(20,20);
 		videoTexture.draw(20+camWidth,20,camWidth,camHeight);
 	}
@@ -62,7 +62,7 @@ class MovieGrabberExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		runApp(new MovieGrabberExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.runApp(new MovieGrabberExample());
 	}
 }

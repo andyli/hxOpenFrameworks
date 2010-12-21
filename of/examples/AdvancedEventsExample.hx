@@ -61,8 +61,8 @@ class AdvancedEventsExample extends BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		runApp(new AdvancedEventsExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.runApp(new AdvancedEventsExample());
 	}
 }
 

@@ -9,8 +9,8 @@ class Graphics
 	/* TODO
 	float * ofBgColorPtr();
 	*/
-	static public function background(r:Int, g:Int, b:Int):Void{	
-		_ofBackground(r, g, b);
+	static public function background(r:Int, g:Int, b:Int, a:Int = 255):Void{	
+		_ofBackground(r, g, b, a);
 	}
 
 	// user's access to settings (bgAuto, corner mode):
@@ -94,10 +94,14 @@ class Graphics
 	// 0-255
 	// 0-255
 	// hex, like web 0xFF0033;
-	static public function setColor(rOrHex:Int, ?g:Int, ?b:Int, ?a:Int):Void{	
-		if (a != null) _ofSetColor4(rOrHex, g, b, a);
-		else if (b != null) _ofSetColor3(rOrHex, g, b);
-		else _ofSetColor1(rOrHex);
+	static public function setColor(rOrGray:Int, ?g:Int, ?b:Int, ?a:Int):Void{	
+		if (a != null) _ofSetColor4(rOrGray, g, b, a);
+		else if (b != null) _ofSetColor3(rOrGray, g, b);
+		else _ofSetColor1(rOrGray);
+	}
+	
+	static public function setHexColor(hex:Int):Void {
+		_ofSetHexColor(hex);
 	}
 
 	// transparency
@@ -200,7 +204,7 @@ class Graphics
 		_ofNextContour(bClose);
 	}
 
-	static var _ofBackground = Lib.load("hxOpenFrameworks", "_ofBackground", 3);
+	static var _ofBackground = Lib.load("hxOpenFrameworks", "_ofBackground", 4);
 	static var _ofSetBackgroundAuto = Lib.load("hxOpenFrameworks", "_ofSetBackgroundAuto", 1);
 	static var _ofSetRectMode = Lib.load("hxOpenFrameworks", "_ofSetRectMode", 1);
 	static var _ofGetUsingArbTex = Lib.load("hxOpenFrameworks", "_ofGetUsingArbTex", 0);
@@ -230,6 +234,7 @@ class Graphics
 	static var _ofSetColor3 = Lib.load("hxOpenFrameworks", "_ofSetColor3", 3);
 	static var _ofSetColor4 = Lib.load("hxOpenFrameworks", "_ofSetColor4", 4);
 	static var _ofSetColor1 = Lib.load("hxOpenFrameworks", "_ofSetColor1", 1);
+	static var _ofSetHexColor = Lib.load("hxOpenFrameworks", "_ofSetHexColor", 1);
 
 	static var _ofEnableAlphaBlending = Lib.load("hxOpenFrameworks", "_ofEnableAlphaBlending", 0);
 	static var _ofDisableAlphaBlending = Lib.load("hxOpenFrameworks", "_ofDisableAlphaBlending", 0);

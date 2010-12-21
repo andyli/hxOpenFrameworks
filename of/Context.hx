@@ -1,10 +1,6 @@
 package of;
 
-import of.app.AppGlutWindow;
 import of.graphics.Graphics;
-import of.sound.SoundPlayer;
-import of.sound.SoundStream;
-import of.utils.Constants;
 import of.utils.Utils;
 import of.utils.Types;
 
@@ -382,8 +378,8 @@ class Functions
 		return Math.log(v);
 	}
 	
-	inline static public function background(_:BaseApp, r:Int, g:Int, b:Int):Void{
-		return Graphics.background(r, g, b);
+	inline static public function background(_:BaseApp, r:Int, g:Int, b:Int, a:Int = 255):Void{
+		return Graphics.background(r, g, b, a);
 	}
 
 	inline static public function setBackgroundAuto(_:BaseApp, bManual:Bool):Void{
@@ -453,8 +449,12 @@ class Functions
 		return Graphics.setLineWidth(lineWidth);
 	}
 	
-	inline static public function setColor(_:BaseApp, rOrHex:Int, ?g:Int, ?b:Int, ?a:Int):Void{
-		return Graphics.setColor(rOrHex, g, b, a);
+	inline static public function setColor(_:BaseApp, rOrGray:Int, ?g:Int, ?b:Int, ?a:Int):Void{
+		return Graphics.setColor(rOrGray, g, b, a);
+	}
+	
+	inline static public function setHexColor(_:BaseApp, hex:Int):Void{
+		return Graphics.setHexColor(hex);
 	}
 
 	inline static public function enableAlphaBlending(_:BaseApp):Void{

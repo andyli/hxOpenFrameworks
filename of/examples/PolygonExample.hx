@@ -35,7 +35,7 @@ class PolygonExample extends of.app.BaseApp
 	
 	override public function draw():Void {
 		fill();
-		setColor(0xe0be21);
+		setHexColor(0xe0be21);
 
 		//------(a)--------------------------------------
 		// 
@@ -65,7 +65,7 @@ class PolygonExample extends of.app.BaseApp
 		// 		info about the winding rules is here:
 		//		http://glprogramming.com/red/images/Image128.gif
 		// 
-		setColor(0xb5de10);
+		setHexColor(0xb5de10);
 		setPolyMode(Constants.OF_POLY_WINDING_NONZERO);
 		beginShape();
 			vertex(400,135);
@@ -96,7 +96,7 @@ class PolygonExample extends of.app.BaseApp
 		var origy = 100.0;
 		var angle = 0.0;
 		
-		setColor(0xa16bca);
+		setHexColor(0xa16bca);
 		beginShape();
 		for (i in 0...nStarPts){
 			if (i % 2 == 0) {
@@ -122,7 +122,7 @@ class PolygonExample extends of.app.BaseApp
 		// 		lots of self intersection, 500 pts is a good stress test
 		// 
 		// 
-		setColor(0x0cb0b6);
+		setHexColor(0x0cb0b6);
 		setPolyMode(Constants.OF_POLY_WINDING_ODD);
 		beginShape();
 		for (i in 0...10){
@@ -138,7 +138,7 @@ class PolygonExample extends of.app.BaseApp
 		//
 		pushMatrix();
 			translate(100,300,0);
-			setColor(0xff2220);
+			setHexColor(0xff2220);
 			fill();
 			setPolyMode(Constants.OF_POLY_WINDING_ODD);
 			beginShape();
@@ -164,7 +164,7 @@ class PolygonExample extends of.app.BaseApp
 		// 		items so the curve actually goes through those points
 		//
 
-		setColor(0x2bdbe6);
+		setHexColor(0x2bdbe6);
 		beginShape();
 		
 			for (i in 0...nCurveVertexes){
@@ -235,7 +235,7 @@ class PolygonExample extends of.app.BaseApp
 		
 		
 		fill();
-		setColor(0xFF9933);
+		setHexColor(0xFF9933);
 		beginShape();
 		vertex(x0,y0);
 		bezierVertex(x1,y1,x2,y2,x3,y3);
@@ -261,9 +261,9 @@ class PolygonExample extends of.app.BaseApp
 		// 		this allows us to draw holes, for example... 
 		//
 		fill();
-		setColor(0xd3ffd3);
+		setHexColor(0xd3ffd3);
 		rect(80,480,140,70);
-		setColor(0xff00ff);
+		setHexColor(0xff00ff);
 		
 		beginShape();
 			
@@ -366,32 +366,32 @@ class PolygonExample extends of.app.BaseApp
 		//-------------------------------------
 		
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(a) star\nwinding rule odd", 20,210);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(b) star\nwinding rule nonzero", 220,210);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(c) dynamically\ncreated shape", 420,210);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(d) random points\npoly", 670,210);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(e) fun with sin/cos", 20,410);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(f) curveVertex\nuses catmull rom\nto make curved shapes", 220,410);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(g) bezierVertex\nuses bezier to draw curves", 460,410);
 		
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(h) nextContour\nallows for holes", 20,610);
 		
-		setColor(0x000000);
+		setHexColor(0x000000);
 		drawBitmapString("(i) nextContour\ncan even be used for CSG operations\nsuch as union and intersection", 260,620);
 	}
 	
@@ -437,7 +437,7 @@ class PolygonExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
-		runApp(new PolygonExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.runApp(new PolygonExample());
 	}
 }

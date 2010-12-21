@@ -129,7 +129,7 @@ class SoundPlayerFFTExample extends of.app.BaseApp
 			circle(px, py,50);	
 		disableAlphaBlending();
 		
-		setColor(0xffffff);
+		setHexColor(0xffffff);
 		circle(px, py,8);
 	}
 	
@@ -148,7 +148,7 @@ class SoundPlayerFFTExample extends of.app.BaseApp
 	}
 	
 	public static function main():Void {
-		setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
-		runApp(new SoundPlayerFFTExample());
+		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_FULLSCREEN);
+		AppRunner.runApp(new SoundPlayerFFTExample());
 	}
 }

@@ -1226,11 +1226,11 @@ DEFINE_PRIM(_ofSignedNoise4,4);
 float * ofBgColorPtr();
 */
 
-value _ofBackground(value a, value b, value c) {
-	ofBackground(val_int(a), val_int(b), val_int(c));
+value _ofBackground(value a, value b, value c, value d) {
+	ofBackground(val_int(a), val_int(b), val_int(c), val_int(d));
 	return alloc_null();
 }
-DEFINE_PRIM(_ofBackground,3);
+DEFINE_PRIM(_ofBackground,4);
 
 value _ofSetBackgroundAuto(value a) {
 	ofSetBackgroundAuto(val_bool(a));
@@ -1379,6 +1379,12 @@ value _ofSetColor1(value a) {
 	return alloc_null();
 }
 DEFINE_PRIM(_ofSetColor1,1);
+
+value _ofSetHexColor(value a) {
+	ofSetHexColor(val_int(a));
+	return alloc_null();
+}
+DEFINE_PRIM(_ofSetHexColor,1);
 
 value _ofEnableAlphaBlending() {
 	ofEnableAlphaBlending();
