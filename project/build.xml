@@ -104,6 +104,7 @@
 		<lib name = '-NODEFAULTLIB:atlthunk.lib' if="windows"/>
 		<lib name = '-NODEFAULTLIB:libc.lib' if="windows"/>
 		<lib name = '-NODEFAULTLIB:LIBCMT' if="windows"/>
+		<lib name = '-NODEFAULTLIB:libcpmt.lib' if="windows"/>
 		
 		<lib name = '-SUBSYSTEM:CONSOLE' if="windows"/>
 		<lib name = '-OPT:REF' if="windows"/>
