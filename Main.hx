@@ -1,5 +1,7 @@
 package;
 
+import of.addons.ofxShader.Shader;
+
 class Main {
 	static function main():Void {
 		//cpp.vm.Gc.enable(false);

@@ -14,6 +14,7 @@
 	
 	<files id="oF_Files">
 		<file name="api.cpp"/>
+		<file name="api_ofxShader.cpp"/>
 		
 		<compilerflag value = "-DHAXE" />
 		
@@ -39,6 +40,7 @@
 		<compilerflag value = "-I${OF_DIR}/libs/glu/include" unless="linux"/>
 		<compilerflag value = "-I${OF_DIR}/libs/poco/include"/>
 		<compilerflag value = "-I${OF_DIR}/addons"/>
+		<compilerflag value = "-I${OF_DIR}/addons/ofxShader/src"/>
 		<compilerflag value = "-I/usr/include" if="macos"/>
 		<compilerflag value = "-I/usr/include/GL" if="macos"/>
 		

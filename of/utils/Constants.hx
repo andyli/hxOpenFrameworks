@@ -79,6 +79,18 @@ class Constants
 	inline static public var GL_RGB = 6407;
 	inline static public var GL_RGBA = 6408;
 	inline static public var GL_LUMINANCE = 6409;
+	
+	inline static public var GL_POINTS = 0x0000;
+	inline static public var GL_LINES = 0x0001;
+	inline static public var GL_LINE_STRIP = 0x0003;
+	inline static public var GL_TRIANGLES = 0x0004;
+	inline static public var GL_TRIANGLE_STRIP = 0x0005;
+	inline static public var GL_LINES_ADJACENCY_EXT = 0xA;
+	inline static public var GL_TRIANGLES_ADJACENCY_EXT = 0xC;
+	
+	inline static public var GL_VERTEX_SHADER = 0x8B31;
+	inline static public var GL_FRAGMENT_SHADER = 0x8B30;
+	inline static public var GL_GEOMETRY_SHADER_EXT = 0x8DD9;
 }
 
 enum LogLevel {
