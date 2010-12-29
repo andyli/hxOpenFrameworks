@@ -2,7 +2,7 @@
 -main Main
 -lib hxcpp
 -lib hsl-1
--D HXOF
+#-D HXOF
 #-debug
 #-D HXCPP_MULTI_THREADED
 

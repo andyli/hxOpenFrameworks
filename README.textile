@@ -12,15 +12,13 @@ Please refer to the examples under "of/examples":http://github.com/andyli/hxOpen
 
 Refer to "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml and "compile-mac.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile-mac.hxml for compilation.
 
-Note that on Windows you need to copy ".hxcpp_config.xml":http://github.com/andyli/hxOpenFrameworks/blob/master/.hxcpp_config.xml to ==%USERPROFILE%==.
-
 For API documentation please refer to the "original one":http://www.openframeworks.cc/documentation?adv=yes.
 
 I have replaced the event system with "HSL":http://code.google.com/p/hxhsl/. However, you need the latest SVN version to workaround "a hxcpp bug":http://lists.motion-twin.com/pipermail/haxe/2010-September/038589.html. Simply get the SVN version of HSL and run @haxelib dev hsl-1 absolute/path/to/hxhsl/hsl source@ and @haxelib dev hsl-pico-1 absolute/path/to/hxhsl/hsl-pico source@.
 
 __of__ prefix is removed except @ofLog@(there is @log@ for math).
 
-Currently it supports Windows and Mac. Linux support will be added later.
+Currently it supports Windows only. Mac and Linux support will be added later.
 
 Support C++ target only at this moment.
 
@@ -35,5 +33,4 @@ h2. How to compiling ndll(not required for normal user)
 * @cd /path/to/hxOpenFrameworks@
 * @git submodule init@
 * @git submodule update@. It will clone the "openFramework fork":http://github.com/andyli/openFrameworks to _project/openFrameworks_.
-* Compile openFramework by using the project of your platform in _project/openFrameworks/libs/openFrameworksCompiled/project_.
 * @cd project@ and compile the ndll by @haxelib run hxcpp build.xml@.

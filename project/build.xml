@@ -2,6 +2,7 @@
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
 	<set name="OF_DIR" value="openFrameworks" />
+	<set name="RTAUDIO_DIR" value="rtaudio-4.0.7" />
 
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
@@ -10,13 +11,37 @@
 	<set name="TARGET_MODE" value="Debug" if="debug" />
 	<set name="TARGET_MODE" value="Release" unless="debug" />
 	
-	<!--<set name="ABI" value="-MD" />-->
-	
 	<files id="oF_Files">
 		<file name="api.cpp"/>
 		<file name="api_ofxShader.cpp"/>
 		
-		<compilerflag value = "-DHAXE" />
+		<file name="${RTAUDIO_DIR}/RtAudio.cpp" />
+		<file name="${RTAUDIO_DIR}/include/asio.cpp" />
+		<file name="${RTAUDIO_DIR}/include/asiodrivers.cpp" />
+		<file name="${RTAUDIO_DIR}/include/asiolist.cpp" />
+		<file name="${RTAUDIO_DIR}/include/iasiothiscallresolver.cpp" />
+		
+		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppGlutWindow.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppRunner.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofBitmapFont.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofGraphics.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofImage.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTexture.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTrueTypeFont.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/sound/ofSoundPlayer.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/sound/ofSoundStream.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/utils/ofMath.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/utils/ofUtils.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/video/ofQtUtils.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/video/ofVideoGrabber.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/video/ofVideoPlayer.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/communication/ofArduino.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/communication/ofSerial.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/events/ofEvents.cpp" />
+		<file name="${OF_DIR}/addons/ofxShader/src/ofxShader.cpp" />
+		
+		<compilerflag value = "-I${RTAUDIO_DIR}" />
+		<compilerflag value = "-I${RTAUDIO_DIR}/include" />
 		
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/graphics"/>
@@ -27,7 +52,7 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/video"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glut/include" unless="linux"/>
-		<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>
+		<!--<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>-->
 		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" if="windows" />
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
@@ -44,6 +69,9 @@
 		<compilerflag value = "-I/usr/include" if="macos"/>
 		<compilerflag value = "-I/usr/include/GL" if="macos"/>
 		
+		
+		<compilerflag value = "-DHAXE" />
+		
 		<compilerflag value = "-D__WIN32__" if="windows"/>
 		<compilerflag value = "-DWIN32" if="windows"/>
 		<compilerflag value = "-DNDEBUG" if="windows"/>
@@ -51,13 +79,12 @@
 		<compilerflag value = "-DPOCO_STATIC" if="windows"/>
 		<!--
 		<compilerflag value = "-D_UNICODE" if="windows"/>
-		<compilerflag value = "-DUNICODE" if="windows"/>-->
+		<compilerflag value = "-DUNICODE" if="windows"/>
 		<compilerflag value = "-FD" if="windows"/>
 		<compilerflag value = "-EHsc" if="windows"/>
 		<compilerflag value = "-W3" if="windows"/>
-		<compilerflag value = "-MD" if="windows"/>
 		<compilerflag value = "-c" if="windows"/>
-		<compilerflag value = "-TP" if="windows"/>
+		<compilerflag value = "-TP" if="windows"/>-->
 
 		
 		<compilerflag value = "-D__MACOSX_CORE__" if="macos"/>
@@ -89,7 +116,6 @@
 		
 		<lib name="${LIB_LINK}"/>
 		<lib name="-LIBPATH:${OF_DIR}/libs/glut/lib/${OF_PLATFORM}" if="windows"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}" if="windows"/>
 		<lib name="-LIBPATH:${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}" if="windows"/>
 		<lib name="-LIBPATH:${OF_DIR}/libs/freetype/lib/${OF_PLATFORM}" if="windows"/>
 		<lib name="-LIBPATH:${OF_DIR}/libs/quicktime/lib/${OF_PLATFORM}" if="windows"/>
@@ -98,30 +124,17 @@
 		<lib name="-LIBPATH:${OF_DIR}/libs/glee/lib/${OF_PLATFORM}" if="windows"/>
 		<lib name="-LIBPATH:${OF_DIR}/libs/glu/lib/${OF_PLATFORM}" if="windows"/>
 		<lib name="-LIBPATH:${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}" if="windows"/>
-		<lib name="-LIBPATH:${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}" if="windows"/>
-		
-		<lib name = '-MANIFEST' if="windows"/>
-		<lib name = '-MANIFESTFILE:obj/${TARGET_MODE}/hxOpenFrameworks.ndll.intermediate.manifest' if="windows"/>
 		
 		<lib name = '-NODEFAULTLIB:atlthunk.lib' if="windows"/>
 		<lib name = '-NODEFAULTLIB:libc.lib' if="windows"/>
-		<lib name = '-NODEFAULTLIB:LIBCMT' if="windows"/>
-		<lib name = '-NODEFAULTLIB:libcpmt.lib' if="windows"/>
+		<lib name = '-NODEFAULTLIB:MSVCRT.LIB' if="windows"/>
+		<lib name = '-NODEFAULTLIB:MSVCPRT.LIB' if="windows"/>
 		
-		<lib name = '-SUBSYSTEM:CONSOLE' if="windows"/>
-		<lib name = '-OPT:REF' if="windows"/>
-		<lib name = '-OPT:ICF' if="windows"/>
-		<lib name = '-LTCG' if="windows"/>
-		<lib name = '-DYNAMICBASE:NO' if="windows"/>
-		<!--<lib name = '-MACHINE:X86' if="windows"/>-->
-		
-		<lib name = 'openframeworksLib.lib' if="windows"/>
 		<lib name = 'OpenGL32.lib' if="windows" />
 		<lib name = 'GLu32.lib' if="windows" />
 		<lib name = 'kernel32.lib' if="windows" />
 		<lib name = 'setupapi.lib' if="windows" />
 		<lib name = 'glut32.lib' if="windows" />
-		<lib name = 'rtAudio.lib' if="windows" />
 		<lib name = 'videoInput.lib' if="windows" />
 		<lib name = 'libfreetype.lib' if="windows" />
 		<lib name = 'FreeImage.lib' if="windows" />

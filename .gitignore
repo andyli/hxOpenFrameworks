@@ -1,4 +1,6 @@
 bin
 project/obj
+project/all_objs
+project/vc100.pdb
 
 .DS_Store
