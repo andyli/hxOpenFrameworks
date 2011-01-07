@@ -2,6 +2,7 @@
 -main Main
 -lib hxcpp
 -lib hsl-1
+-cp ../hxRtAudio
 #-D HXOF
 #-debug
 #-D HXCPP_MULTI_THREADED

@@ -57,30 +57,7 @@ class BaseApp
 			mouseReleased(args.x, args.y, args.button);
 		}
 		
-		function __audioReceived( args: { input:Array<Float>, bufferSize:Int, nChannels:Int } ):Void {
-			audioReceived(args.input, args.bufferSize, args.nChannels);
-		}
-		function __audioRequested( args: { output:Array<Float>, bufferSize:Int, nChannels:Int } ):Void {
-			if (args == null) {
-				trace("args == null");
-				return;
-			}
-			if (args.nChannels == null) {
-				trace("args.nChannels");
-				return;
-			}
-			if (args.bufferSize == null) {
-				trace("args.bufferSize == null");
-				return;
-			}
-			if (args.output == null) {
-				trace("args.output == null");
-				return;
-			}
-			audioRequested(args.output, args.bufferSize, args.nChannels);
-		}
-		
-		function __dispatch(signaler:Signaler<Dynamic>, args:Dynamic):Void {
+		inline function __dispatch(signaler:Signaler<Dynamic>, args:Dynamic):Void {
 			signaler.dispatch(args);
 		}
 		

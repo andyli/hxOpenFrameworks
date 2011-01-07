@@ -2,7 +2,6 @@
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
 	<set name="OF_DIR" value="openFrameworks" />
-	<set name="RTAUDIO_DIR" value="rtaudio-4.0.7" />
 
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
@@ -15,12 +14,6 @@
 		<file name="api.cpp"/>
 		<file name="api_ofxShader.cpp"/>
 		
-		<file name="${RTAUDIO_DIR}/RtAudio.cpp" />
-		<file name="${RTAUDIO_DIR}/include/asio.cpp" />
-		<file name="${RTAUDIO_DIR}/include/asiodrivers.cpp" />
-		<file name="${RTAUDIO_DIR}/include/asiolist.cpp" />
-		<file name="${RTAUDIO_DIR}/include/iasiothiscallresolver.cpp" />
-		
 		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppGlutWindow.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppRunner.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofBitmapFont.cpp" />
@@ -29,7 +22,6 @@
 		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTexture.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTrueTypeFont.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/sound/ofSoundPlayer.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/sound/ofSoundStream.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/utils/ofMath.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/utils/ofUtils.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/video/ofQtUtils.cpp" />
@@ -52,7 +44,6 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/video"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glut/include" unless="linux"/>
-		<!--<compilerflag value = "-I${OF_DIR}/libs/rtAudio/include"/>-->
 		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" if="windows" />
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
