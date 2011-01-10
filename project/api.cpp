@@ -419,18 +419,6 @@ value _ofGetVersionInfo() {
 }
 DEFINE_PRIM(_ofGetVersionInfo,0);
 
-value _ofSaveScreen(value a) {
-	ofSaveScreen(val_string(a));
-	return alloc_null();
-}
-DEFINE_PRIM(_ofSaveScreen,1);
-
-value _ofSaveFrame() {
-	ofSaveFrame();
-	return alloc_null();
-}
-DEFINE_PRIM(_ofSaveFrame,0);
-
 value _ofSetLogLevel(value a) {
 	ofSetLogLevel(val_int(a));
 	return alloc_null();

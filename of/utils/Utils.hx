@@ -1,6 +1,8 @@
 package of.utils;
 
 import cpp.Lib;
+import of.app.AppRunner;
+import of.graphics.Image;
 import of.utils.Constants;
 
 class Utils 
@@ -98,11 +100,15 @@ class Utils
 	}
 	
 	static public function saveScreen(filename:String):Void {
-		_ofSaveScreen(filename);
+		var screen = new Image();
+		screen.allocate(AppRunner.getWidth(), AppRunner.getHeight(), Constants.OF_IMAGE_COLOR);
+		screen.grabScreen(0, 0, AppRunner.getWidth(), AppRunner.getHeight());
+		screen.saveImage(filename);
 	}
 	
 	static public function saveFrame():Void {
-		_ofSaveFrame();
+		var fileName = toString(saveImageCounter++) + ".png";
+		saveScreen(fileName);
 	}
 	
 	static public function splitString(text:String, delimiter:String):Array<String> {
@@ -125,6 +131,7 @@ class Utils
 		_ofRestoreConsoleColor();
 	}
 	
+	static var saveImageCounter:Int = 0;
 	
 	static var _ofNextPow2 = Lib.load("hxOpenFrameworks", "_ofNextPow2", 1);
 	static var _ofResetElapsedTimeCounter = Lib.load("hxOpenFrameworks", "_ofResetElapsedTimeCounter", 0);
@@ -149,8 +156,6 @@ class Utils
 	static var _ofToInt = Lib.load("hxOpenFrameworks", "_ofToInt", 1);
 	static var _ofToFloat = Lib.load("hxOpenFrameworks", "_ofToFloat", 1);
 	static var _ofGetVersionInfo = Lib.load("hxOpenFrameworks", "_ofGetVersionInfo", 0);
-	static var _ofSaveScreen = Lib.load("hxOpenFrameworks", "_ofSaveScreen", 1);
-	static var _ofSaveFrame = Lib.load("hxOpenFrameworks", "_ofSaveFrame", 0);
 	static var _ofSetLogLevel = Lib.load("hxOpenFrameworks", "_ofSetLogLevel", 1);
 	static var _ofLog = Lib.load("hxOpenFrameworks", "_ofLog", 2);
 	static var _ofSetConsoleColor = Lib.load("hxOpenFrameworks", "_ofSetConsoleColor", 1);
