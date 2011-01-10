@@ -880,24 +880,34 @@ class ofBaseAppX : public ofBaseApp{
 		*/
 		
 		void setup(){ 
+			gc_safe_point();
+			
 			val_ocall0(handler, val_id("setup")); 
 			val_ocall2(handler, id_dispatch, setupSignaler, alloc_empty_object()); 
 		}
 		void update(){ 
+			gc_safe_point();
+			
 			val_ocall0(handler, val_id("update")); 
 			val_ocall2(handler, id_dispatch, updateSignaler, alloc_empty_object());  
 		}
 		void draw(){ 
+			gc_safe_point();
+			
 			val_ocall0(handler, val_id("draw"));
 			val_ocall2(handler, id_dispatch, drawSignaler, alloc_empty_object());  
 		}
 		void exit(){ 
+			gc_safe_point();
+			
 			val_ocall0(handler, val_id("exit"));
 			val_ocall2(handler, id_dispatch, exitSignaler, alloc_empty_object());  
 		}
 
 
 		void windowResized(int w, int h){ 
+			gc_safe_point();
+			
 			val_ocall2(handler, val_id("windowResized"), alloc_int(w), alloc_int(h)); 
 			
 			value eventArgs = alloc_empty_object();
@@ -907,6 +917,8 @@ class ofBaseAppX : public ofBaseApp{
 		}
 
 		void keyPressed( int key ){ 
+			gc_safe_point();
+			
 			val_ocall1(handler, val_id("keyPressed"), alloc_int(key)); 
 			
 			value eventArgs = alloc_empty_object();
@@ -914,6 +926,8 @@ class ofBaseAppX : public ofBaseApp{
 			val_ocall2(handler, id_dispatch, keyPressedSignaler, eventArgs); 
 		}
 		void keyReleased( int key ){ 
+			gc_safe_point();
+			
 			val_ocall1(handler, val_id("keyReleased"), alloc_int(key)); 
 			
 			value eventArgs = alloc_empty_object();
@@ -921,6 +935,8 @@ class ofBaseAppX : public ofBaseApp{
 			val_ocall2(handler, id_dispatch, keyReleasedSignaler, eventArgs); 
 		}
 		void mouseMoved( int x, int y ){ 
+			gc_safe_point();
+			
 			val_ocall2(handler, val_id("mouseMoved"), alloc_int(x), alloc_int(y)); 
 			
 			value eventArgs = alloc_empty_object();
@@ -930,6 +946,8 @@ class ofBaseAppX : public ofBaseApp{
 		}
 		
 		void mousePressed( int x, int y, int button ){ 
+			gc_safe_point();
+			
 			value args = alloc_empty_object();
 			alloc_field(args,val_id("x"),alloc_int(x));
 			alloc_field(args,val_id("y"),alloc_int(y));
@@ -944,6 +962,8 @@ class ofBaseAppX : public ofBaseApp{
 			val_ocall2(handler, id_dispatch, mousePressedSignaler, eventArgs); 
 		}
 		void mouseDragged( int x, int y, int button ){ 
+			gc_safe_point();
+			
 			value args = alloc_empty_object();
 			alloc_field(args,val_id("x"),alloc_int(x));
 			alloc_field(args,val_id("y"),alloc_int(y));
@@ -958,6 +978,8 @@ class ofBaseAppX : public ofBaseApp{
 			val_ocall2(handler, id_dispatch, mouseDraggedSignaler, eventArgs); 
 		}
 		void mouseReleased(){ 
+			gc_safe_point();
+			
 			val_ocall0(handler, val_id("mouseReleased"));
 			
 			value eventArgs = alloc_empty_object();
@@ -965,6 +987,8 @@ class ofBaseAppX : public ofBaseApp{
 			
 		}
 		void mouseReleased( int x, int y, int button ){ 
+			gc_safe_point();
+			
 			value args = alloc_empty_object();
 			alloc_field(args,val_id("x"),alloc_int(x));
 			alloc_field(args,val_id("y"),alloc_int(y));
@@ -977,45 +1001,6 @@ class ofBaseAppX : public ofBaseApp{
 			alloc_field(eventArgs, val_id("y"), alloc_int(y));
 			alloc_field(eventArgs, val_id("button"), alloc_int(button));
 			val_ocall2(handler, id_dispatch, mouseReleasedSignaler, eventArgs); 
-		}
-		
-		void audioReceived( float * input, int bufferSize, int nChannels ){
-			/*
-			value args = alloc_empty_object();
-			
-			int size = bufferSize*nChannels;
-			value ary = alloc_array(size);
-			for (int i = 0 ; i < size ; ++i) {
-				val_array_set_i(ary, i , alloc_float(input[i]));
-			}
-			alloc_field(args,val_id("input"),ary);
-			
-			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
-			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
-			
-			val_ocall1(handler, val_id("__audioReceived"), args);
-			value eventArgs = alloc_empty_object();
-			alloc_field(eventArgs, val_id("buffer"), ary);
-			alloc_field(eventArgs, val_id("bufferSize"), alloc_int(bufferSize));
-			alloc_field(eventArgs, val_id("nChannels"), alloc_int(nChannels));
-			val_ocall2(handler, id_dispatch, audioReceivedSignaler, eventArgs); */
-		}
-		
-		void audioRequested( float * output, int bufferSize, int nChannels ){
-			int size = bufferSize*nChannels;
-			
-			value args = alloc_empty_object();
-			value ary = alloc_array(size);
-			alloc_field(args,val_id("output"),ary);
-			alloc_field(args,val_id("bufferSize"),alloc_int(bufferSize));
-			alloc_field(args,val_id("nChannels"),alloc_int(nChannels));
-			val_ocall1(handler, val_id("__audioRequested"), args);
-			
-			//val_ocall2(handler, id_dispatch, audioRequestedSignaler, args);
-			
-			for (int i = 0 ; i < size ; ++i) {
-				output[i] = val_float(val_array_i(ary, i));
-			}
 		}
 };
 

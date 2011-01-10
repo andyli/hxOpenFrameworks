@@ -85,8 +85,8 @@ class PolygonExample extends of.app.BaseApp
 		// 		use the mouse position as a pct
 		//		to calc nPoints and internal point radius
 		//
-		var xPct = mouseX / getWidth();
-		var yPct = mouseY / getHeight();
+		var xPct = clamp(mouseX / getWidth(), 0, 1);
+		var yPct = clamp(mouseY / getHeight(), 0, 1);
 		var nTips = Std.int(5 + xPct * 60);
 		var nStarPts = Std.int(nTips * 2);
 		var angleChangePerPt = Constants.TWO_PI / nStarPts;

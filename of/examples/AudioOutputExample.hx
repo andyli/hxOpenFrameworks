@@ -1,6 +1,7 @@
 package of.examples;
 
 import cpp.Lib;
+import cpp.vm.Gc;
 import of.Context;
 using of.Context.Functions;
 
@@ -20,7 +21,7 @@ class AudioOutputExample extends of.app.BaseApp
 	var phaseAdder:Float;
 	var phaseAdderTarget:Float;
 		
-	override public function setup():Void {		
+	override public function setup():Void {
 		background(255,255,255);
 
 		// 2 output channels,
@@ -43,7 +44,7 @@ class AudioOutputExample extends of.app.BaseApp
 			lAudio[i] = rAudio[i] = 0;
 		}
 		
-		soundStreamSetup(2, 0, this, sampleRate,256, 12);
+		soundStreamSetup(2, 0, null, sampleRate,256, 12);
 
 		setFrameRate(60);
 	}
@@ -115,7 +116,7 @@ class AudioOutputExample extends of.app.BaseApp
 			phase -= Constants.TWO_PI;
 		}
 
-		if ( bNoise == true){
+		if ( bNoise ){
 			// ---------------------- noise --------------
 			for (i in 0...bufferSize){
 				lAudio[i] = output[i*nChannels    ] = randomf() * volume * leftScale;
@@ -130,11 +131,10 @@ class AudioOutputExample extends of.app.BaseApp
 				rAudio[i] = output[i*nChannels + 1] = sample * volume * rightScale;
 			}
 		}
-		
 	}
 	
 	public static function main():Void {
-		AppRunner.setupOpenGL(new of.app.AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
+		AppRunner.setupOpenGL(new AppGlutWindow(), 1024, 768, Constants.OF_WINDOW);
 		AppRunner.runApp(new AudioOutputExample());
 	}
 }

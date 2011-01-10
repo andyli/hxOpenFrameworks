@@ -23,7 +23,10 @@ typedef TTFCharacter = of.graphics.TrueTypeFont.TTFCharacter;
 typedef TTFContour = of.graphics.TrueTypeFont.TTFContour;
 
 typedef SoundPlayer = of.sound.SoundPlayer;
+
+#if HXCPP_MULTI_THREADED
 typedef SoundStream = of.sound.SoundStream;
+#end
 
 typedef Constants = of.utils.Constants;
 typedef LogLevel = of.utils.Constants.LogLevel;
@@ -561,6 +564,7 @@ class Functions
 		return SoundPlayer.soundGetSpectrum(nBands);
 	}
 	
+	#if HXCPP_MULTI_THREADED
 	inline static public function soundStreamSetup(_:BaseApp, nOutputChannels:Int, nInputChannels:Int, OFSA:BaseApp, ?sampleRate:Int = 44100, ?bufferSize:Int = 256, ?nBuffers:Int = 4):Void {
 		return SoundStream.soundStreamSetup(nOutputChannels, nInputChannels, OFSA, sampleRate, bufferSize, nBuffers);
 	}
@@ -580,4 +584,5 @@ class Functions
 	inline static public function soundStreamListDevices(_:BaseApp):Void {
 		return SoundStream.soundStreamListDevices();
 	}
+	#end
 }
