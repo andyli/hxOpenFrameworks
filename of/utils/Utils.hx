@@ -83,7 +83,7 @@ class Utils
 		_ofSetDataPathRoot( root );
 	}
 	
-	static public function toString(value:Float, ?precision:Int = 7):String {
+	static public function toString(value:Dynamic, ?precision:Int = 7):String {
 		return Std.is(value,Int) ? _ofToString1(value) : _ofToString2(value, precision);
 	}
 
@@ -107,7 +107,7 @@ class Utils
 	}
 	
 	static public function saveFrame():Void {
-		var fileName = toString(saveImageCounter++) + ".png";
+		var fileName = (saveImageCounter++) + ".png";
 		saveScreen(fileName);
 	}
 	
