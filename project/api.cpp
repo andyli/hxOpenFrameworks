@@ -858,8 +858,6 @@ class ofBaseAppX : public ofBaseApp{
 		value mouseDraggedSignaler;
 		value mousePressedSignaler;
 		value mouseReleasedSignaler;
-		value audioReceivedSignaler;
-		value audioRequestedSignaler;
 		/*
 		value touchDownSignaler;
 		value touchUpSignaler;
@@ -1023,8 +1021,6 @@ value _ofBaseApp_setHandle(value a, value b) {
 	app->mouseDraggedSignaler = val_field(events, val_id("mouseDragged"));
 	app->mousePressedSignaler = val_field(events, val_id("mousePressed"));
 	app->mouseReleasedSignaler = val_field(events, val_id("mouseReleased"));
-	app->audioReceivedSignaler = val_field(events, val_id("audioReceived"));
-	app->audioRequestedSignaler = val_field(events, val_id("audioRequested"));
 	/*
 	app->touchDownSignaler = val_field(events, val_id("touchDown"));
 	app->touchUpSignaler = val_field(events, val_id("touchUp"));
