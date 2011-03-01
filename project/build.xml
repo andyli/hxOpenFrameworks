@@ -1,8 +1,10 @@
 <xml>
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
-	<set name="OF_DIR" value="openFrameworks" />
-
+	<!--<set name="OF_DIR" value="openFrameworks" />-->
+	<set name="OF_DIR" value="../../of_preRelease_v0062_linux_FAT" unless="HXCPP_M64" />
+	<set name="OF_DIR" value="../../of_preRelease_v0062_linux64_FAT" if="HXCPP_M64" />
+	
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
 	<set name="OF_PLATFORM" value="linux" if="linux" />
@@ -11,9 +13,12 @@
 	<set name="TARGET_MODE" value="Release" unless="debug" />
 	
 	<files id="oF_Files">
+	<!--
 		<file name="api.cpp"/>
 		<file name="api_ofxShader.cpp"/>
-		
+	-->
+		<file name="api-debug.cpp"/>
+		 <!--
 		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppGlutWindow.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppRunner.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofBitmapFont.cpp" />
@@ -31,9 +36,8 @@
 		<file name="${OF_DIR}/libs/openFrameworks/communication/ofSerial.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/events/ofEvents.cpp" />
 		<file name="${OF_DIR}/addons/ofxShader/src/ofxShader.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofGraphics.cpp" />-->
 		
-		<compilerflag value = "-I${RTAUDIO_DIR}" />
-		<compilerflag value = "-I${RTAUDIO_DIR}/include" />
 		
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/graphics"/>
@@ -43,17 +47,16 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/communication"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/video"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
-		<compilerflag value = "-I${OF_DIR}/libs/glut/include" unless="linux"/>
-		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" if="windows" />
+		<compilerflag value = "-I${OF_DIR}/libs/glut/include"/>
+		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" unless="mac" />
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
 		<compilerflag value = "-I${OF_DIR}/libs/FreeImage/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/fmodex/include"/>
-		<compilerflag value = "-I${OF_DIR}/libs/videoInput/include" unless="linux"/>
-		<compilerflag value = "-I${OF_DIR}/libs/unicap/include" if="linux"/>
+		<compilerflag value = "-I${OF_DIR}/libs/videoInput/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/gstappsink/include" if="linux"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glee/include"/>
-		<compilerflag value = "-I${OF_DIR}/libs/glu/include" unless="linux"/>
+		<compilerflag value = "-I${OF_DIR}/libs/glu/include" />
 		<compilerflag value = "-I${OF_DIR}/libs/poco/include"/>
 		<compilerflag value = "-I${OF_DIR}/addons"/>
 		<compilerflag value = "-I${OF_DIR}/addons/ofxShader/src"/>
@@ -68,14 +71,6 @@
 		<compilerflag value = "-DNDEBUG" if="windows"/>
 		<compilerflag value = "-D_CONSOLE" if="windows"/>
 		<compilerflag value = "-DPOCO_STATIC" if="windows"/>
-		<!--
-		<compilerflag value = "-D_UNICODE" if="windows"/>
-		<compilerflag value = "-DUNICODE" if="windows"/>
-		<compilerflag value = "-FD" if="windows"/>
-		<compilerflag value = "-EHsc" if="windows"/>
-		<compilerflag value = "-W3" if="windows"/>
-		<compilerflag value = "-c" if="windows"/>
-		<compilerflag value = "-TP" if="windows"/>-->
 
 		
 		<compilerflag value = "-D__MACOSX_CORE__" if="macos"/>
@@ -85,19 +80,21 @@
 		<compilerflag value = "-fexceptions" if="macos"/>
 		<compilerflag value = "-lpthread" if="macos"/>
 		
-		
-		<!--<compilerflag value = "-march=native" if="linux"/>
+		<compilerflag value = "-march=native" if="linux"/>
+		<compilerflag value = "-mtune=native" if="linux"/>
+		<compilerflag value = "-finline-functions" if="linux"/>
+		<compilerflag value = "-funroll-all-loops" if="linux"/>
 		<compilerflag value = "-O3" if="linux"/>
-		<compilerflag value = "-MMD" if="linux"/>
-		<!--<compilerflag value = "-Wall" if="linux"/>
-		<compilerflag value = "$(pkg-config  gstreamer-0.10 gstreamer-video-0.10 gstreamer-base-0.10 libudev --cflags)" if="linux"/>-->
-		<!-- -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2 -->
+		<compilerflag value = "-Wall" if="linux"/>
+		<compilerflag value = "-fexceptions" if="linux"/>
 		<compilerflag value = "-pthread" if="linux"/>
 		<compilerflag value = "-I/usr/include/gstreamer-0.10" if="linux"/>
 		<compilerflag value = "-I/usr/include/glib-2.0" if="linux"/>
 		<compilerflag value = "-I/usr/lib/glib-2.0/include" if="linux"/>
 		<compilerflag value = "-I/usr/include/libxml2" if="linux"/>
-		<!--<compilerflag value = "-fexceptions" if="linux"/>-->
+		<!--<compilerflag value = "-MMD" if="linux"/>
+		<compilerflag value = "-MP" if="linux"/>
+		<compilerflag value = "-MF" if="linux"/>-->
 	</files>
 	
 	<target id="hxOpenFrameworks.ndll" tool="linker" toolid="dll" output="hxOpenFrameworks">
@@ -150,8 +147,6 @@
 		<lib name = 'odbc32.lib' if="windows" />
 		<lib name = 'odbccp32.lib' if="windows" />
 
-		
-		<lib name = '${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}/openFrameworksUniversal.a' if="macos" />
 		<lib name = '${OF_DIR}/libs/glee/lib/${OF_PLATFORM}/GLee.a' if="macos" />
 		<lib name = '${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}/rtAudio.a' if="macos" />
 		<lib name = '${OF_DIR}/libs/Poco/lib/${OF_PLATFORM}/CppUnit.a' if="macos" />
@@ -177,10 +172,24 @@
 		<vflag name="-framework" value="IOKit" if="macos"/>
 		<vflag name="-framework" value="GLUT" if="macos"/>
 		
-		
-		
-		<lib name = '-s' if="linux"/>
-		<lib name = '${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}/libopenFrameworks.a' if="linux" />
+		<lib name="-s" if="linux"/>
+		<lib name="-pthread" if="linux"/>
+		<lib name="-lgstvideo-0.10" if="linux"/>
+		<lib name="-lgstbase-0.10" if="linux"/>
+		<lib name="-lgstreamer-0.10" if="linux"/>
+		<lib name="-lgobject-2.0" if="linux"/>
+		<lib name="-lgmodule-2.0" if="linux"/>
+		<lib name="-lxml2" if="linux"/>
+		<lib name="-lgthread-2.0" if="linux"/>
+		<lib name="-lrt" if="linux"/>
+		<lib name="-lglib-2.0" if="linux"/>
+		<lib name="-ludev" if="linux"/>
+		<lib name="-lglut" if="linux"/>
+		<lib name="-lGL" if="linux"/>
+		<lib name="-lGLU" if="linux"/>
+		<!--<lib name="-lasound" if="linux"/>-->
+		<lib name="-Wl" if="linux"/>
+		<lib name="-rpath=./libs" if="linux"/>
 	</target>
 
 	<target id="default">

@@ -1,15 +1,16 @@
 -cmd cd project
 -cmd rm -r obj
 #-cmd rm all_objs
--cmd haxelib run hxcpp build.xml
+-cmd haxelib run hxcpp build.xml -DHXCPP_M64
 -cmd cd ..
 
--cpp bin
+-cpp bin64
 -main Main
 -lib hxcpp
 -lib hsl-1
 -lib hxRtAudio
 -D HXCPP_MULTI_THREADED
+-D HXCPP_M64
 
 #-cmd cp ndll/Linux/*.* bin
 

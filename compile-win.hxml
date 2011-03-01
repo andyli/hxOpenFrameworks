@@ -1,0 +1,13 @@
+-cpp bin
+-main Main
+-lib hxcpp
+-lib hsl-1
+-cp ../hxRtAudio
+-D HXCPP_MULTI_THREADED
+#-debug
+
+-cmd xcopy /e /i /y "ndll\Windows\*.*" "bin"
+
+-cmd cd bin
+-cmd if not exist "data" mkdir "data"
+-cmd Main.exe
