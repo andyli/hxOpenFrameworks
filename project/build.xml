@@ -187,7 +187,7 @@
 		<lib name="-lglut" if="linux"/>
 		<lib name="-lGL" if="linux"/>
 		<lib name="-lGLU" if="linux"/>
-		<!--<lib name="-lasound" if="linux"/>-->
+		<lib name="-lasound" if="linux"/>
 		<lib name="-Wl" if="linux"/>
 		<lib name="-rpath=./libs" if="linux"/>
 	</target>

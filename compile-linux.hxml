@@ -1,5 +1,5 @@
 -cmd cd project
--cmd rm -r obj
+#-cmd rm -r obj
 #-cmd rm all_objs
 -cmd haxelib run hxcpp build.xml
 -cmd cd ..
