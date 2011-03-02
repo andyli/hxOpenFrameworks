@@ -1,4 +1,5 @@
 bin
+bin64
 project/obj
 project/all_objs
 project/vc100.pdb

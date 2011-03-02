@@ -20,7 +20,7 @@ I have replaced the event system with "HSL":http://code.google.com/p/hxhsl/. Now
 
 @SoundStream@ requires "hxRtAudio":http://github.com/andyli/hxRtAudio and compiling with *-DHXCPP_MULTI_THREADED*.
 
-Currently it supports C++ target on Windows only. Mac and Linux support will be added later.
+Currently it supports C++ target on Windows and Mac. Linux support will be added later.
 
 h2. Known issues
 

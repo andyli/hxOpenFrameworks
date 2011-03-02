@@ -1,9 +1,9 @@
 <xml>
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
-	<!--<set name="OF_DIR" value="openFrameworks" />-->
-	<set name="OF_DIR" value="../../of_preRelease_v0062_linux_FAT" unless="HXCPP_M64" />
-	<set name="OF_DIR" value="../../of_preRelease_v0062_linux64_FAT" if="HXCPP_M64" />
+	<set name="OF_DIR" value="openFrameworks" />
+	<!--<set name="OF_DIR" value="../../of_preRelease_v0062_linux_FAT" unless="HXCPP_M64" />
+	<set name="OF_DIR" value="../../of_preRelease_v0062_linux64_FAT" if="HXCPP_M64" />-->
 	
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
@@ -13,12 +13,11 @@
 	<set name="TARGET_MODE" value="Release" unless="debug" />
 	
 	<files id="oF_Files">
-	<!--
 		<file name="api.cpp"/>
 		<file name="api_ofxShader.cpp"/>
-	-->
-		<file name="api-debug.cpp"/>
-		 <!--
+
+		<!--<file name="api-debug.cpp"/>-->
+		
 		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppGlutWindow.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppRunner.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofBitmapFont.cpp" />
@@ -36,7 +35,6 @@
 		<file name="${OF_DIR}/libs/openFrameworks/communication/ofSerial.cpp" />
 		<file name="${OF_DIR}/libs/openFrameworks/events/ofEvents.cpp" />
 		<file name="${OF_DIR}/addons/ofxShader/src/ofxShader.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofGraphics.cpp" />-->
 		
 		
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks"/>
@@ -48,7 +46,7 @@
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/video"/>
 		<compilerflag value = "-I${OF_DIR}/libs/openFrameworks/events"/>
 		<compilerflag value = "-I${OF_DIR}/libs/glut/include"/>
-		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" unless="mac" />
+		<compilerflag value = "-I${OF_DIR}/libs/quicktime/include" unless="macos" />
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include"/>
 		<compilerflag value = "-I${OF_DIR}/libs/freetype/include/freetype2"/>
 		<compilerflag value = "-I${OF_DIR}/libs/FreeImage/include"/>
@@ -72,13 +70,13 @@
 		<compilerflag value = "-D_CONSOLE" if="windows"/>
 		<compilerflag value = "-DPOCO_STATIC" if="windows"/>
 
-		
+
 		<compilerflag value = "-D__MACOSX_CORE__" if="macos"/>
 		<compilerflag value = "-w" if="macos"/>
 		<compilerflag value = "-Wfatal-errors" if="macos"/>
 		<compilerflag value = "-W" if="macos"/>
 		<compilerflag value = "-fexceptions" if="macos"/>
-		<compilerflag value = "-lpthread" if="macos"/>
+		
 		
 		<compilerflag value = "-march=native" if="linux"/>
 		<compilerflag value = "-mtune=native" if="linux"/>
@@ -158,6 +156,8 @@
 		<lib name = '${OF_DIR}/libs/fmodex/lib/${OF_PLATFORM}/libfmodex.dylib' if="macos" />
 		<lib name = '${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}/freeimage.a' if="macos" />
 
+		
+		<lib name="-pthread" if="macos"/>
 		<vflag name="-framework" value="AGL" if="macos"/>
 		<vflag name="-framework" value="ApplicationServices" if="macos"/>
 		<vflag name="-framework" value="AudioToolbox" if="macos"/>
