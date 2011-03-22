@@ -20,7 +20,7 @@ I have replaced the event system with "HSL":http://code.google.com/p/hxhsl/. Now
 
 @SoundStream@ requires "hxRtAudio":http://github.com/andyli/hxRtAudio and compiling with *-DHXCPP_MULTI_THREADED*.
 
-Currently it supports C++ target on Windows and Mac. Linux support will be added later.
+Currently it supports C++ target on Windows, Mac, Linux (all 32bit only).
 
 h2. Known issues
 
@@ -33,3 +33,8 @@ h2. How to compiling ndll(not required for normal user)
 * @git submodule init@
 * @git submodule update@. It will clone the "openFramework fork":http://github.com/andyli/openFrameworks to _project/openFrameworks_.
 * @cd project@ and compile the ndll by @haxelib run hxcpp build.xml@.
+
+Linux ndll need *libopenFrameworks.a*, which can be compiled by:
+
+* @cd project/openFrameworks/libs/openFrameworksCompiled/project/linux@
+* @make@
