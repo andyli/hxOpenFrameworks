@@ -2,8 +2,8 @@
     <user name="andyli"/>
     <tag v="cpp"/>
     <tag v="graphics"/>
-	<depends name="hsl-1" version="1.5"/>
+	<depends name="hsl-1" version="1.6"/>
 	<depends name="hxRtAudio" version="4.0.7.0"/>
     <description>haXe binding of OpenFrameworks</description>
-    <version name="0.062.0">90% of the OpenFrameworks v0.062 APIs are wrapped. Supporting Windows.</version>
+    <version name="0.062.0">95% of the OpenFrameworks v0.062 APIs are wrapped. Supporting Windows, Mac, Linux.</version>
 </project>

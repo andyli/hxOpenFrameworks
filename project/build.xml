@@ -1,7 +1,7 @@
 <xml>
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
-	<set name="OF_DIR" value="../../openFrameworks" />
+	<set name="OF_DIR" value="../project/openFrameworks" />
 	
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />

@@ -1,9 +1,8 @@
--cmd cd project
--cmd rm -r -f "obj"
--cmd rm -f "all_objs"
--cmd rm -r -f "../of_preRelease_v0062_linux_FAT"
--cmd haxelib run hxcpp build.xml
--cmd cd ..
+#-cmd cd project
+#-cmd rm -r -f "obj"
+#-cmd rm -f "all_objs"
+#-cmd haxelib run hxcpp build.xml
+#-cmd cd ..
 
 -cpp bin
 -main Main
