@@ -1,9 +1,7 @@
 <xml>
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 	
-	<set name="OF_DIR" value="openFrameworks" />
-	<!--<set name="OF_DIR" value="../../of_preRelease_v0062_linux_FAT" unless="HXCPP_M64" />
-	<set name="OF_DIR" value="../../of_preRelease_v0062_linux64_FAT" if="HXCPP_M64" />-->
+	<set name="OF_DIR" value="../../openFrameworks" />
 	
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
@@ -15,25 +13,23 @@
 	<files id="oF_Files">
 		<file name="api.cpp"/>
 		<file name="api_ofxShader.cpp"/>
-
-		<!--<file name="api-debug.cpp"/>-->
 		
-		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppGlutWindow.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppRunner.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofBitmapFont.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofGraphics.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofImage.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTexture.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTrueTypeFont.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/sound/ofSoundPlayer.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/utils/ofMath.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/utils/ofUtils.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/video/ofQtUtils.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/video/ofVideoGrabber.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/video/ofVideoPlayer.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/communication/ofArduino.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/communication/ofSerial.cpp" />
-		<file name="${OF_DIR}/libs/openFrameworks/events/ofEvents.cpp" />
+		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppGlutWindow.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/app/ofAppRunner.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofBitmapFont.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofGraphics.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofImage.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTexture.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/graphics/ofTrueTypeFont.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/sound/ofSoundPlayer.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/utils/ofMath.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/utils/ofUtils.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/video/ofQtUtils.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/video/ofVideoGrabber.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/video/ofVideoPlayer.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/communication/ofArduino.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/communication/ofSerial.cpp" unless="linux" />
+		<file name="${OF_DIR}/libs/openFrameworks/events/ofEvents.cpp" unless="linux" />
 		<file name="${OF_DIR}/addons/ofxShader/src/ofxShader.cpp" />
 		
 		
@@ -77,7 +73,6 @@
 		<compilerflag value = "-W" if="macos"/>
 		<compilerflag value = "-fexceptions" if="macos"/>
 		
-		
 		<compilerflag value = "-march=native" if="linux"/>
 		<compilerflag value = "-mtune=native" if="linux"/>
 		<compilerflag value = "-finline-functions" if="linux"/>
@@ -90,9 +85,6 @@
 		<compilerflag value = "-I/usr/include/glib-2.0" if="linux"/>
 		<compilerflag value = "-I/usr/lib/glib-2.0/include" if="linux"/>
 		<compilerflag value = "-I/usr/include/libxml2" if="linux"/>
-		<!--<compilerflag value = "-MMD" if="linux"/>
-		<compilerflag value = "-MP" if="linux"/>
-		<compilerflag value = "-MF" if="linux"/>-->
 	</files>
 	
 	<target id="hxOpenFrameworks.ndll" tool="linker" toolid="dll" output="hxOpenFrameworks">
@@ -172,7 +164,19 @@
 		<vflag name="-framework" value="IOKit" if="macos"/>
 		<vflag name="-framework" value="GLUT" if="macos"/>
 		
-		<lib name="-s" if="linux"/>
+		
+		<lib name = '${OF_DIR}/libs/openFrameworksCompiled/lib/${OF_PLATFORM}/libopenFrameworks.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/fmodex/lib/${OF_PLATFORM}/libfmodex.so' if="linux" />
+		<lib name = '${OF_DIR}/libs/FreeImage/lib/${OF_PLATFORM}/libfreeimage.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/freetype/lib/${OF_PLATFORM}/libfreetype.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/glee/lib/${OF_PLATFORM}/libGLee.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/gstappsink/lib/${OF_PLATFORM}/liboFappsink.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/poco/lib/${OF_PLATFORM}/libPocoFoundation.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/poco/lib/${OF_PLATFORM}/libPocoNet.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/poco/lib/${OF_PLATFORM}/libPocoUtil.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/poco/lib/${OF_PLATFORM}/libPocoXML.a' if="linux" />
+		<lib name = '${OF_DIR}/libs/rtAudio/lib/${OF_PLATFORM}/libRtAudio.a' if="linux" />
+		<!--<lib name="-s" if="linux"/>-->
 		<lib name="-pthread" if="linux"/>
 		<lib name="-lgstvideo-0.10" if="linux"/>
 		<lib name="-lgstbase-0.10" if="linux"/>
@@ -188,8 +192,7 @@
 		<lib name="-lGL" if="linux"/>
 		<lib name="-lGLU" if="linux"/>
 		<lib name="-lasound" if="linux"/>
-		<lib name="-Wl" if="linux"/>
-		<lib name="-rpath=./libs" if="linux"/>
+		<lib name="-Wl,-rpath=." if="linux"/>
 	</target>
 
 	<target id="default">
