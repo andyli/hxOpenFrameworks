@@ -1,0 +1,3 @@
+[submodule "project/openFrameworks"]
+	path = project/openFrameworks
+	url = git@github.com:andyli/openFrameworks.git
