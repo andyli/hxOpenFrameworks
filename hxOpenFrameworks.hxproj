@@ -17,7 +17,7 @@
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="" />
+    <option directives="HXCPP_MULTI_THREADED" />
     <option flashStrict="False" />
     <option mainClass="Main" />
     <option enabledebug="False" />
@@ -25,8 +25,7 @@
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <library name="hxcpp" />
-    <library name="hsl-1" />
+    <library name="hxOpenFrameworks" />
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>

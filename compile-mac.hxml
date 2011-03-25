@@ -5,9 +5,7 @@
 
 -cpp bin
 -main Main
--lib hxcpp
--lib hsl-1
--cp ../hxRtAudio
+-lib hxOpenFrameworks
 -D HXCPP_MULTI_THREADED
 
 -cmd cp ndll/Mac/*.* bin

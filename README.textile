@@ -26,7 +26,7 @@ h2. Known issues
 
 * @ofSerial@ and @ofArduino@ are not yet wrapped. If you need it, tell me or use "hxSerial":http://github.com/andyli/hxSerial.
 
-h2. How to compiling ndll(not required for normal user)
+h2. How to compile ndll(not required for normal user)
 
 * Clone this git repo by @git clone git://github.com/andyli/hxOpenFrameworks.git@
 * @cd /path/to/hxOpenFrameworks@
@@ -34,7 +34,7 @@ h2. How to compiling ndll(not required for normal user)
 * @git submodule update@. It will clone the "openFramework fork":http://github.com/andyli/openFrameworks to _project/openFrameworks_.
 * @cd project@ and compile the ndll by @haxelib run hxcpp build.xml@.
 
-Linux ndll need *libopenFrameworks.a*, which can be compiled by:
+Linux ndll needs *libopenFrameworks.a*, which can be compiled by:
 
 * @cd project/openFrameworks/libs/openFrameworksCompiled/project/linux@
 * @make@

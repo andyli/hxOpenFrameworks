@@ -6,9 +6,7 @@
 
 -cpp bin64
 -main Main
--lib hxcpp
--lib hsl-1
--lib hxRtAudio
+-lib hxOpenFrameworks
 -D HXCPP_MULTI_THREADED
 -D HXCPP_M64
 
