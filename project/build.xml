@@ -5,7 +5,7 @@
 	
 	<set name="OF_PLATFORM" value="vs2010" if="windows" />
 	<set name="OF_PLATFORM" value="osx" if="macos" />
-	<set name="OF_PLATFORM" value="linux" if="linux" />
+	<set name="OF_PLATFORM" value="linux${M64}" if="linux" />
 	
 	<set name="TARGET_MODE" value="Debug" if="debug" />
 	<set name="TARGET_MODE" value="Release" unless="debug" />
