@@ -5,7 +5,7 @@
 #-cmd cd ..
 
 -cpp bin
--main Main
+-main of.examples.Main
 -lib hxOpenFrameworks
 -D HXCPP_MULTI_THREADED
 
@@ -13,5 +13,4 @@
 
 -cmd cd bin
 -cmd mkdir -p data
--cmd export LD_LIBRARY_PATH=lib
 -cmd ./Main

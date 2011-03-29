@@ -4,7 +4,7 @@
 #-cmd cd ..
 
 -cpp bin
--main Main
+-main of.examples.Main
 -lib hxOpenFrameworks
 -D HXCPP_MULTI_THREADED
 
