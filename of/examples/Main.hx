@@ -1,4 +1,4 @@
-package;
+package of.examples;
 
 class Main {
 	static function main():Void {
