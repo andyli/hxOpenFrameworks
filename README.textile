@@ -8,9 +8,7 @@ See my blog post "haXe for interactivity/creative coding":http://blog.onthewings
 
 h2. Usage
 
-Please refer to the examples under "of/examples":http://github.com/andyli/hxOpenFrameworks/tree/master/of/examples.
-
-Refer to "compile.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile.hxml and "compile-mac.hxml":http://github.com/andyli/hxOpenFrameworks/blob/master/compile-mac.hxml for compilation.
+See the instruction "here":http://blog.onthewings.net/2011/03/26/hxopenframeworks-is-now-on-haxelib/.
 
 For API documentation please refer to the "original one":http://www.openframeworks.cc/documentation?adv=yes.
 
